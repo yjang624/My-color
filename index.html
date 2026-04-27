@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>my color · 나만의 퍼스널 컬러 찾기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Gaegu:wght@400;700&family=Quicksand:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; }
+  body {
+    font-family: 'Gowun Dodum', 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #ffe0ec 0%, #fce4f1 25%, #e8d5f2 50%, #d6e6ff 75%, #ffe9f3 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 18s ease infinite;
+    color: #5a4a6e;
+    padding: 24px 16px;
+    overflow-x: hidden;
+    transition: background 0.4s ease;
+  }
+  body.draping-mode {
+    animation: none;
+    padding: 0;
+  }
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .sparkle {
+    position: fixed;
+    pointer-events: none;
+    font-size: 18px;
+    opacity: 0.6;
+    animation: float 8s ease-in-out infinite;
+    z-index: 0;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.4; }
+    50% { transform: translateY(-30px) rotate(20deg); opacity: 0.9; }
+  }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 32px;
+    padding: 40px 28px;
+    box-shadow: 0 20px 60px rgba(204, 153, 204, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    margin: 16px 0;
+  }
+
+  .intro-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 56px;
+    background: linear-gradient(120deg, #ff85a2, #c089d4, #8eb6f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .intro-sub {
+    font-size: 18px;
+    text-align: center;
+    color: #8a7a9e;
+    margin-bottom: 28px;
+  }
+  .intro-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    text-align: center;
+    color: #6e5e88;
+    background: rgba(255, 240, 247, 0.6);
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+  .features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .feature-pill {
+    background: linear-gradient(135deg, #ffe4ee, #f0e0ff);
+    padding: 14px;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: #6b558b;
+    box-shadow: 0 4px 12px rgba(192, 137, 212, 0.15);
+  }
+  .prep-box {
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px dashed #f0c0d8;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 28px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #6e5e88;
+  }
+  .prep-box strong {
+    color: #c089d4;
+  }
+  .prep-list {
+    margin-top: 8px;
+    padding-left: 8px;
+  }
+  .prep-list li {
+    list-style: none;
+    padding: 4px 0;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 18px 24px;
+    border: none;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(120deg, #ffa8c5, #c89df0, #95b8f5);
+    color: white;
+    box-shadow: 0 8px 24px rgba(255, 168, 197, 0.4);
+    letter-spacing: 1px;
+  }
+  .btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(255, 168, 197, 0.5);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.85);
+    color: #b888d4;
+    border: 2px solid #e0c5f0;
+    box-shadow: 0 4px 12px rgba(204, 153, 204, 0.15);
+    margin-top: 12px;
+  }
+  .btn-small {
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  .progress-wrap {
+    margin-bottom: 24px;
+  }
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #a08abe;
+    margin-bottom: 8px;
+  }
+  .progress-bar {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(192, 137, 212, 0.2);
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ffa8c5, #c89df0, #95b8f5);
+    border-radius: 50px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  .question-tag {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .tag-draping { background: #ffd4e5; color: #d63384; }
+  .tag-objective { background: #d4e9ff; color: #1976d2; }
+  .tag-photo { background: #fff3d4; color: #d68900; }
+  .tag-physical { background: #d4f5e9; color: #00897b; }
+
+  .question-num {
+    font-family: 'Pacifico', cursive;
+    font-size: 22px;
+    color: #d68bb8;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .question-text {
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 16px;
+    color: #5a4a6e;
+    line-height: 1.5;
+  }
+  .question-help {
+    text-align: center;
+    font-size: 14px;
+    color: #8a7a9e;
+    margin-bottom: 24px;
+    background: rgba(255, 240, 247, 0.6);
+    padding: 12px 16px;
+    border-radius: 16px;
+    line-height: 1.6;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .option {
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.75);
+    border: 2px solid transparent;
+    border-radius: 20px;
+    font-family: inherit;
+    font-size: 15px;
+    color: #5a4a6e;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: left;
+    line-height: 1.5;
+    box-shadow: 0 4px 12px rgba(204, 153, 204, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .option:hover {
+    background: rgba(255, 230, 245, 0.95);
+    border-color: #f0c0d8;
+    transform: translateX(6px);
+    box-shadow: 0 6px 18px rgba(255, 168, 197, 0.25);
+  }
+  .option:active { transform: translateX(3px) scale(0.99); }
+  .option-swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15),
+                0 0 0 2px rgba(255, 255, 255, 0.6) inset;
+  }
+  .option-swatches {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+  .option-swatch-mini {
+    width: 16px;
+    height: 32px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .option-text {
+    flex: 1;
+  }
+
+  /* 디지털 드레이핑 화면 */
+  #draping {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease;
+  }
+  .draping-top {
+    padding: 16px 20px;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    text-align: center;
+    backdrop-filter: blur(8px);
+  }
+  .draping-color-name {
+    font-size: 20px;
+    font-weight: 700;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  }
+  .draping-color-num {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-top: 4px;
+  }
+  .draping-middle {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .draping-instruction {
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 20px;
+    font-size: 15px;
+    text-align: center;
+    line-height: 1.7;
+    max-width: 320px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+  .draping-instruction strong { color: #ffd4e5; }
+  .draping-bottom {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+  }
+  .draping-toggle {
+    background: rgba(255, 255, 255, 0.95);
+    color: #5a4a6e;
+    padding: 16px;
+    border: none;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+  }
+  .draping-toggle:hover { transform: scale(1.02); }
+  .draping-decide {
+    background: linear-gradient(120deg, #ffa8c5, #c89df0, #95b8f5);
+    color: white;
+    padding: 16px;
+    border: none;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(255, 168, 197, 0.4);
+    transition: transform 0.2s;
+  }
+  .draping-decide:hover { transform: scale(1.02); }
+
+  /* 결과 화면 */
+  .result-card { text-align: center; }
+  .result-emoji {
+    font-size: 72px;
+    margin-bottom: 8px;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .result-label {
+    font-family: 'Pacifico', cursive;
+    font-size: 20px;
+    color: #b888d4;
+    margin-bottom: 4px;
+  }
+  .result-name {
+    font-size: 38px;
+    font-weight: 700;
+    background-image: linear-gradient(120deg, #ff85a2, #c089d4, #8eb6f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .result-summary {
+    font-size: 16px;
+    color: #6e5e88;
+    line-height: 1.8;
+    background: rgba(255, 240, 247, 0.6);
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+  .section-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #c089d4;
+    text-align: left;
+    margin: 24px 0 12px;
+    padding-left: 8px;
+    border-left: 4px solid #ffb8d4;
+  }
+  .palette {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+  }
+  .palette.avoid { grid-template-columns: repeat(5, 1fr); }
+  .swatch {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12),
+                0 0 0 3px rgba(255, 255, 255, 0.6) inset;
+    transition: transform 0.2s ease;
+    position: relative;
+  }
+  .swatch:hover { transform: scale(1.15); }
+  .swatch.avoid::after {
+    content: '✕';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 700;
+    font-size: 18px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+  .info-box {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 18px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    text-align: left;
+    line-height: 1.7;
+    font-size: 15px;
+    color: #5a4a6e;
+  }
+  .info-box strong { color: #c089d4; margin-right: 8px; }
+  .signature {
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Pacifico', cursive;
+    color: #d68bb8;
+    font-size: 18px;
+    opacity: 0.85;
+  }
+  .button-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 28px;
+  }
+
+  @media (max-width: 480px) {
+    .intro-title { font-size: 42px; }
+    .result-name { font-size: 28px; }
+    .palette { grid-template-columns: repeat(5, 1fr); }
+    .features { grid-template-columns: 1fr; }
+  }
+
+  .hidden { display: none !important; }
+
+  .fade-in { animation: fadeIn 0.5s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+  <div class="sparkle" style="top:10%; left:8%; animation-delay:0s">✨</div>
+  <div class="sparkle" style="top:20%; right:12%; animation-delay:1s">🌸</div>
+  <div class="sparkle" style="top:60%; left:5%; animation-delay:2s">💫</div>
+  <div class="sparkle" style="top:75%; right:8%; animation-delay:3s">🌷</div>
+  <div class="sparkle" style="top:40%; right:20%; animation-delay:4s">⭐</div>
+  <div class="sparkle" style="top:85%; left:30%; animation-delay:5s">✨</div>
+
+  <div class="container">
+
+    <!-- 시작 화면 -->
+    <section id="intro" class="card fade-in">
+      <h1 class="intro-title">my color</h1>
+      <p class="intro-sub">✨ 나만의 퍼스널 컬러를 찾아보세요 ✨</p>
+      <div class="intro-desc">
+        전문가의 <strong>드레이핑 진단</strong>을<br>
+        디지털로 따라 해보는 사이트예요.<br>
+        총 25개의 비교 테스트로<br>
+        <strong>16가지 퍼스널 컬러</strong> 중 진단해드려요 💕
+      </div>
+
+      <div class="prep-box">
+        <strong>🪞 진단 전에 준비해주세요</strong>
+        <ul class="prep-list">
+          <li>✓ <strong>거울</strong> (휴대폰을 얼굴 옆에 댈 때 확인용)</li>
+          <li>✓ <strong>자연광</strong> 또는 환한 조명 (낮에 창가 추천)</li>
+          <li>✓ <strong>맨얼굴</strong> 또는 가벼운 화장 (진한 화장 X)</li>
+          <li>✓ 머리는 <strong>뒤로 묶거나 헤어밴드</strong>로 정리</li>
+          <li>✓ 액세서리 <strong>제거</strong> (특히 골드/실버)</li>
+        </ul>
+      </div>
+
+      <div class="features">
+        <div class="feature-pill">🎨 12 디지털 드레이핑</div>
+        <div class="feature-pill">👀 5 외형 관찰</div>
+        <div class="feature-pill">📸 4 사진 회상</div>
+        <div class="feature-pill">🪞 4 셀프테스트</div>
+      </div>
+      <button class="btn" onclick="startQuiz()">진단 시작하기 ✨</button>
+    </section>
+
+    <!-- 질문 화면 (드레이핑 외 일반 질문용) -->
+    <section id="quiz" class="card hidden">
+      <div class="progress-wrap">
+        <div class="progress-info">
+          <span id="progress-text">질문 1 / 25</span>
+          <span id="progress-percent">4%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+      <div style="text-align:center"><span id="question-tag" class="question-tag"></span></div>
+      <div class="question-num" id="question-num">Q1</div>
+      <div class="question-text" id="question-text"></div>
+      <div class="question-help" id="question-help"></div>
+      <div class="options" id="options"></div>
+    </section>
+
+    <!-- 결과 화면 -->
+    <section id="result" class="card hidden">
+      <div id="result-content"></div>
+      <div class="button-row">
+        <button class="btn" onclick="saveImage()">💾 결과 이미지 저장</button>
+        <button class="btn btn-secondary" onclick="restart()">🔄 다시 진단하기</button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- 디지털 드레이핑 풀스크린 -->
+  <section id="draping" class="hidden">
+    <div class="draping-top">
+      <div class="draping-color-name" id="draping-color-name"></div>
+      <div class="draping-color-num" id="draping-color-num">색 1 / 2</div>
+    </div>
+    <div class="draping-middle">
+      <div class="draping-instruction">
+        💡 휴대폰을 얼굴 옆에 가까이 대고<br>
+        <strong>거울</strong>을 보세요.<br>
+        얼굴이 어떻게 보이는지 관찰해주세요.
+      </div>
+    </div>
+    <div class="draping-bottom">
+      <button class="draping-toggle" onclick="toggleDrapingColor()">↔️ 다른 색 보기</button>
+      <button class="draping-decide" onclick="decideDraping()">충분히 봤어요 → 답하기</button>
+    </div>
+  </section>
+
+<script>
+/* ========== 16개 결과 데이터 ========== */
+const RESULTS = {
+  spring_light: {
+    emoji: "🌷", label: "Spring Light", name: "봄 라이트",
+    summary: "햇살처럼 화사하고 사랑스러운 매력의 소유자! 가볍고 밝은 파스텔 웜톤이 가장 잘 어울려요. 어린 봄꽃처럼 청초한 느낌이에요.",
+    good: ["#FFE5B4","#FFD4A3","#FFCBA4","#FFB6C1","#FFCAD4","#F4D2A4","#FFE4E1","#F5DEB3","#FAD6A5","#FFC8A2","#FFDEAD","#FFE4B5"],
+    avoid: ["#000000","#4B0082","#800020","#1C1C1C","#2F4F4F"],
+    makeup: "코랄, 피치, 라이트 핑크 / 골드 섀도우 / 살구빛 블러셔",
+    fashion: "베이비 코랄, 살구색, 연노랑, 아이보리, 라이트 카멜",
+    keyword: "사랑스러운 봄꽃 같은"
+  },
+  spring_true: {
+    emoji: "🌼", label: "Spring True", name: "봄 트루",
+    summary: "따뜻한 햇살을 그대로 머금은 듯한 정통 웜톤! 노란빛이 살짝 도는 따뜻한 색이 가장 잘 어울려요. 건강하고 싱그러운 매력이 돋보입니다.",
+    good: ["#FFD700","#FFA500","#FF8C42","#FFB347","#F4A460","#FFDF70","#E9967A","#FFAB91","#FFCC70","#F0B27A","#E8A87C","#FFCC99"],
+    avoid: ["#000000","#36454F","#722F37","#191970","#4B0082"],
+    makeup: "오렌지, 코랄, 따뜻한 브라운 / 황금빛 글로우 / 피치 블러셔",
+    fashion: "머스타드 옐로우, 따뜻한 오렌지, 카멜, 아이보리, 따뜻한 그린",
+    keyword: "햇살 머금은 정통 웜톤"
+  },
+  spring_bright: {
+    emoji: "🌺", label: "Spring Bright", name: "봄 브라이트",
+    summary: "또렷하고 화사한 비비드 웜톤! 채도 높은 화려한 색이 가장 잘 어울려요. 인형같이 또렷한 이목구비를 가진 분들이 많아요.",
+    good: ["#FF6B9D","#FFA500","#FFD23F","#FF4D6D","#FF8C00","#FFB627","#FF5757","#F7B500","#FF7B9C","#FF9F45","#FF6F61","#FFB347"],
+    avoid: ["#696969","#8B7D6B","#CD853F","#A0522D","#8B4513"],
+    makeup: "쨍한 코랄, 비비드 오렌지, 핫 핑크 / 글리터 섀도우 / 선명한 블러셔",
+    fashion: "비비드 옐로우, 핫 코랄, 쨍한 그린, 아이보리, 선명한 청록",
+    keyword: "또렷한 화사함"
+  },
+  spring_vivid: {
+    emoji: "🦋", label: "Spring Vivid", name: "봄 비비드",
+    summary: "16가지 중 가장 화려하고 임팩트 있는 타입! 고채도 웜톤의 모든 강렬한 색을 소화해요. 시선을 사로잡는 매력의 소유자입니다.",
+    good: ["#FF1744","#FF9100","#FFEA00","#00E676","#00B0FF","#FF6E40","#FFAB00","#F50057","#651FFF","#FF3D00","#FFC400","#76FF03"],
+    avoid: ["#A9A9A9","#8B7E66","#9C8C7A","#BDB76B","#696969"],
+    makeup: "비비드 레드, 형광 코랄, 골드 시머 / 펄 섀도우 / 강한 발색",
+    fashion: "전자 노랑, 강한 오렌지, 토마토 레드, 비비드 그린, 선명한 청록",
+    keyword: "강렬한 임팩트"
+  },
+  summer_light: {
+    emoji: "☁️", label: "Summer Light", name: "여름 라이트",
+    summary: "구름같이 부드럽고 사랑스러운 라이트 쿨톤! 부드럽고 밝은 파스텔 쿨이 가장 잘 어울려요. 청순하고 우아한 매력이 가득해요.",
+    good: ["#FFB6D9","#E0C7E5","#C7E0F0","#F8C8DC","#D4C5F9","#B5C9E2","#FFD1DC","#E6E6FA","#C4D8E2","#F5D5E0","#D8C7E8","#B8D4E3"],
+    avoid: ["#FF8C00","#A0522D","#8B4513","#FF4500","#FFD700"],
+    makeup: "베이비 핑크, 라벤더, 로즈 / 실버 시머 / 핑크 블러셔",
+    fashion: "베이비 핑크, 라벤더, 베이비 블루, 화이트, 연한 민트",
+    keyword: "구름 같은 청초함"
+  },
+  summer_true: {
+    emoji: "💎", label: "Summer True", name: "여름 트루",
+    summary: "정통 쿨톤의 우아함을 가진 타입! 부드러우면서도 정확한 쿨톤 색이 가장 잘 어울려요. 차분하고 지적인 매력이 돋보입니다.",
+    good: ["#FF6F91","#A8D8EA","#C9C0DD","#7494B0","#9CB4CC","#D4A5A5","#9AC1D9","#B4A7D6","#80A5C4","#C5A3CF","#A2C5DB","#8D9BC4"],
+    avoid: ["#FFA500","#FFD700","#FF8C00","#A0522D","#FFEE58"],
+    makeup: "로즈, 모브, 푸른 핑크 / 실버 섀도우 / 쿨 블러셔",
+    fashion: "라벤더, 로즈 핑크, 푸른 그레이, 네이비, 쿨 그린",
+    keyword: "정통 쿨톤의 우아함"
+  },
+  summer_muted: {
+    emoji: "🌸", label: "Summer Muted", name: "여름 뮤트",
+    summary: "부드럽고 차분한 쿨톤! 채도가 낮고 회색이 살짝 섞인 색이 가장 잘 어울려요. 몽환적이고 신비로운 매력의 소유자입니다.",
+    good: ["#D4B5C0","#B8A5C7","#9DB5C0","#A8B5A8","#C4B5B0","#B8B0C4","#9DB0B5","#C0B5C0","#A8B5BC","#B5B0A8","#A8A8B5","#BCB0B5"],
+    avoid: ["#FF1744","#FFEA00","#FF6E40","#00E676","#FF9100"],
+    makeup: "뮤트 로즈, 더스티 핑크 / 매트한 그레이 섀도우 / 차분한 블러셔",
+    fashion: "더스티 로즈, 뮤트 라벤더, 그레이지, 모스 그린, 뮤트 블루",
+    keyword: "몽환적인 차분함"
+  },
+  summer_cool: {
+    emoji: "🌊", label: "Summer Cool", name: "여름 쿨",
+    summary: "시원하고 깔끔한 쿨톤! 청량감 있는 차가운 색이 가장 잘 어울려요. 시크하면서도 부드러운 도시적인 매력이 있어요.",
+    good: ["#FF4081","#7986CB","#5C6BC0","#42A5F5","#5E92F3","#7986CB","#8E99F3","#5472D3","#9FA8DA","#7E57C2","#26C6DA","#80DEEA"],
+    avoid: ["#FFA500","#A0522D","#FFD700","#8B4513","#FF8C00"],
+    makeup: "푸른 핑크, 베리 / 블루 시머 / 푸른 톤 블러셔",
+    fashion: "쿨 블루, 푸른 핑크, 라일락, 미드나잇 네이비, 화이트",
+    keyword: "청량한 시크함"
+  },
+  autumn_muted: {
+    emoji: "🍂", label: "Autumn Muted", name: "가을 뮤트",
+    summary: "부드럽고 따뜻한 뮤트 웜톤! 채도가 낮은 따뜻한 색이 가장 잘 어울려요. 차분하고 자연스러운 우아함이 매력입니다.",
+    good: ["#C2A878","#A89384","#B89B72","#967E5C","#B5A289","#9C8060","#C4A57B","#A88770","#8B7355","#B59E7E","#A48C6B","#967D5C"],
+    avoid: ["#FF1744","#00E676","#F50057","#FFEA00","#FF6B9D"],
+    makeup: "뮤트 브라운, 머스크 로즈 / 카키 그린 섀도우 / 베이지 블러셔",
+    fashion: "뮤트 카멜, 더스티 머스타드, 올리브, 모카, 따뜻한 그레이",
+    keyword: "자연스러운 우아함"
+  },
+  autumn_true: {
+    emoji: "🌰", label: "Autumn True", name: "가을 트루",
+    summary: "정통 가을 웜톤! 진하고 따뜻한 어스 톤이 가장 잘 어울려요. 따뜻하고 깊이 있는 분위기를 가진 분들이 많아요.",
+    good: ["#D2691E","#8B4513","#A0522D","#CD853F","#B8860B","#DAA520","#BC8F8F","#A0522D","#D2691E","#8B7355","#B87333","#A67B5B"],
+    avoid: ["#FFB6D9","#E0C7E5","#FF1744","#FFEA00","#00B0FF"],
+    makeup: "테라코타, 브릭 레드 / 골드 브라운 섀도우 / 따뜻한 블러셔",
+    fashion: "머스타드, 캐러멜, 럭비 브라운, 짙은 카키, 벽돌색",
+    keyword: "깊이 있는 어스 톤"
+  },
+  autumn_deep: {
+    emoji: "🍁", label: "Autumn Deep", name: "가을 딥",
+    summary: "깊고 진한 가을 웜톤! 어둡고 진한 풍부한 색이 가장 잘 어울려요. 카리스마와 깊이를 동시에 가진 매력의 소유자입니다.",
+    good: ["#5D4037","#3E2723","#6D4C41","#8D6E63","#4E342E","#795548","#5D2E2E","#704214","#6B3410","#8B4000","#3E1E0F","#5C3317"],
+    avoid: ["#FFD1DC","#E0C7E5","#FFEA00","#FFB6D9","#FFC8A2"],
+    makeup: "딥 와인, 진한 베리 / 다크 브라운 섀도우 / 깊은 코랄 블러셔",
+    fashion: "다크 초콜릿, 짙은 와인, 포레스트 그린, 모카, 짙은 머스타드",
+    keyword: "깊이 있는 카리스마"
+  },
+  autumn_dark: {
+    emoji: "🦊", label: "Autumn Dark", name: "가을 다크",
+    summary: "가장 진하고 강렬한 가을 웜톤! 어두운 채도에 따뜻한 기운이 도는 색이 잘 어울려요. 신비롭고 매혹적인 분위기예요.",
+    good: ["#2F1B14","#3E2723","#1B0F0A","#4A2C20","#5D2E1F","#3D1F00","#4D2E1F","#321A0E","#3B1F0F","#5C2E16","#321B0F","#4D2E1F"],
+    avoid: ["#FFB6D9","#FFEA00","#E0C7E5","#FFD1DC","#FFCBA4"],
+    makeup: "딥 플럼, 진한 베리, 다크 코랄 / 매트 다크 브라운 / 깊은 블러셔",
+    fashion: "에스프레소 브라운, 짙은 버건디, 검정 가까운 네이비, 다크 카키",
+    keyword: "매혹적인 신비로움"
+  },
+  winter_true: {
+    emoji: "❄️", label: "Winter True", name: "겨울 트루",
+    summary: "정통 쿨톤의 시크한 아이콘! 차갑고 정확한 쿨톤이 가장 잘 어울려요. 또렷한 이목구비와 강렬한 인상의 소유자입니다.",
+    good: ["#000000","#FFFFFF","#003366","#8B0000","#191970","#000080","#1E3A8A","#0F4C81","#100E18","#21304E","#001F3F","#FF1493"],
+    avoid: ["#FFE5B4","#FFD700","#F4A460","#E9967A","#FFCBA4"],
+    makeup: "푸른 레드, 진한 베리 / 실버/블랙 섀도우 / 쿨 핑크 블러셔",
+    fashion: "정통 검정, 순백, 미드나잇 네이비, 푸른 레드, 차가운 그레이",
+    keyword: "정통 쿨톤의 시크함"
+  },
+  winter_clear: {
+    emoji: "💎", label: "Winter Clear", name: "겨울 클리어",
+    summary: "맑고 선명한 쿨톤! 투명하고 채도 높은 차가운 색이 가장 잘 어울려요. 또렷하고 청량한 매력의 소유자예요.",
+    good: ["#E91E63","#9C27B0","#673AB7","#2196F3","#00BCD4","#FF1493","#0288D1","#7B1FA2","#0277BD","#C2185B","#1A237E","#06AED5"],
+    avoid: ["#A0522D","#8B7355","#967E5C","#B89B72","#A88770"],
+    makeup: "비비드 푸시아, 쨍한 베리 / 메탈릭 섀도우 / 또렷한 발색",
+    fashion: "푸시아, 일렉트릭 블루, 순백, 진한 청록, 보라",
+    keyword: "투명한 청량감"
+  },
+  winter_deep: {
+    emoji: "🖤", label: "Winter Deep", name: "겨울 딥",
+    summary: "깊고 진한 차가운 쿨톤! 어둡고 풍부한 쿨톤 색이 가장 잘 어울려요. 묵직한 우아함과 강한 카리스마를 가졌어요.",
+    good: ["#1A1A2E","#16213E","#0F3460","#722F37","#3A0CA3","#240046","#10002B","#3C096C","#5A189A","#560BAD","#480CA8","#3F37C9"],
+    avoid: ["#FFE5B4","#FFD1DC","#FFB347","#F4D2A4","#FFCBA4"],
+    makeup: "다크 와인, 진한 보라, 블랙체리 / 스모키 다크 / 깊은 베리 블러셔",
+    fashion: "딥 버건디, 짙은 보라, 다크 에메랄드, 검정, 미드나잇",
+    keyword: "묵직한 카리스마"
+  },
+  winter_vivid: {
+    emoji: "💜", label: "Winter Vivid", name: "겨울 비비드",
+    summary: "16가지 중 가장 강렬한 대비를 가진 쿨톤! 강한 명암 대비와 비비드 쿨톤이 잘 어울려요. 압도적인 존재감의 소유자입니다.",
+    good: ["#FF0080","#7C00FF","#0080FF","#00D4FF","#FF00C8","#8E2DE2","#0F0F0F","#FFFFFF","#5B0EB5","#FF006E","#0066FF","#9D00FF"],
+    avoid: ["#F4D2A4","#E9967A","#C2A878","#967E5C","#B5A289"],
+    makeup: "선명한 푸시아, 일렉트릭 베리 / 글리터 강조 / 강한 발색",
+    fashion: "전자 보라, 일렉트릭 블루, 정통 흑백, 핫 푸시아, 비비드 청록",
+    keyword: "압도적인 존재감"
+  }
+};
+
+/* ========== 25개 질문 ========== */
+const QUESTIONS = [
+  // ===== 디지털 드레이핑 12개 =====
+  {
+    type: "draping", tag: "🎨 디지털 드레이핑",
+    colors: [
+      { name: "아이보리 (따뜻한 흰색)", hex: "#FFFFF0" },
+      { name: "순백 (차가운 흰색)", hex: "#FFFFFF" }
+    ],
+    finalQ: "어느 쪽에서 얼굴이 더 환하고 생기 있어 보였나요?",
+    options: [
+      { t: "아이보리 쪽 (따뜻한 흰색)", swatch: "#FFFFF0", s: { W: 2, L: 0, B: 0 } },
+      { t: "순백 쪽 (차가운 흰색)", swatch: "#FFFFFF", s: { W: -2, L: 0, B: 0 } },
+      { t: "비슷함 / 둘 다 괜찮음", swatch: "#F0E6F0", s: { W: 0, L: 0, B: 0 } },
+      { t: "둘 다 안 어울림", swatch: "#D0C0D0", s: { W: 0, L: 0, B: 0 } }
+    ]
+  },
+  {
+    type: "draping", tag: "🎨 디지털 드레이핑",
+    colors: [
+      { name: "따뜻한 노랑", hex: "#FFE066" },
+      { name: "차가운 파랑", hex: "#7AC9F4" }
+    ],
+    finalQ: "어느 쪽에서 얼굴이 더 환해 보였나요?",
+    options: [
+      { t: "노랑 쪽이 잘 어울림", swatch: "#FFE066", s: { W: 2, L: 0, B: 0 } },
+      { t: "파랑 쪽이 잘 어울림", swatch: "#7AC9F4", s: { W: -2, L: 0, B: 0 } },
+      { t: "비슷함", swatch: "#D0E0E0", s: { W: 0, L: 0, B: 0 } },
+      { t: "둘 다 부담스러움", swatch: "#B8B8B8", s: { W: 0, L: 0, B: -1 } }
+    ]
+  },
+  {
+    type: "draping", tag: "🎨 디지털 드레이핑",
+    colors: [
+      { name: "골드 (황금색)", hex: "#D4AF37" },
+      { name: "실버 (은색)", hex: "#C0C0C0" }
+    ],
+    finalQ: "어느 쪽 색이 얼굴에 댔을 때 더 빛나 보였나요?",
+    options: [
+      { t: "골드 쪽 (얼굴이 빛남)", swatch: "#D4AF37", s: { W: 2, L: 0, B: 1 } },
+      { t: "실버 쪽 (얼굴이 빛남)", swatch: "#C0C0C0", s: { W: -2, L: 0, B: 1 } },
+      { t: "비슷함", swatch: "#CABE92", s: { W: 0, L: 0, B: 0 } },
+      { t: "둘 다 별로", swatch: "#A0A0A0", s: { W: 0, L: 0, B: -1 } }
+    ]
+  },
+  {
+    type: "draping", tag: "🎨 디지털 드레이핑",
+    colors: [
+      { name: "코랄 레드 (따뜻한 빨강)", hex: "#FF6B6B" },
+      { name: "푸른 레드 (차가운 빨강)", hex: "#C8102E" }
+    ],
+    finalQ: "어느 쪽 빨강이 얼굴에 댔을 때 더 화사해 보였나요?",
+    options: [
+      { t: "코랄 레드 쪽", swatch: "#FF6B6B", s: { W: 2, L: 1, B: 0 } },
+      { t: "푸른 레드 쪽", swatch: "#C8102E", s: { W: -2, L: -1, B: 1 } },
+      { t: "비슷함", swatch: "#D85040", s: { W: 0, L: 0, B: 0 } },
+      { t: "둘 다 강해서 부담", swatch: "#B85050", s: { W: 0, L: 1, B: -2 } }
+    ]
+  },
+  {
+    type: "draping", tag: "🎨 디지털 드레이핑",
+    colors: [
+      { name: "코랄 핑크 (살구빛 핑크)", hex: "#FF8C70" },
+      { name: "푸시아 (보라빛 핑크)", hex: "#C71585" }
+    ],
+    finalQ: "어느 쪽 핑크가 얼굴이 더 살아나 보였나요?",
+    options: [
+      { t: "코랄 핑크 쪽", swatch: "#FF8C70", s: { W: 2, L: 0, B: 0 } },
+      { t: "푸시아 쪽", swatch: "#C71585", s: { W: -2, L: 0, B: 1 } },
+      { t: "비슷함", swatch: "#DC6890", s: { W: 0, L: 0, B: 0 } },
+      { t: "둘 다 부담", swatch: "#B57080", s: { W: 0, L: 0, B: -1 } }
+    ]
+  },
+  {
+    type: "draping", tag: "🎨 디지털 드레이핑",
+    colors: [
+      { name: "웜 베이지", hex: "#D4B896" },
+      { name: "쿨 그레이지", hex: "#B5B5B5" }
+    ],
+    finalQ: "어느 쪽이 얼굴 톤과 자연스럽게 어울렸나요?",
+    options: [
+      { t: "웜 베이지 쪽", swatch: "#D4B896", s: { W: 2, L: 0, B: -1 } },
+      { t: "쿨 그레이지 쪽", swatch: "#B5B5B5", s: { W: -2, L: 0, B: -1 } },
+      { t: "비슷함", swatch: "#C8B6A6", s: { W: 0, L: 0, B: 0 } },
+      { t: "둘 다 칙칙해 보임", swatch: "#A89890", s: { W: 0, L: 0, B: 1 } }
+    ]
+  },
+  {
+    type: "draping", tag: "🎨 디지털 드레이핑",
+    colors: [
+      { name: "오렌지", hex: "#FF9933" },
+      { name: "라일락 (연보라)", hex: "#C8A2C8" }
+    ],
+    finalQ: "어느 쪽에서 얼굴이 더 살아나 보였나요?",
+    options: [
+      { t: "오렌지 쪽", swatch: "#FF9933", s: { W: 2, L: 0, B: 1 } },
+      { t: "라일락 쪽", swatch: "#C8A2C8", s: { W: -2, L: 1, B: -1 } },
+      { t: "비슷함", swatch: "#E0AA98", s: { W: 0, L: 0, B: 0 } },
+      { t: "둘 다 안 어울림", swatch: "#B8A8B0", s: { W: 0, L: 0, B: 0 } }
+    ]
+  },
+  {
+    type: "draping", tag: "🎨 디지털 드레이핑",
+    colors: [
+      { name: "올리브 (노란빛 그린)", hex: "#808000" },
+      { name: "에메랄드 (푸른빛 그린)", hex: "#00A693" }
+    ],
+    finalQ: "어느 쪽 그린이 얼굴과 더 잘 어울렸나요?",
+    options: [
+      { t: "올리브 쪽", swatch: "#808000", s: { W: 2, L: -1, B: -1 } },
+      { t: "에메랄드 쪽", swatch: "#00A693", s: { W: -2, L: 0, B: 1 } },
+      { t: "비슷함", swatch: "#406854", s: { W: 0, L: -1, B: 0 } },
+      { t: "둘 다 너무 강함", swatch: "#5C7060", s: { W: 0, L: 1, B: -1 } }
+    ]
+  },
+  {
+    type: "draping", tag: "🎨 디지털 드레이핑",
+    colors: [
+      { name: "비비드 빨강 (쨍한 원색)", hex: "#FF1744" },
+      { name: "더스티 로즈 (탁한 분홍)", hex: "#B07379" }
+    ],
+    finalQ: "어느 쪽이 얼굴이 살아나 보였나요?",
+    options: [
+      { t: "비비드 빨강 쪽", swatch: "#FF1744", s: { W: 0, L: 0, B: 2 } },
+      { t: "더스티 로즈 쪽", swatch: "#B07379", s: { W: 0, L: 0, B: -2 } },
+      { t: "비슷함", swatch: "#D5455E", s: { W: 0, L: 0, B: 0 } },
+      { t: "둘 다 부담", swatch: "#A07070", s: { W: 0, L: 0, B: 0 } }
+    ]
+  },
+  {
+    type: "draping", tag: "🎨 디지털 드레이핑",
+    colors: [
+      { name: "라이트 핑크 (밝은 핑크)", hex: "#FFD1DC" },
+      { name: "딥 와인 (진한 와인색)", hex: "#722F37" }
+    ],
+    finalQ: "어느 쪽이 얼굴과 더 어울리나요?",
+    options: [
+      { t: "라이트 핑크 쪽", swatch: "#FFD1DC", s: { W: 0, L: 2, B: 0 } },
+      { t: "딥 와인 쪽", swatch: "#722F37", s: { W: 0, L: -2, B: 0 } },
+      { t: "비슷함", swatch: "#B88090", s: { W: 0, L: 0, B: 0 } },
+      { t: "둘 다 안 어울림", swatch: "#A89090", s: { W: 0, L: 0, B: 0 } }
+    ]
+  },
+  {
+    type: "draping", tag: "🎨 디지털 드레이핑",
+    colors: [
+      { name: "머스타드 (따뜻한 노랑)", hex: "#DAA520" },
+      { name: "와인 (차가운 와인)", hex: "#722F37" }
+    ],
+    finalQ: "어느 쪽이 얼굴이 살아 보였나요?",
+    options: [
+      { t: "머스타드 쪽", swatch: "#DAA520", s: { W: 2, L: -1, B: 0 } },
+      { t: "와인 쪽", swatch: "#722F37", s: { W: -2, L: -1, B: 0 } },
+      { t: "비슷함", swatch: "#A6692C", s: { W: 0, L: -1, B: 0 } },
+      { t: "둘 다 칙칙함", swatch: "#90705C", s: { W: 0, L: 1, B: -1 } }
+    ]
+  },
+  {
+    type: "draping", tag: "🎨 디지털 드레이핑",
+    colors: [
+      { name: "옐로우 그린 (따뜻한 그린)", hex: "#9ACD32" },
+      { name: "틸 그린 (차가운 그린)", hex: "#008B8B" }
+    ],
+    finalQ: "어느 쪽 그린이 얼굴이 더 환해 보였나요?",
+    options: [
+      { t: "옐로우 그린 쪽", swatch: "#9ACD32", s: { W: 2, L: 1, B: 0 } },
+      { t: "틸 그린 쪽", swatch: "#008B8B", s: { W: -2, L: 0, B: 1 } },
+      { t: "비슷함", swatch: "#509F5F", s: { W: 0, L: 0, B: 0 } },
+      { t: "둘 다 안 맞음", swatch: "#608070", s: { W: 0, L: 0, B: 0 } }
+    ]
+  },
+
+  // ===== 객관 외형 5개 =====
+  {
+    type: "objective", tag: "👀 외형 관찰",
+    q: "본인의 자연 머리카락 색은? (염색 안 한 색)",
+    help: "거울로 확인해주세요. 햇빛 아래에서 보면 더 정확해요.",
+    options: [
+      { t: "검정 / 매우 짙은 검정", swatch: "#1A1A1A", s: { W: -1, L: -2, B: 1 } },
+      { t: "짙은 갈색 (다크 브라운)", swatch: "#3E2723", s: { W: 0, L: -1, B: 0 } },
+      { t: "중간 갈색 / 따뜻한 갈색", swatch: "#8B5A2B", s: { W: 1, L: 0, B: 0 } },
+      { t: "밝은 갈색 / 금발기 있음", swatch: "#C9A57B", s: { W: 1, L: 2, B: -1 } }
+    ]
+  },
+  {
+    type: "objective", tag: "👀 외형 관찰",
+    q: "본인의 눈동자 색은?",
+    help: "밝은 곳에서 거울로 확인해주세요.",
+    options: [
+      { t: "검정 (매우 진한 검정)", swatch: "#1A1A1A", s: { W: -1, L: -2, B: 1 } },
+      { t: "따뜻한 짙은 갈색", swatch: "#5D3A1F", s: { W: 1, L: -1, B: 0 } },
+      { t: "헤이즐 / 연한 갈색", swatch: "#A67B5B", s: { W: 2, L: 1, B: 0 } },
+      { t: "회색빛 / 차가운 갈색", swatch: "#6B5B5B", s: { W: -1, L: -1, B: 1 } }
+    ]
+  },
+  {
+    type: "objective", tag: "👀 외형 관찰",
+    q: "손목 안쪽 정맥의 색깔은?",
+    help: "팔을 펴고 햇빛이나 밝은 빛에 비춰서 확인해주세요.",
+    options: [
+      { t: "초록빛이 도는 편", swatch: "#5B8E5B", s: { W: 2, L: 0, B: 0 } },
+      { t: "파란색/보라색이 도는 편", swatch: "#5B6B9E", s: { W: -2, L: 0, B: 0 } },
+      { t: "초록과 파랑이 섞여 보임", swatch: "#5B7B82", s: { W: 0, L: 0, B: 0 } },
+      { t: "잘 보이지 않음", swatch: "#C4B5A8", s: { W: 0, L: 0, B: 0 } }
+    ]
+  },
+  {
+    type: "objective", tag: "👀 외형 관찰",
+    q: "햇빛에 오래 노출되면 피부는 어떻게 되나요?",
+    help: "여름철 본인 경험을 떠올려주세요.",
+    options: [
+      { t: "잘 타고 갈색이 된다", swatch: "#A67B5B", s: { W: 2, L: -1, B: 0 } },
+      { t: "빨개졌다가 갈색이 된다", swatch: "#C8806B", s: { W: 0, L: 0, B: 0 } },
+      { t: "빨개지기만 하고 잘 안 탄다", swatch: "#E8A8A0", s: { W: -1, L: 1, B: 0 } },
+      { t: "거의 변화가 없다", swatch: "#F0DCC8", s: { W: -2, L: 2, B: 0 } }
+    ]
+  },
+  {
+    type: "physical", tag: "🪞 셀프테스트",
+    q: "흰 A4 종이를 얼굴 옆에 대고 거울을 봐주세요. 얼굴이 어떻게 보이나요?",
+    help: "💡 흰 종이를 턱 아래쪽에 대고 거울로 비교하면 잘 보여요.",
+    options: [
+      { t: "종이보다 얼굴이 노랗게/누렇게 보인다", swatch: "#E8C68A", s: { W: 2, L: 0, B: 0 } },
+      { t: "종이보다 얼굴이 분홍/홍조가 있는 편", swatch: "#F8C8C0", s: { W: -2, L: 0, B: 0 } },
+      { t: "종이와 비슷하거나 푸르스름한 편", swatch: "#E8E0E8", s: { W: -1, L: 1, B: 1 } },
+      { t: "올리브빛 / 칙칙해 보인다", swatch: "#A89878", s: { W: 1, L: -1, B: -1 } }
+    ]
+  },
+
+  // ===== 사진 회상 4개 =====
+  {
+    type: "photo", tag: "📸 사진 회상",
+    q: "흰옷 입고 사진 찍었을 때, 사진 속 얼굴은?",
+    help: "최근에 흰옷 사진이 있다면 한 번 봐주세요. 없으면 기억으로 답하셔도 OK!",
+    options: [
+      { t: "화사하고 깨끗하게 잘 나옴", swatch: "#FFFFFF", s: { W: -1, L: 1, B: 1 } },
+      { t: "얼굴이 누렇거나 칙칙해 보임", swatch: "#F5E8C8", s: { W: 2, L: 0, B: 0 } },
+      { t: "평범 / 별 차이 없음", swatch: "#F0F0F0", s: { W: 0, L: 0, B: 0 } },
+      { t: "흰옷 사진 거의 없음 / 모름", swatch: "#D0D0D0", s: { W: 0, L: 0, B: 0 } }
+    ]
+  },
+  {
+    type: "photo", tag: "📸 사진 회상",
+    q: "검정옷 입고 사진 찍었을 때, 사진 속 얼굴은?",
+    help: "최근 검정옷 사진을 떠올려주세요.",
+    options: [
+      { t: "또렷하고 시크하게 잘 나옴", swatch: "#000000", s: { W: -1, L: -2, B: 1 } },
+      { t: "얼굴이 죽어 보이고 누래짐", swatch: "#3A3A3A", s: { W: 2, L: 1, B: -1 } },
+      { t: "강해 보이고 부담스러움", swatch: "#1A1A1A", s: { W: 0, L: 2, B: -1 } },
+      { t: "그럭저럭 / 평범", swatch: "#5A5A5A", s: { W: 0, L: 0, B: 0 } }
+    ]
+  },
+  {
+    type: "photo", tag: "📸 사진 회상",
+    q: "본인이 사진 잘 나왔다고 느낀 옷의 색깔 계열은?",
+    help: "사진첩 한번 살펴보세요. '이 사진 진짜 잘 나왔다' 싶은 옷의 색.",
+    options: [
+      { t: "따뜻한 색 (베이지/카멜/코랄/머스타드)", swatch: "#D4A574", s: { W: 2, L: 0, B: 0 } },
+      { t: "차가운 색 (네이비/그레이/라벤더/블루)", swatch: "#7080A0", s: { W: -2, L: 0, B: 0 } },
+      { t: "쨍한 비비드 색 (선명한 원색)", swatch: "#FF3366", s: { W: 0, L: 0, B: 2 } },
+      { t: "부드러운 파스텔 (연한 색)", swatch: "#F0D0E0", s: { W: 0, L: 1, B: -2 } }
+    ]
+  },
+  {
+    type: "photo", tag: "📸 사진 회상",
+    q: "사진 찍었을 때 칙칙하게 나왔던 옷 색은?",
+    help: "보면 안 좋은 색 → 본인한테 안 어울리는 색이에요.",
+    options: [
+      { t: "순백 / 차가운 흰색이 칙칙", swatch: "#FFFFFF", s: { W: 2, L: 0, B: 0 } },
+      { t: "검정이 칙칙 / 강해 보임", swatch: "#000000", s: { W: 1, L: 2, B: -1 } },
+      { t: "비비드 형광 색이 부담", swatch: "#FF00FF", s: { W: 0, L: 0, B: -2 } },
+      { t: "부드러운 파스텔이 흐려보임", swatch: "#F0E0F0", s: { W: 0, L: -1, B: 2 } }
+    ]
+  },
+
+  // ===== 물리 셀프테스트 4개 =====
+  {
+    type: "physical", tag: "🪞 셀프테스트",
+    q: "골드 액세서리 vs 실버 액세서리, 어느 쪽이 손목에 댔을 때 손이 더 예뻐 보이나요?",
+    help: "💡 시계, 팔찌, 반지 등을 양손에 번갈아 차고 비교해보세요.",
+    options: [
+      { t: "골드 쪽이 손이 더 환해 보임", swatch: "#D4AF37", s: { W: 2, L: 0, B: 0 } },
+      { t: "실버 쪽이 손이 더 환해 보임", swatch: "#C0C0C0", s: { W: -2, L: 0, B: 0 } },
+      { t: "둘 다 비슷하게 어울림", swatch: "#CABE92", s: { W: 0, L: 0, B: 0 } },
+      { t: "잘 모르겠음 / 액세서리 없음", swatch: "#B0B0B0", s: { W: 0, L: 0, B: 0 } }
+    ]
+  },
+  {
+    type: "physical", tag: "🪞 셀프테스트",
+    q: "노란 종이 vs 파란 종이를 얼굴에 대보세요. 어느 쪽이 얼굴이 환하고 잡티가 덜 보이나요?",
+    help: "💡 색지나 색이 있는 천이 있으면 사용하세요. 없으면 휴대폰으로 노란색/파란색 화면 띄워서 가능.",
+    options: [
+      { t: "노란색 댔을 때 얼굴이 환함", swatch: "#FFE066", s: { W: 2, L: 0, B: 0 } },
+      { t: "파란색 댔을 때 얼굴이 환함", swatch: "#7AC9F4", s: { W: -2, L: 0, B: 0 } },
+      { t: "비슷하게 어울림", swatch: "#C8D0A0", s: { W: 0, L: 0, B: 0 } },
+      { t: "둘 다 얼굴이 칙칙해짐", swatch: "#9090A0", s: { W: 0, L: 0, B: -1 } }
+    ]
+  },
+  {
+    type: "physical", tag: "🪞 셀프테스트",
+    q: "진한 색 옷 vs 연한 색 옷, 어느 쪽이 얼굴에 더 잘 어울리나요?",
+    help: "💡 옷장에서 같은 색조의 진한 옷과 연한 옷을 입어보고 거울 비교.",
+    options: [
+      { t: "진한 색이 얼굴이 살아남", swatch: "#3E2723", s: { W: 0, L: -2, B: 0 } },
+      { t: "연한 색이 얼굴이 살아남", swatch: "#FFE0E5", s: { W: 0, L: 2, B: 0 } },
+      { t: "둘 다 비슷함", swatch: "#A8A0A8", s: { W: 0, L: 0, B: 0 } },
+      { t: "잘 모르겠음", swatch: "#C0C0C0", s: { W: 0, L: 0, B: 0 } }
+    ]
+  },
+  {
+    type: "physical", tag: "🪞 셀프테스트",
+    q: "비비드 원색 옷 vs 차분한 뮤트 옷, 어느 쪽이 더 잘 어울리나요?",
+    help: "💡 쨍한 색(원색) vs 탁한 색(흐릿한 색) 옷을 비교. 입어보거나 손에 들고 거울 비교.",
+    options: [
+      { t: "비비드 원색이 얼굴이 살아남", swatch: "#FF1744", s: { W: 0, L: 0, B: 2 } },
+      { t: "차분한 뮤트 색이 얼굴이 살아남", swatch: "#A88090", s: { W: 0, L: 0, B: -2 } },
+      { t: "둘 다 비슷함", swatch: "#D08090", s: { W: 0, L: 0, B: 0 } },
+      { t: "잘 모르겠음", swatch: "#B5A5A5", s: { W: 0, L: 0, B: 0 } }
+    ]
+  }
+];
+
+/* ========== 상태 ========== */
+let currentIdx = 0;
+let scores = { W: 0, L: 0, B: 0 };
+let drapingColorIdx = 0;
+
+/* ========== 함수 ========== */
+function startQuiz() {
+  currentIdx = 0;
+  scores = { W: 0, L: 0, B: 0 };
+  document.getElementById("intro").classList.add("hidden");
+  document.getElementById("result").classList.add("hidden");
+  showCurrentQuestion();
+  scrollToTop();
+}
+
+function showCurrentQuestion() {
+  const q = QUESTIONS[currentIdx];
+  if (q.type === "draping") {
+    showDraping();
+  } else {
+    showQuiz();
+  }
+}
+
+function showQuiz() {
+  // 드레이핑 닫고 일반 질문 화면 보이기
+  document.body.classList.remove("draping-mode");
+  document.getElementById("draping").classList.add("hidden");
+  const quiz = document.getElementById("quiz");
+  quiz.classList.remove("hidden");
+
+  const q = QUESTIONS[currentIdx];
+  const total = QUESTIONS.length;
+  const cur = currentIdx + 1;
+  const pct = Math.round((cur / total) * 100);
+
+  document.getElementById("progress-text").textContent = `질문 ${cur} / ${total}`;
+  document.getElementById("progress-percent").textContent = `${pct}%`;
+  document.getElementById("progress-fill").style.width = `${pct}%`;
+  document.getElementById("question-num").textContent = `Q${cur}`;
+
+  const tagEl = document.getElementById("question-tag");
+  tagEl.textContent = q.tag;
+  tagEl.className = "question-tag";
+  if (q.type === "objective") tagEl.classList.add("tag-objective");
+  if (q.type === "photo") tagEl.classList.add("tag-photo");
+  if (q.type === "physical") tagEl.classList.add("tag-physical");
+  if (q.type === "draping") tagEl.classList.add("tag-draping");
+
+  document.getElementById("question-text").textContent = q.q || q.finalQ;
+  const helpEl = document.getElementById("question-help");
+  if (q.help) {
+    helpEl.textContent = q.help;
+    helpEl.style.display = "block";
+  } else {
+    helpEl.style.display = "none";
+  }
+
+  const optsBox = document.getElementById("options");
+  optsBox.innerHTML = "";
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement("button");
+    btn.className = "option";
+    let swatchHtml = "";
+    if (opt.swatch) {
+      swatchHtml = `<div class="option-swatch" style="background:${opt.swatch}"></div>`;
+    }
+    btn.innerHTML = `${swatchHtml}<div class="option-text">${opt.t}</div>`;
+    btn.onclick = () => answerQuestion(i);
+    optsBox.appendChild(btn);
+  });
+
+  quiz.classList.remove("fade-in");
+  void quiz.offsetWidth;
+  quiz.classList.add("fade-in");
+  scrollToTop();
+}
+
+function showDraping() {
+  document.body.classList.add("draping-mode");
+  document.getElementById("quiz").classList.add("hidden");
+  document.getElementById("draping").classList.remove("hidden");
+
+  drapingColorIdx = 0;
+  applyDrapingColor();
+}
+
+function applyDrapingColor() {
+  const q = QUESTIONS[currentIdx];
+  const color = q.colors[drapingColorIdx];
+  document.getElementById("draping").style.backgroundColor = color.hex;
+  document.getElementById("draping-color-name").textContent = color.name;
+  document.getElementById("draping-color-num").textContent = `색 ${drapingColorIdx + 1} / ${q.colors.length} · 질문 ${currentIdx + 1} / ${QUESTIONS.length}`;
+}
+
+function toggleDrapingColor() {
+  const q = QUESTIONS[currentIdx];
+  drapingColorIdx = (drapingColorIdx + 1) % q.colors.length;
+  applyDrapingColor();
+}
+
+function decideDraping() {
+  // 답변 화면(quiz)으로 전환
+  document.body.classList.remove("draping-mode");
+  document.getElementById("draping").classList.add("hidden");
+  showQuiz();
+}
+
+function answerQuestion(optIdx) {
+  const opt = QUESTIONS[currentIdx].options[optIdx];
+  scores.W += opt.s.W || 0;
+  scores.L += opt.s.L || 0;
+  scores.B += opt.s.B || 0;
+
+  currentIdx++;
+  if (currentIdx >= QUESTIONS.length) {
+    showResult();
+  } else {
+    showCurrentQuestion();
+  }
+}
+
+function pickResultKey() {
+  const W = scores.W;
+  const L = scores.L;
+  const B = scores.B;
+
+  const isWarm = W >= 0;
+  const isLight = L >= 0;
+
+  let season;
+  if (isWarm && isLight) season = "spring";
+  else if (!isWarm && isLight) season = "summer";
+  else if (isWarm && !isLight) season = "autumn";
+  else season = "winter";
+
+  let sub;
+  if (season === "spring") {
+    if (B >= 5) sub = "vivid";
+    else if (B >= 1) sub = "bright";
+    else if (B >= -3) sub = "true";
+    else sub = "light";
+  } else if (season === "summer") {
+    if (B >= 4) sub = "cool";
+    else if (B >= 0) sub = "true";
+    else if (B >= -3) sub = "muted";
+    else sub = "light";
+  } else if (season === "autumn") {
+    if (L <= -6) sub = "dark";
+    else if (L <= -3) sub = "deep";
+    else if (B >= 0) sub = "true";
+    else sub = "muted";
+  } else {
+    if (B >= 5) sub = "vivid";
+    else if (B >= 2) sub = "clear";
+    else if (L <= -3) sub = "deep";
+    else sub = "true";
+  }
+
+  return `${season}_${sub}`;
+}
+
+function showResult() {
+  document.body.classList.remove("draping-mode");
+  document.getElementById("draping").classList.add("hidden");
+  document.getElementById("quiz").classList.add("hidden");
+
+  const key = pickResultKey();
+  const r = RESULTS[key] || RESULTS["spring_light"];
+
+  const goodSwatches = r.good.map((c) => `<div class="swatch" style="background:${c}" title="${c}"></div>`).join("");
+  const avoidSwatches = r.avoid.map((c) => `<div class="swatch avoid" style="background:${c}" title="${c}"></div>`).join("");
+
+  const html = `
+    <div class="result-card">
+      <div class="result-emoji">${r.emoji}</div>
+      <div class="result-label">${r.label}</div>
+      <div class="result-name">${r.name}</div>
+      <div class="result-summary">${r.summary}</div>
+
+      <div class="section-title">🎨 어울리는 컬러 팔레트</div>
+      <div class="palette">${goodSwatches}</div>
+
+      <div class="section-title">🚫 피해야 할 컬러</div>
+      <div class="palette avoid">${avoidSwatches}</div>
+
+      <div class="section-title">💄 메이크업 추천</div>
+      <div class="info-box">${r.makeup}</div>
+
+      <div class="section-title">👗 패션 컬러 추천</div>
+      <div class="info-box">${r.fashion}</div>
+
+      <div class="section-title">✨ 키워드</div>
+      <div class="info-box"><strong>"${r.keyword}"</strong></div>
+
+      <div class="signature">my color ✨</div>
+    </div>
+  `;
+  document.getElementById("result-content").innerHTML = html;
+  const result = document.getElementById("result");
+  result.classList.remove("hidden");
+  result.classList.remove("fade-in");
+  void result.offsetWidth;
+  result.classList.add("fade-in");
+  scrollToTop();
+}
+
+function restart() {
+  startQuiz();
+}
+
+function saveImage() {
+  const target = document.getElementById("result");
+  const btnRow = target.querySelector(".button-row");
+  btnRow.style.visibility = "hidden";
+
+  html2canvas(target, {
+    backgroundColor: null,
+    scale: 2,
+    useCORS: true,
+  }).then((canvas) => {
+    btnRow.style.visibility = "visible";
+    const link = document.createElement("a");
+    link.download = "my-color-result.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  }).catch((err) => {
+    btnRow.style.visibility = "visible";
+    alert("이미지 저장 중 오류가 났어요. 다시 시도해주세요.");
+    console.error(err);
+  });
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+</script>
+</body>
+</html>
