@@ -112,17 +112,9 @@
     line-height: 1.7;
     color: #6e5e88;
   }
-  .prep-box strong {
-    color: #c089d4;
-  }
-  .prep-list {
-    margin-top: 8px;
-    padding-left: 8px;
-  }
-  .prep-list li {
-    list-style: none;
-    padding: 4px 0;
-  }
+  .prep-box strong { color: #c089d4; }
+  .prep-list { margin-top: 8px; padding-left: 8px; }
+  .prep-list li { list-style: none; padding: 4px 0; }
 
   .btn {
     display: block;
@@ -140,54 +132,41 @@
     box-shadow: 0 8px 24px rgba(255, 168, 197, 0.4);
     letter-spacing: 1px;
   }
-  .btn:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 12px 32px rgba(255, 168, 197, 0.5);
-  }
+  .btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 32px rgba(255, 168, 197, 0.5); }
   .btn:active { transform: translateY(0); }
+  .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
   .btn-secondary {
     background: rgba(255, 255, 255, 0.85);
     color: #b888d4;
     border: 2px solid #e0c5f0;
     box-shadow: 0 4px 12px rgba(204, 153, 204, 0.15);
-    margin-top: 12px;
   }
-  .btn-small {
-    padding: 12px 20px;
-    font-size: 15px;
-  }
+  .btn-small { padding: 12px 20px; font-size: 15px; }
 
-  .progress-wrap {
-    margin-bottom: 24px;
-  }
+  .progress-wrap { margin-bottom: 24px; }
   .progress-info {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-    color: #a08abe;
-    margin-bottom: 8px;
+    display: flex; justify-content: space-between;
+    font-size: 13px; color: #a08abe; margin-bottom: 8px;
   }
   .progress-bar {
-    height: 10px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 50px;
-    overflow: hidden;
+    height: 10px; background: rgba(255, 255, 255, 0.6);
+    border-radius: 50px; overflow: hidden;
     box-shadow: inset 0 2px 4px rgba(192, 137, 212, 0.2);
   }
   .progress-fill {
     height: 100%;
     background: linear-gradient(90deg, #ffa8c5, #c89df0, #95b8f5);
-    border-radius: 50px;
-    transition: width 0.5s ease;
-    width: 0%;
+    border-radius: 50px; transition: width 0.5s ease; width: 0%;
   }
 
   .question-tag {
-    display: inline-block;
-    padding: 4px 14px;
-    border-radius: 50px;
-    font-size: 12px;
-    font-weight: 600;
+    display: inline-block; padding: 4px 14px;
+    border-radius: 50px; font-size: 12px; font-weight: 600;
     margin-bottom: 12px;
   }
   .tag-draping { background: #ffd4e5; color: #d63384; }
@@ -197,51 +176,65 @@
 
   .question-num {
     font-family: 'Pacifico', cursive;
-    font-size: 22px;
-    color: #d68bb8;
-    text-align: center;
-    margin-bottom: 8px;
+    font-size: 22px; color: #d68bb8;
+    text-align: center; margin-bottom: 8px;
   }
   .question-text {
-    font-size: 22px;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 16px;
-    color: #5a4a6e;
-    line-height: 1.5;
+    font-size: 21px; font-weight: 700;
+    text-align: center; margin-bottom: 16px;
+    color: #5a4a6e; line-height: 1.5;
   }
   .question-help {
-    text-align: center;
-    font-size: 14px;
-    color: #8a7a9e;
-    margin-bottom: 24px;
+    text-align: center; font-size: 14px;
+    color: #8a7a9e; margin-bottom: 16px;
     background: rgba(255, 240, 247, 0.6);
-    padding: 12px 16px;
-    border-radius: 16px;
+    padding: 12px 16px; border-radius: 16px;
     line-height: 1.6;
   }
 
-  .options {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  .draping-mini-row {
+    display: flex; justify-content: center;
+    gap: 10px; margin-bottom: 16px;
+    flex-wrap: wrap;
   }
+  .draping-mini {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15),
+                0 0 0 3px rgba(255, 255, 255, 0.6) inset;
+  }
+  .show-draping-btn {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 10px 20px;
+    background: rgba(255, 240, 247, 0.9);
+    border: 2px solid #f0c0d8;
+    color: #c089d4;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .show-draping-btn:hover {
+    background: #ffe4ee;
+    transform: scale(1.03);
+  }
+
+  .options { display: flex; flex-direction: column; gap: 12px; }
   .option {
     padding: 16px 20px;
     background: rgba(255, 255, 255, 0.75);
     border: 2px solid transparent;
     border-radius: 20px;
-    font-family: inherit;
-    font-size: 15px;
-    color: #5a4a6e;
-    cursor: pointer;
+    font-family: inherit; font-size: 15px;
+    color: #5a4a6e; cursor: pointer;
     transition: all 0.25s ease;
-    text-align: left;
-    line-height: 1.5;
+    text-align: left; line-height: 1.5;
     box-shadow: 0 4px 12px rgba(204, 153, 204, 0.1);
-    display: flex;
-    align-items: center;
-    gap: 14px;
+    display: flex; align-items: center; gap: 14px;
+    width: 100%;
   }
   .option:hover {
     background: rgba(255, 230, 245, 0.95);
@@ -249,94 +242,118 @@
     transform: translateX(6px);
     box-shadow: 0 6px 18px rgba(255, 168, 197, 0.25);
   }
-  .option:active { transform: translateX(3px) scale(0.99); }
+  .option.selected {
+    background: linear-gradient(120deg, #ffe4ee, #f0e0ff);
+    border-color: #c089d4;
+    box-shadow: 0 6px 20px rgba(192, 137, 212, 0.35),
+                0 0 0 4px rgba(255, 168, 197, 0.2);
+    transform: translateX(4px);
+  }
   .option-swatch {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    flex-shrink: 0;
+    width: 32px; height: 32px;
+    border-radius: 50%; flex-shrink: 0;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15),
                 0 0 0 2px rgba(255, 255, 255, 0.6) inset;
   }
-  .option-swatches {
-    display: flex;
-    gap: 4px;
-    flex-shrink: 0;
-  }
-  .option-swatch-mini {
-    width: 16px;
-    height: 32px;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  .option-text {
-    flex: 1;
-  }
+  .option-text { flex: 1; }
 
-  /* 디지털 드레이핑 화면 */
+  /* 이전/다음 네비게이션 */
+  .nav-row {
+    display: flex; gap: 10px; margin-top: 24px;
+  }
+  .nav-btn {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .nav-prev {
+    background: rgba(255, 255, 255, 0.85);
+    color: #a08abe;
+    border: 2px solid #e0c5f0;
+  }
+  .nav-prev:hover:not(:disabled) {
+    background: #fff;
+    transform: translateX(-3px);
+  }
+  .nav-next {
+    background: linear-gradient(120deg, #ffa8c5, #c89df0, #95b8f5);
+    color: white;
+    box-shadow: 0 4px 14px rgba(255, 168, 197, 0.35);
+  }
+  .nav-next:hover:not(:disabled) {
+    transform: translateX(3px);
+    box-shadow: 0 6px 18px rgba(255, 168, 197, 0.5);
+  }
+  .nav-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+
+  /* 디지털 드레이핑 풀스크린 */
   #draping {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
+    position: fixed; top: 0; left: 0;
+    width: 100vw; height: 100vh; z-index: 1000;
+    display: flex; flex-direction: column;
     transition: background-color 0.3s ease;
   }
   .draping-top {
     padding: 16px 20px;
-    background: rgba(0, 0, 0, 0.4);
-    color: white;
-    text-align: center;
+    background: rgba(0, 0, 0, 0.45);
+    color: white; text-align: center;
     backdrop-filter: blur(8px);
   }
   .draping-color-name {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 19px; font-weight: 700;
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
   }
   .draping-color-num {
-    font-size: 13px;
-    opacity: 0.85;
-    margin-top: 4px;
+    font-size: 13px; opacity: 0.85; margin-top: 4px;
   }
   .draping-middle {
     flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 16px;
   }
   .draping-instruction {
-    background: rgba(0, 0, 0, 0.55);
+    background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
     color: white;
-    padding: 16px 24px;
+    padding: 18px 22px;
     border-radius: 20px;
-    font-size: 15px;
-    text-align: center;
+    font-size: 14px;
+    text-align: left;
     line-height: 1.7;
-    max-width: 320px;
+    max-width: 360px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   }
-  .draping-instruction strong { color: #ffd4e5; }
+  .draping-instruction .title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffd4e5;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .guide-line { padding: 3px 0; }
+  .guide-good { color: #a8e6c1; }
+  .guide-bad { color: #ffb8b8; }
+
   .draping-bottom {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background: rgba(0, 0, 0, 0.4);
+    padding: 16px 20px;
+    display: flex; flex-direction: column; gap: 8px;
+    background: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(8px);
   }
   .draping-toggle {
     background: rgba(255, 255, 255, 0.95);
     color: #5a4a6e;
-    padding: 16px;
+    padding: 14px;
     border: none;
     border-radius: 50px;
     font-family: inherit;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
@@ -346,11 +363,11 @@
   .draping-decide {
     background: linear-gradient(120deg, #ffa8c5, #c89df0, #95b8f5);
     color: white;
-    padding: 16px;
+    padding: 14px;
     border: none;
     border-radius: 50px;
     font-family: inherit;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
     cursor: pointer;
     box-shadow: 0 6px 18px rgba(255, 168, 197, 0.4);
@@ -360,115 +377,67 @@
 
   /* 결과 화면 */
   .result-card { text-align: center; }
-  .result-emoji {
-    font-size: 72px;
-    margin-bottom: 8px;
-    animation: bounce 2s ease-in-out infinite;
-  }
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-  .result-label {
-    font-family: 'Pacifico', cursive;
-    font-size: 20px;
-    color: #b888d4;
-    margin-bottom: 4px;
-  }
+  .result-emoji { font-size: 72px; margin-bottom: 8px; animation: bounce 2s ease-in-out infinite; }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .result-label { font-family: 'Pacifico', cursive; font-size: 20px; color: #b888d4; margin-bottom: 4px; }
   .result-name {
-    font-size: 38px;
-    font-weight: 700;
+    font-size: 38px; font-weight: 700;
     background-image: linear-gradient(120deg, #ff85a2, #c089d4, #8eb6f0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 16px;
-    line-height: 1.2;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin-bottom: 16px; line-height: 1.2;
   }
   .result-summary {
-    font-size: 16px;
-    color: #6e5e88;
-    line-height: 1.8;
+    font-size: 16px; color: #6e5e88; line-height: 1.8;
     background: rgba(255, 240, 247, 0.6);
-    padding: 20px;
-    border-radius: 20px;
-    margin-bottom: 24px;
+    padding: 20px; border-radius: 20px; margin-bottom: 24px;
   }
   .section-title {
-    font-size: 17px;
-    font-weight: 700;
-    color: #c089d4;
-    text-align: left;
-    margin: 24px 0 12px;
-    padding-left: 8px;
+    font-size: 17px; font-weight: 700; color: #c089d4;
+    text-align: left; margin: 24px 0 12px; padding-left: 8px;
     border-left: 4px solid #ffb8d4;
   }
-  .palette {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
-  }
+  .palette { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
   .palette.avoid { grid-template-columns: repeat(5, 1fr); }
   .swatch {
-    aspect-ratio: 1;
-    border-radius: 50%;
+    aspect-ratio: 1; border-radius: 50%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12),
                 0 0 0 3px rgba(255, 255, 255, 0.6) inset;
-    transition: transform 0.2s ease;
-    position: relative;
+    transition: transform 0.2s ease; position: relative;
   }
   .swatch:hover { transform: scale(1.15); }
   .swatch.avoid::after {
-    content: '✕';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: rgba(255, 255, 255, 0.85);
-    font-weight: 700;
-    font-size: 18px;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    content: '✕'; position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.85); font-weight: 700;
+    font-size: 18px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
   }
   .info-box {
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 18px;
-    padding: 16px 20px;
-    margin-bottom: 12px;
-    text-align: left;
-    line-height: 1.7;
-    font-size: 15px;
-    color: #5a4a6e;
+    background: rgba(255, 255, 255, 0.6); border-radius: 18px;
+    padding: 16px 20px; margin-bottom: 12px; text-align: left;
+    line-height: 1.7; font-size: 15px; color: #5a4a6e;
   }
   .info-box strong { color: #c089d4; margin-right: 8px; }
   .signature {
-    text-align: center;
-    margin-top: 20px;
-    font-family: 'Pacifico', cursive;
-    color: #d68bb8;
-    font-size: 18px;
-    opacity: 0.85;
+    text-align: center; margin-top: 20px;
+    font-family: 'Pacifico', cursive; color: #d68bb8;
+    font-size: 18px; opacity: 0.85;
   }
-  .button-row {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin-top: 28px;
-  }
+  .button-row { display: flex; flex-direction: column; gap: 0; margin-top: 28px; }
+  .button-row .btn { margin-top: 12px; }
+  .button-row .btn:first-child { margin-top: 0; }
 
   @media (max-width: 480px) {
     .intro-title { font-size: 42px; }
     .result-name { font-size: 28px; }
     .palette { grid-template-columns: repeat(5, 1fr); }
     .features { grid-template-columns: 1fr; }
+    .question-text { font-size: 19px; }
+    .draping-mini { width: 42px; height: 42px; }
   }
 
   .hidden { display: none !important; }
-
   .fade-in { animation: fadeIn 0.5s ease; }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
@@ -488,7 +457,7 @@
       <div class="intro-desc">
         전문가의 <strong>드레이핑 진단</strong>을<br>
         디지털로 따라 해보는 사이트예요.<br>
-        총 25개의 비교 테스트로<br>
+        총 <strong>23개의 비교 테스트</strong>로<br>
         <strong>16가지 퍼스널 컬러</strong> 중 진단해드려요 💕
       </div>
 
@@ -499,24 +468,24 @@
           <li>✓ <strong>자연광</strong> 또는 환한 조명 (낮에 창가 추천)</li>
           <li>✓ <strong>맨얼굴</strong> 또는 가벼운 화장 (진한 화장 X)</li>
           <li>✓ 머리는 <strong>뒤로 묶거나 헤어밴드</strong>로 정리</li>
-          <li>✓ 액세서리 <strong>제거</strong> (특히 골드/실버)</li>
+          <li>✓ 액세서리 <strong>제거</strong></li>
         </ul>
       </div>
 
       <div class="features">
-        <div class="feature-pill">🎨 12 디지털 드레이핑</div>
+        <div class="feature-pill">🎨 11 디지털 드레이핑</div>
         <div class="feature-pill">👀 5 외형 관찰</div>
         <div class="feature-pill">📸 4 사진 회상</div>
-        <div class="feature-pill">🪞 4 셀프테스트</div>
+        <div class="feature-pill">🪞 3 셀프테스트</div>
       </div>
       <button class="btn" onclick="startQuiz()">진단 시작하기 ✨</button>
     </section>
 
-    <!-- 질문 화면 (드레이핑 외 일반 질문용) -->
+    <!-- 질문 화면 -->
     <section id="quiz" class="card hidden">
       <div class="progress-wrap">
         <div class="progress-info">
-          <span id="progress-text">질문 1 / 25</span>
+          <span id="progress-text">질문 1 / 23</span>
           <span id="progress-percent">4%</span>
         </div>
         <div class="progress-bar">
@@ -527,7 +496,13 @@
       <div class="question-num" id="question-num">Q1</div>
       <div class="question-text" id="question-text"></div>
       <div class="question-help" id="question-help"></div>
+      <div id="draping-mini-row" class="draping-mini-row hidden"></div>
+      <button id="show-draping-btn" class="show-draping-btn hidden" onclick="reopenDraping()">🎨 색 다시 보기 (얼굴 옆에 대보기)</button>
       <div class="options" id="options"></div>
+      <div class="nav-row">
+        <button class="nav-btn nav-prev" id="nav-prev" onclick="goPrev()">← 이전</button>
+        <button class="nav-btn nav-next" id="nav-next" onclick="goNext()" disabled>다음 →</button>
+      </div>
     </section>
 
     <!-- 결과 화면 -->
@@ -545,17 +520,22 @@
   <section id="draping" class="hidden">
     <div class="draping-top">
       <div class="draping-color-name" id="draping-color-name"></div>
-      <div class="draping-color-num" id="draping-color-num">색 1 / 2</div>
+      <div class="draping-color-num" id="draping-color-num"></div>
     </div>
     <div class="draping-middle">
-      <div class="draping-instruction">
-        💡 휴대폰을 얼굴 옆에 가까이 대고<br>
-        <strong>거울</strong>을 보세요.<br>
-        얼굴이 어떻게 보이는지 관찰해주세요.
+      <div class="draping-instruction" id="draping-instruction">
+        <div class="title">💡 휴대폰을 얼굴 옆에 가까이 대고 거울을 보세요</div>
+        <div class="guide-line guide-good">✨ 얼굴이 환하고 또렷해 보임</div>
+        <div class="guide-line guide-good">✨ 잡티/기미가 덜 보임</div>
+        <div class="guide-line guide-good">✨ 다크서클이 옅어 보임</div>
+        <div class="guide-line guide-good">✨ 입술 색이 또렷해 보임</div>
+        <div class="guide-line guide-bad">❌ 얼굴이 누렇게 떠보임</div>
+        <div class="guide-line guide-bad">❌ 잡티/기미가 두드러짐</div>
+        <div class="guide-line guide-bad">❌ 어둡고 칙칙해 보임</div>
       </div>
     </div>
     <div class="draping-bottom">
-      <button class="draping-toggle" onclick="toggleDrapingColor()">↔️ 다른 색 보기</button>
+      <button class="draping-toggle" onclick="toggleDrapingColor()">↔️ 다음 색 보기</button>
       <button class="draping-decide" onclick="decideDraping()">충분히 봤어요 → 답하기</button>
     </div>
   </section>
@@ -709,175 +689,194 @@ const RESULTS = {
   }
 };
 
-/* ========== 25개 질문 ========== */
+/* ========== 23개 질문 ========== */
 const QUESTIONS = [
-  // ===== 디지털 드레이핑 12개 =====
+  // ===== 디지털 드레이핑 11개 (4색 비교) =====
   {
     type: "draping", tag: "🎨 디지털 드레이핑",
     colors: [
-      { name: "아이보리 (따뜻한 흰색)", hex: "#FFFFF0" },
-      { name: "순백 (차가운 흰색)", hex: "#FFFFFF" }
+      { name: "아이보리 (노란빛 도는 따뜻한 흰)", hex: "#FFFFF0" },
+      { name: "크림 (부드러운 따뜻한 흰)", hex: "#FFF8DC" },
+      { name: "순백 (선명한 차가운 흰)", hex: "#FFFFFF" },
+      { name: "쿨 화이트 (푸른빛 도는 흰)", hex: "#F0F8FF" }
     ],
-    finalQ: "어느 쪽에서 얼굴이 더 환하고 생기 있어 보였나요?",
+    finalQ: "어느 흰색이 얼굴이 가장 환하고 깨끗해 보였나요?",
     options: [
-      { t: "아이보리 쪽 (따뜻한 흰색)", swatch: "#FFFFF0", s: { W: 2, L: 0, B: 0 } },
-      { t: "순백 쪽 (차가운 흰색)", swatch: "#FFFFFF", s: { W: -2, L: 0, B: 0 } },
-      { t: "비슷함 / 둘 다 괜찮음", swatch: "#F0E6F0", s: { W: 0, L: 0, B: 0 } },
-      { t: "둘 다 안 어울림", swatch: "#D0C0D0", s: { W: 0, L: 0, B: 0 } }
+      { t: "아이보리 (노란빛 따뜻한 흰)", swatch: "#FFFFF0", s: { W: 2, L: 0, B: 0 } },
+      { t: "크림 (부드러운 따뜻한 흰)", swatch: "#FFF8DC", s: { W: 2, L: 1, B: -1 } },
+      { t: "순백 (선명한 차가운 흰)", swatch: "#FFFFFF", s: { W: -2, L: 0, B: 1 } },
+      { t: "쿨 화이트 (푸른빛 도는 흰)", swatch: "#F0F8FF", s: { W: -2, L: 1, B: 0 } },
+      { t: "비슷함 / 잘 모르겠음", swatch: "#E8E0E8", s: { W: 0, L: 0, B: 0 } }
     ]
   },
   {
     type: "draping", tag: "🎨 디지털 드레이핑",
     colors: [
-      { name: "따뜻한 노랑", hex: "#FFE066" },
-      { name: "차가운 파랑", hex: "#7AC9F4" }
+      { name: "머스타드 (진한 따뜻한 노랑)", hex: "#DAA520" },
+      { name: "봄 옐로우 (밝은 따뜻한 노랑)", hex: "#FFE066" },
+      { name: "레몬 옐로우 (선명한 차가운 노랑)", hex: "#FFF44F" },
+      { name: "라이트 옐로우 (연한 부드러운 노랑)", hex: "#FFFACD" }
     ],
-    finalQ: "어느 쪽에서 얼굴이 더 환해 보였나요?",
+    finalQ: "어느 노랑이 얼굴이 가장 살아나 보였나요?",
     options: [
-      { t: "노랑 쪽이 잘 어울림", swatch: "#FFE066", s: { W: 2, L: 0, B: 0 } },
-      { t: "파랑 쪽이 잘 어울림", swatch: "#7AC9F4", s: { W: -2, L: 0, B: 0 } },
-      { t: "비슷함", swatch: "#D0E0E0", s: { W: 0, L: 0, B: 0 } },
-      { t: "둘 다 부담스러움", swatch: "#B8B8B8", s: { W: 0, L: 0, B: -1 } }
+      { t: "머스타드 (진한 웜)", swatch: "#DAA520", s: { W: 2, L: -1, B: 0 } },
+      { t: "봄 옐로우 (밝은 웜)", swatch: "#FFE066", s: { W: 2, L: 1, B: 0 } },
+      { t: "레몬 옐로우 (차가운 비비드)", swatch: "#FFF44F", s: { W: -1, L: 1, B: 1 } },
+      { t: "라이트 옐로우 (부드러운 쿨)", swatch: "#FFFACD", s: { W: -1, L: 1, B: -1 } },
+      { t: "비슷함 / 잘 모르겠음", swatch: "#E8E0E8", s: { W: 0, L: 0, B: 0 } }
     ]
   },
   {
     type: "draping", tag: "🎨 디지털 드레이핑",
     colors: [
-      { name: "골드 (황금색)", hex: "#D4AF37" },
-      { name: "실버 (은색)", hex: "#C0C0C0" }
+      { name: "코랄 레드 (살구빛 따뜻한 빨강)", hex: "#FF6B6B" },
+      { name: "토마토 레드 (선명한 비비드 웜)", hex: "#FF4500" },
+      { name: "푸른 레드 (시크한 차가운 빨강)", hex: "#C8102E" },
+      { name: "와인 레드 (깊은 차가운 빨강)", hex: "#722F37" }
     ],
-    finalQ: "어느 쪽 색이 얼굴에 댔을 때 더 빛나 보였나요?",
+    finalQ: "어느 빨강이 얼굴이 가장 화사해 보였나요?",
     options: [
-      { t: "골드 쪽 (얼굴이 빛남)", swatch: "#D4AF37", s: { W: 2, L: 0, B: 1 } },
-      { t: "실버 쪽 (얼굴이 빛남)", swatch: "#C0C0C0", s: { W: -2, L: 0, B: 1 } },
-      { t: "비슷함", swatch: "#CABE92", s: { W: 0, L: 0, B: 0 } },
-      { t: "둘 다 별로", swatch: "#A0A0A0", s: { W: 0, L: 0, B: -1 } }
-    ]
-  },
-  {
-    type: "draping", tag: "🎨 디지털 드레이핑",
-    colors: [
-      { name: "코랄 레드 (따뜻한 빨강)", hex: "#FF6B6B" },
-      { name: "푸른 레드 (차가운 빨강)", hex: "#C8102E" }
-    ],
-    finalQ: "어느 쪽 빨강이 얼굴에 댔을 때 더 화사해 보였나요?",
-    options: [
-      { t: "코랄 레드 쪽", swatch: "#FF6B6B", s: { W: 2, L: 1, B: 0 } },
-      { t: "푸른 레드 쪽", swatch: "#C8102E", s: { W: -2, L: -1, B: 1 } },
-      { t: "비슷함", swatch: "#D85040", s: { W: 0, L: 0, B: 0 } },
-      { t: "둘 다 강해서 부담", swatch: "#B85050", s: { W: 0, L: 1, B: -2 } }
+      { t: "코랄 레드 (웜 라이트)", swatch: "#FF6B6B", s: { W: 2, L: 1, B: 0 } },
+      { t: "토마토 레드 (웜 비비드)", swatch: "#FF4500", s: { W: 2, L: 0, B: 2 } },
+      { t: "푸른 레드 (쿨)", swatch: "#C8102E", s: { W: -2, L: 0, B: 1 } },
+      { t: "와인 레드 (쿨 딥)", swatch: "#722F37", s: { W: -2, L: -2, B: 0 } },
+      { t: "비슷함 / 잘 모르겠음", swatch: "#E8E0E8", s: { W: 0, L: 0, B: 0 } }
     ]
   },
   {
     type: "draping", tag: "🎨 디지털 드레이핑",
     colors: [
       { name: "코랄 핑크 (살구빛 핑크)", hex: "#FF8C70" },
-      { name: "푸시아 (보라빛 핑크)", hex: "#C71585" }
+      { name: "베이비 핑크 (연한 부드러운 핑크)", hex: "#FFD1DC" },
+      { name: "푸시아 (보라빛 비비드)", hex: "#C71585" },
+      { name: "더스티 로즈 (탁한 부드러운 핑크)", hex: "#B07379" }
     ],
-    finalQ: "어느 쪽 핑크가 얼굴이 더 살아나 보였나요?",
+    finalQ: "어느 핑크가 얼굴이 가장 살아나 보였나요?",
     options: [
-      { t: "코랄 핑크 쪽", swatch: "#FF8C70", s: { W: 2, L: 0, B: 0 } },
-      { t: "푸시아 쪽", swatch: "#C71585", s: { W: -2, L: 0, B: 1 } },
-      { t: "비슷함", swatch: "#DC6890", s: { W: 0, L: 0, B: 0 } },
-      { t: "둘 다 부담", swatch: "#B57080", s: { W: 0, L: 0, B: -1 } }
+      { t: "코랄 핑크 (웜)", swatch: "#FF8C70", s: { W: 2, L: 0, B: 0 } },
+      { t: "베이비 핑크 (쿨 라이트)", swatch: "#FFD1DC", s: { W: -2, L: 2, B: -1 } },
+      { t: "푸시아 (쿨 비비드)", swatch: "#C71585", s: { W: -2, L: 0, B: 2 } },
+      { t: "더스티 로즈 (뮤트)", swatch: "#B07379", s: { W: 0, L: -1, B: -2 } },
+      { t: "비슷함 / 잘 모르겠음", swatch: "#E8E0E8", s: { W: 0, L: 0, B: 0 } }
     ]
   },
   {
     type: "draping", tag: "🎨 디지털 드레이핑",
     colors: [
-      { name: "웜 베이지", hex: "#D4B896" },
-      { name: "쿨 그레이지", hex: "#B5B5B5" }
+      { name: "웜 베이지 (노란빛 따뜻한 베이지)", hex: "#D4B896" },
+      { name: "카멜 (진한 갈색빛 베이지)", hex: "#C19A6B" },
+      { name: "쿨 베이지 (회색빛 차가운 베이지)", hex: "#A8A29E" },
+      { name: "그레이지 (회분홍 도는 차가운 베이지)", hex: "#B8B0AE" }
     ],
-    finalQ: "어느 쪽이 얼굴 톤과 자연스럽게 어울렸나요?",
+    finalQ: "어느 누드/베이지 톤이 얼굴과 자연스럽게 어울렸나요?",
     options: [
-      { t: "웜 베이지 쪽", swatch: "#D4B896", s: { W: 2, L: 0, B: -1 } },
-      { t: "쿨 그레이지 쪽", swatch: "#B5B5B5", s: { W: -2, L: 0, B: -1 } },
-      { t: "비슷함", swatch: "#C8B6A6", s: { W: 0, L: 0, B: 0 } },
-      { t: "둘 다 칙칙해 보임", swatch: "#A89890", s: { W: 0, L: 0, B: 1 } }
+      { t: "웜 베이지 (밝은 웜)", swatch: "#D4B896", s: { W: 2, L: 1, B: -1 } },
+      { t: "카멜 (진한 웜)", swatch: "#C19A6B", s: { W: 2, L: -1, B: 0 } },
+      { t: "쿨 베이지 (밝은 쿨)", swatch: "#A8A29E", s: { W: -2, L: 0, B: -1 } },
+      { t: "그레이지 (뮤트 쿨)", swatch: "#B8B0AE", s: { W: -2, L: 0, B: -2 } },
+      { t: "비슷함 / 잘 모르겠음", swatch: "#E8E0E8", s: { W: 0, L: 0, B: 0 } }
     ]
   },
   {
     type: "draping", tag: "🎨 디지털 드레이핑",
     colors: [
-      { name: "오렌지", hex: "#FF9933" },
-      { name: "라일락 (연보라)", hex: "#C8A2C8" }
+      { name: "코랄 (산호빛 웜)", hex: "#FF7F50" },
+      { name: "살구색 (피치 웜 라이트)", hex: "#FFCBA4" },
+      { name: "비비드 오렌지 (쨍한 웜)", hex: "#FF8C00" },
+      { name: "테라코타 (벽돌빛 진한 웜)", hex: "#CC4E2E" }
     ],
-    finalQ: "어느 쪽에서 얼굴이 더 살아나 보였나요?",
+    finalQ: "어느 오렌지/피치 톤이 가장 잘 어울렸나요?",
     options: [
-      { t: "오렌지 쪽", swatch: "#FF9933", s: { W: 2, L: 0, B: 1 } },
-      { t: "라일락 쪽", swatch: "#C8A2C8", s: { W: -2, L: 1, B: -1 } },
-      { t: "비슷함", swatch: "#E0AA98", s: { W: 0, L: 0, B: 0 } },
-      { t: "둘 다 안 어울림", swatch: "#B8A8B0", s: { W: 0, L: 0, B: 0 } }
+      { t: "코랄 (웜)", swatch: "#FF7F50", s: { W: 2, L: 0, B: 0 } },
+      { t: "살구색 (웜 라이트)", swatch: "#FFCBA4", s: { W: 2, L: 2, B: -1 } },
+      { t: "비비드 오렌지 (웜 비비드)", swatch: "#FF8C00", s: { W: 2, L: 0, B: 2 } },
+      { t: "테라코타 (웜 딥)", swatch: "#CC4E2E", s: { W: 2, L: -1, B: -1 } },
+      { t: "비슷함 / 잘 모르겠음", swatch: "#E8E0E8", s: { W: 0, L: 0, B: 0 } }
     ]
   },
   {
     type: "draping", tag: "🎨 디지털 드레이핑",
     colors: [
-      { name: "올리브 (노란빛 그린)", hex: "#808000" },
-      { name: "에메랄드 (푸른빛 그린)", hex: "#00A693" }
+      { name: "라일락 (연보라 부드러운 쿨)", hex: "#C8A2C8" },
+      { name: "라벤더 (밝은 연보라)", hex: "#E6E6FA" },
+      { name: "비비드 보라 (선명한 쿨)", hex: "#9C27B0" },
+      { name: "다크 보라 (진한 차가운 보라)", hex: "#4A0E4E" }
     ],
-    finalQ: "어느 쪽 그린이 얼굴과 더 잘 어울렸나요?",
+    finalQ: "어느 보라 계열이 얼굴이 가장 또렷해 보였나요?",
     options: [
-      { t: "올리브 쪽", swatch: "#808000", s: { W: 2, L: -1, B: -1 } },
-      { t: "에메랄드 쪽", swatch: "#00A693", s: { W: -2, L: 0, B: 1 } },
-      { t: "비슷함", swatch: "#406854", s: { W: 0, L: -1, B: 0 } },
-      { t: "둘 다 너무 강함", swatch: "#5C7060", s: { W: 0, L: 1, B: -1 } }
+      { t: "라일락 (쿨 뮤트)", swatch: "#C8A2C8", s: { W: -2, L: 1, B: -1 } },
+      { t: "라벤더 (쿨 라이트)", swatch: "#E6E6FA", s: { W: -2, L: 2, B: -1 } },
+      { t: "비비드 보라 (쿨 비비드)", swatch: "#9C27B0", s: { W: -1, L: 0, B: 2 } },
+      { t: "다크 보라 (쿨 딥)", swatch: "#4A0E4E", s: { W: -1, L: -2, B: 1 } },
+      { t: "비슷함 / 잘 모르겠음", swatch: "#E8E0E8", s: { W: 0, L: 0, B: 0 } }
     ]
   },
   {
     type: "draping", tag: "🎨 디지털 드레이핑",
     colors: [
-      { name: "비비드 빨강 (쨍한 원색)", hex: "#FF1744" },
-      { name: "더스티 로즈 (탁한 분홍)", hex: "#B07379" }
+      { name: "올리브 (노란빛 그린, 웜)", hex: "#808000" },
+      { name: "민트 (밝은 차가운 그린)", hex: "#98E5C5" },
+      { name: "에메랄드 (선명한 차가운 그린)", hex: "#00A693" },
+      { name: "카키 (진한 따뜻한 그린)", hex: "#6B7B3A" }
     ],
-    finalQ: "어느 쪽이 얼굴이 살아나 보였나요?",
+    finalQ: "어느 그린 계열이 가장 잘 어울렸나요?",
     options: [
-      { t: "비비드 빨강 쪽", swatch: "#FF1744", s: { W: 0, L: 0, B: 2 } },
-      { t: "더스티 로즈 쪽", swatch: "#B07379", s: { W: 0, L: 0, B: -2 } },
-      { t: "비슷함", swatch: "#D5455E", s: { W: 0, L: 0, B: 0 } },
-      { t: "둘 다 부담", swatch: "#A07070", s: { W: 0, L: 0, B: 0 } }
+      { t: "올리브 (웜)", swatch: "#808000", s: { W: 2, L: -1, B: -1 } },
+      { t: "민트 (쿨 라이트)", swatch: "#98E5C5", s: { W: -2, L: 1, B: 0 } },
+      { t: "에메랄드 (쿨 비비드)", swatch: "#00A693", s: { W: -2, L: 0, B: 2 } },
+      { t: "카키 (웜 딥)", swatch: "#6B7B3A", s: { W: 2, L: -1, B: -1 } },
+      { t: "비슷함 / 잘 모르겠음", swatch: "#E8E0E8", s: { W: 0, L: 0, B: 0 } }
+    ]
+  },
+  {
+    type: "draping", tag: "🎨 디지털 드레이핑",
+    colors: [
+      { name: "비비드 핑크 (쨍한 핫핑크)", hex: "#FF1493" },
+      { name: "비비드 그린 (쨍한 라임)", hex: "#39FF14" },
+      { name: "뮤트 로즈 (탁한 더스티 핑크)", hex: "#C8868D" },
+      { name: "뮤트 그린 (탁한 모스 그린)", hex: "#8A9A5B" }
+    ],
+    finalQ: "쨍한 색 vs 차분한 색, 어느 쪽이 더 잘 어울렸나요?",
+    options: [
+      { t: "비비드 핑크 (쨍한 색)", swatch: "#FF1493", s: { W: -1, L: 0, B: 2 } },
+      { t: "비비드 그린 (쨍한 색)", swatch: "#39FF14", s: { W: 1, L: 1, B: 2 } },
+      { t: "뮤트 로즈 (차분한 색)", swatch: "#C8868D", s: { W: -1, L: 0, B: -2 } },
+      { t: "뮤트 그린 (차분한 색)", swatch: "#8A9A5B", s: { W: 1, L: 0, B: -2 } },
+      { t: "비슷함 / 잘 모르겠음", swatch: "#E8E0E8", s: { W: 0, L: 0, B: 0 } }
     ]
   },
   {
     type: "draping", tag: "🎨 디지털 드레이핑",
     colors: [
       { name: "라이트 핑크 (밝은 핑크)", hex: "#FFD1DC" },
-      { name: "딥 와인 (진한 와인색)", hex: "#722F37" }
+      { name: "라이트 블루 (밝은 하늘색)", hex: "#B0E0E6" },
+      { name: "딥 와인 (진한 와인색)", hex: "#722F37" },
+      { name: "다크 네이비 (진한 남색)", hex: "#191970" }
     ],
-    finalQ: "어느 쪽이 얼굴과 더 어울리나요?",
+    finalQ: "밝은 색 vs 어두운 색, 어느 쪽이 더 어울렸나요?",
     options: [
-      { t: "라이트 핑크 쪽", swatch: "#FFD1DC", s: { W: 0, L: 2, B: 0 } },
-      { t: "딥 와인 쪽", swatch: "#722F37", s: { W: 0, L: -2, B: 0 } },
-      { t: "비슷함", swatch: "#B88090", s: { W: 0, L: 0, B: 0 } },
-      { t: "둘 다 안 어울림", swatch: "#A89090", s: { W: 0, L: 0, B: 0 } }
-    ]
-  },
-  {
-    type: "draping", tag: "🎨 디지털 드레이핑",
-    colors: [
-      { name: "머스타드 (따뜻한 노랑)", hex: "#DAA520" },
-      { name: "와인 (차가운 와인)", hex: "#722F37" }
-    ],
-    finalQ: "어느 쪽이 얼굴이 살아 보였나요?",
-    options: [
-      { t: "머스타드 쪽", swatch: "#DAA520", s: { W: 2, L: -1, B: 0 } },
-      { t: "와인 쪽", swatch: "#722F37", s: { W: -2, L: -1, B: 0 } },
-      { t: "비슷함", swatch: "#A6692C", s: { W: 0, L: -1, B: 0 } },
-      { t: "둘 다 칙칙함", swatch: "#90705C", s: { W: 0, L: 1, B: -1 } }
+      { t: "라이트 핑크 (밝은 색)", swatch: "#FFD1DC", s: { W: 0, L: 2, B: 0 } },
+      { t: "라이트 블루 (밝은 색)", swatch: "#B0E0E6", s: { W: -1, L: 2, B: 0 } },
+      { t: "딥 와인 (진한 색)", swatch: "#722F37", s: { W: -1, L: -2, B: 0 } },
+      { t: "다크 네이비 (진한 색)", swatch: "#191970", s: { W: -2, L: -2, B: 1 } },
+      { t: "비슷함 / 잘 모르겠음", swatch: "#E8E0E8", s: { W: 0, L: 0, B: 0 } }
     ]
   },
   {
     type: "draping", tag: "🎨 디지털 드레이핑",
     colors: [
       { name: "옐로우 그린 (따뜻한 그린)", hex: "#9ACD32" },
-      { name: "틸 그린 (차가운 그린)", hex: "#008B8B" }
+      { name: "민트 그린 (시원한 파스텔)", hex: "#AAF0D1" },
+      { name: "틸 (청록빛 차가운 그린)", hex: "#008B8B" },
+      { name: "로열 블루 (진한 차가운 파랑)", hex: "#4169E1" }
     ],
-    finalQ: "어느 쪽 그린이 얼굴이 더 환해 보였나요?",
+    finalQ: "어느 색이 얼굴이 가장 환하고 또렷해 보였나요?",
     options: [
-      { t: "옐로우 그린 쪽", swatch: "#9ACD32", s: { W: 2, L: 1, B: 0 } },
-      { t: "틸 그린 쪽", swatch: "#008B8B", s: { W: -2, L: 0, B: 1 } },
-      { t: "비슷함", swatch: "#509F5F", s: { W: 0, L: 0, B: 0 } },
-      { t: "둘 다 안 맞음", swatch: "#608070", s: { W: 0, L: 0, B: 0 } }
+      { t: "옐로우 그린 (웜)", swatch: "#9ACD32", s: { W: 2, L: 1, B: 0 } },
+      { t: "민트 그린 (쿨 라이트)", swatch: "#AAF0D1", s: { W: -2, L: 1, B: 0 } },
+      { t: "틸 (쿨)", swatch: "#008B8B", s: { W: -2, L: 0, B: 1 } },
+      { t: "로열 블루 (쿨 딥)", swatch: "#4169E1", s: { W: -2, L: -1, B: 1 } },
+      { t: "비슷함 / 잘 모르겠음", swatch: "#E8E0E8", s: { W: 0, L: 0, B: 0 } }
     ]
   },
 
@@ -885,7 +884,7 @@ const QUESTIONS = [
   {
     type: "objective", tag: "👀 외형 관찰",
     q: "본인의 자연 머리카락 색은? (염색 안 한 색)",
-    help: "거울로 확인해주세요. 햇빛 아래에서 보면 더 정확해요.",
+    help: "💡 햇빛 아래에서 보면 가장 정확해요. 햇빛이 없으면 휴대폰 후레시(손전등)를 머리카락에 비춰서 확인해주세요.",
     options: [
       { t: "검정 / 매우 짙은 검정", swatch: "#1A1A1A", s: { W: -1, L: -2, B: 1 } },
       { t: "짙은 갈색 (다크 브라운)", swatch: "#3E2723", s: { W: 0, L: -1, B: 0 } },
@@ -896,7 +895,7 @@ const QUESTIONS = [
   {
     type: "objective", tag: "👀 외형 관찰",
     q: "본인의 눈동자 색은?",
-    help: "밝은 곳에서 거울로 확인해주세요.",
+    help: "💡 햇빛 아래나 환한 곳에서 거울로 확인해주세요. 어두우면 휴대폰 후레시를 옆에서 비추면 잘 보여요.",
     options: [
       { t: "검정 (매우 진한 검정)", swatch: "#1A1A1A", s: { W: -1, L: -2, B: 1 } },
       { t: "따뜻한 짙은 갈색", swatch: "#5D3A1F", s: { W: 1, L: -1, B: 0 } },
@@ -907,7 +906,7 @@ const QUESTIONS = [
   {
     type: "objective", tag: "👀 외형 관찰",
     q: "손목 안쪽 정맥의 색깔은?",
-    help: "팔을 펴고 햇빛이나 밝은 빛에 비춰서 확인해주세요.",
+    help: "💡 팔을 펴고 햇빛이나 환한 빛에 비춰서 확인해주세요. 어두우면 후레시로 비추면 잘 보여요.",
     options: [
       { t: "초록빛이 도는 편", swatch: "#5B8E5B", s: { W: 2, L: 0, B: 0 } },
       { t: "파란색/보라색이 도는 편", swatch: "#5B6B9E", s: { W: -2, L: 0, B: 0 } },
@@ -929,7 +928,7 @@ const QUESTIONS = [
   {
     type: "physical", tag: "🪞 셀프테스트",
     q: "흰 A4 종이를 얼굴 옆에 대고 거울을 봐주세요. 얼굴이 어떻게 보이나요?",
-    help: "💡 흰 종이를 턱 아래쪽에 대고 거울로 비교하면 잘 보여요.",
+    help: "💡 흰 종이를 턱 아래에 대고 거울로 비교하면 잘 보여요.",
     options: [
       { t: "종이보다 얼굴이 노랗게/누렇게 보인다", swatch: "#E8C68A", s: { W: 2, L: 0, B: 0 } },
       { t: "종이보다 얼굴이 분홍/홍조가 있는 편", swatch: "#F8C8C0", s: { W: -2, L: 0, B: 0 } },
@@ -984,29 +983,7 @@ const QUESTIONS = [
     ]
   },
 
-  // ===== 물리 셀프테스트 4개 =====
-  {
-    type: "physical", tag: "🪞 셀프테스트",
-    q: "골드 액세서리 vs 실버 액세서리, 어느 쪽이 손목에 댔을 때 손이 더 예뻐 보이나요?",
-    help: "💡 시계, 팔찌, 반지 등을 양손에 번갈아 차고 비교해보세요.",
-    options: [
-      { t: "골드 쪽이 손이 더 환해 보임", swatch: "#D4AF37", s: { W: 2, L: 0, B: 0 } },
-      { t: "실버 쪽이 손이 더 환해 보임", swatch: "#C0C0C0", s: { W: -2, L: 0, B: 0 } },
-      { t: "둘 다 비슷하게 어울림", swatch: "#CABE92", s: { W: 0, L: 0, B: 0 } },
-      { t: "잘 모르겠음 / 액세서리 없음", swatch: "#B0B0B0", s: { W: 0, L: 0, B: 0 } }
-    ]
-  },
-  {
-    type: "physical", tag: "🪞 셀프테스트",
-    q: "노란 종이 vs 파란 종이를 얼굴에 대보세요. 어느 쪽이 얼굴이 환하고 잡티가 덜 보이나요?",
-    help: "💡 색지나 색이 있는 천이 있으면 사용하세요. 없으면 휴대폰으로 노란색/파란색 화면 띄워서 가능.",
-    options: [
-      { t: "노란색 댔을 때 얼굴이 환함", swatch: "#FFE066", s: { W: 2, L: 0, B: 0 } },
-      { t: "파란색 댔을 때 얼굴이 환함", swatch: "#7AC9F4", s: { W: -2, L: 0, B: 0 } },
-      { t: "비슷하게 어울림", swatch: "#C8D0A0", s: { W: 0, L: 0, B: 0 } },
-      { t: "둘 다 얼굴이 칙칙해짐", swatch: "#9090A0", s: { W: 0, L: 0, B: -1 } }
-    ]
-  },
+  // ===== 물리 셀프테스트 2개 =====
   {
     type: "physical", tag: "🪞 셀프테스트",
     q: "진한 색 옷 vs 연한 색 옷, 어느 쪽이 얼굴에 더 잘 어울리나요?",
@@ -1033,13 +1010,13 @@ const QUESTIONS = [
 
 /* ========== 상태 ========== */
 let currentIdx = 0;
-let scores = { W: 0, L: 0, B: 0 };
+let answers = []; // 각 질문 답변 인덱스 저장
 let drapingColorIdx = 0;
 
 /* ========== 함수 ========== */
 function startQuiz() {
   currentIdx = 0;
-  scores = { W: 0, L: 0, B: 0 };
+  answers = new Array(QUESTIONS.length).fill(null);
   document.getElementById("intro").classList.add("hidden");
   document.getElementById("result").classList.add("hidden");
   showCurrentQuestion();
@@ -1048,15 +1025,16 @@ function startQuiz() {
 
 function showCurrentQuestion() {
   const q = QUESTIONS[currentIdx];
-  if (q.type === "draping") {
+  if (q.type === "draping" && answers[currentIdx] === null) {
+    // 처음 디지털 드레이핑 진입 - 풀스크린부터
     showDraping();
   } else {
+    // 일반 질문 또는 이미 답변한 드레이핑
     showQuiz();
   }
 }
 
 function showQuiz() {
-  // 드레이핑 닫고 일반 질문 화면 보이기
   document.body.classList.remove("draping-mode");
   document.getElementById("draping").classList.add("hidden");
   const quiz = document.getElementById("quiz");
@@ -1081,12 +1059,27 @@ function showQuiz() {
   if (q.type === "draping") tagEl.classList.add("tag-draping");
 
   document.getElementById("question-text").textContent = q.q || q.finalQ;
+
   const helpEl = document.getElementById("question-help");
   if (q.help) {
     helpEl.textContent = q.help;
-    helpEl.style.display = "block";
+    helpEl.classList.remove("hidden");
   } else {
-    helpEl.style.display = "none";
+    helpEl.classList.add("hidden");
+  }
+
+  // 디지털 드레이핑이면 색 미니 견본 + "다시 보기" 버튼 표시
+  const miniRow = document.getElementById("draping-mini-row");
+  const showDrapingBtn = document.getElementById("show-draping-btn");
+  if (q.type === "draping") {
+    miniRow.innerHTML = q.colors.map(c =>
+      `<div class="draping-mini" style="background:${c.hex}" title="${c.name}"></div>`
+    ).join("");
+    miniRow.classList.remove("hidden");
+    showDrapingBtn.classList.remove("hidden");
+  } else {
+    miniRow.classList.add("hidden");
+    showDrapingBtn.classList.add("hidden");
   }
 
   const optsBox = document.getElementById("options");
@@ -1094,19 +1087,60 @@ function showQuiz() {
   q.options.forEach((opt, i) => {
     const btn = document.createElement("button");
     btn.className = "option";
+    if (answers[currentIdx] === i) btn.classList.add("selected");
     let swatchHtml = "";
     if (opt.swatch) {
       swatchHtml = `<div class="option-swatch" style="background:${opt.swatch}"></div>`;
     }
     btn.innerHTML = `${swatchHtml}<div class="option-text">${opt.t}</div>`;
-    btn.onclick = () => answerQuestion(i);
+    btn.onclick = () => selectAnswer(i);
     optsBox.appendChild(btn);
   });
+
+  // 네비게이션 버튼
+  document.getElementById("nav-prev").disabled = (currentIdx === 0);
+  const nextBtn = document.getElementById("nav-next");
+  nextBtn.disabled = (answers[currentIdx] === null);
+  nextBtn.textContent = (currentIdx === QUESTIONS.length - 1) ? "결과 보기 ✨" : "다음 →";
 
   quiz.classList.remove("fade-in");
   void quiz.offsetWidth;
   quiz.classList.add("fade-in");
   scrollToTop();
+}
+
+function selectAnswer(optIdx) {
+  answers[currentIdx] = optIdx;
+  // 선택 표시 갱신
+  const optionsBox = document.getElementById("options");
+  Array.from(optionsBox.children).forEach((btn, i) => {
+    if (i === optIdx) btn.classList.add("selected");
+    else btn.classList.remove("selected");
+  });
+  // 다음 버튼 활성화
+  document.getElementById("nav-next").disabled = false;
+}
+
+function goNext() {
+  if (answers[currentIdx] === null) return;
+  if (currentIdx >= QUESTIONS.length - 1) {
+    showResult();
+  } else {
+    currentIdx++;
+    showCurrentQuestion();
+  }
+}
+
+function goPrev() {
+  if (currentIdx === 0) return;
+  currentIdx--;
+  showCurrentQuestion();
+}
+
+function reopenDraping() {
+  if (QUESTIONS[currentIdx].type === "draping") {
+    showDraping();
+  }
 }
 
 function showDraping() {
@@ -1123,7 +1157,7 @@ function applyDrapingColor() {
   const color = q.colors[drapingColorIdx];
   document.getElementById("draping").style.backgroundColor = color.hex;
   document.getElementById("draping-color-name").textContent = color.name;
-  document.getElementById("draping-color-num").textContent = `색 ${drapingColorIdx + 1} / ${q.colors.length} · 질문 ${currentIdx + 1} / ${QUESTIONS.length}`;
+  document.getElementById("draping-color-num").textContent = `${drapingColorIdx + 1} / ${q.colors.length}색 · 질문 ${currentIdx + 1} / ${QUESTIONS.length}`;
 }
 
 function toggleDrapingColor() {
@@ -1133,27 +1167,26 @@ function toggleDrapingColor() {
 }
 
 function decideDraping() {
-  // 답변 화면(quiz)으로 전환
   document.body.classList.remove("draping-mode");
   document.getElementById("draping").classList.add("hidden");
   showQuiz();
 }
 
-function answerQuestion(optIdx) {
-  const opt = QUESTIONS[currentIdx].options[optIdx];
-  scores.W += opt.s.W || 0;
-  scores.L += opt.s.L || 0;
-  scores.B += opt.s.B || 0;
-
-  currentIdx++;
-  if (currentIdx >= QUESTIONS.length) {
-    showResult();
-  } else {
-    showCurrentQuestion();
-  }
+function calculateScores() {
+  const scores = { W: 0, L: 0, B: 0 };
+  answers.forEach((optIdx, qIdx) => {
+    if (optIdx === null) return;
+    const opt = QUESTIONS[qIdx].options[optIdx];
+    if (opt.s) {
+      scores.W += opt.s.W || 0;
+      scores.L += opt.s.L || 0;
+      scores.B += opt.s.B || 0;
+    }
+  });
+  return scores;
 }
 
-function pickResultKey() {
+function pickResultKey(scores) {
   const W = scores.W;
   const L = scores.L;
   const B = scores.B;
@@ -1198,7 +1231,8 @@ function showResult() {
   document.getElementById("draping").classList.add("hidden");
   document.getElementById("quiz").classList.add("hidden");
 
-  const key = pickResultKey();
+  const scores = calculateScores();
+  const key = pickResultKey(scores);
   const r = RESULTS[key] || RESULTS["spring_light"];
 
   const goodSwatches = r.good.map((c) => `<div class="swatch" style="background:${c}" title="${c}"></div>`).join("");
