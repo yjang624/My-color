@@ -347,6 +347,42 @@
   }
   .draping-decide:hover { transform: scale(1.02); }
 
+  /* 풀스크린 진행 게이지 */
+  .draping-progress-track {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1010;
+  }
+  .draping-progress-track .fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ffa8c5, #c89df0, #95b8f5);
+    transition: width 0.5s ease;
+    width: 0%;
+    box-shadow: 0 0 8px rgba(255, 168, 197, 0.7);
+  }
+
+  /* 맨 앞으로(홈) 버튼 - 전구 위 */
+  .home-btn {
+    position: fixed;
+    right: 16px;
+    bottom: 192px;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.55);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    z-index: 1100;
+    backdrop-filter: blur(6px);
+    transition: all 0.25s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .home-btn:hover { transform: scale(1.08); }
+
   /* 가이드 토글 버튼 */
   .guide-toggle-btn {
     position: fixed;
@@ -556,19 +592,19 @@
       <h1 class="intro-title">my color</h1>
       <p class="intro-sub">✨ 나만의 퍼스널 컬러를 찾아보세요 ✨</p>
       <div class="intro-desc">
-        휴대폰 화면을 <strong>얼굴 옆에 대보는 방식</strong>으로<br>
-        전문가의 진단법을 따라 해봐요 💕<br>
-        총 <strong>23개 문항</strong>으로<br>
-        <strong>16가지 퍼스널 컬러</strong> 중 알려드려요<br>
-        <span style="display:inline-block;margin-top:8px;color:#c089d4;font-weight:700">⏱️ 평균 7~10분 소요</span>
+        <strong style="color:#c089d4">✨ 0원으로 만나보는 전문가용 프리미엄<br>퍼스널 컬러 분석기 ✨</strong><br><br>
+        단 10분 만에 내 손으로 직접 <strong>진단</strong>부터<br>
+        <strong>맞춤형 뷰티 컨설팅</strong>까지 도와드려요.<br>
+        총 <strong>16가지의 세밀한 분석 결과</strong>로,<br>
+        나만의 <strong>인생 color</strong>를 찾아 보세요!
       </div>
 
       <div class="prep-box">
         <strong>🪞 진단 전에 준비해주세요</strong>
         <ul class="prep-list">
-          <li>✓ <strong>거울</strong> (휴대폰을 얼굴 옆에 댈 때 확인용)</li>
-          <li>✓ <strong>자연광</strong> 또는 환한 조명 (낮에 창가 추천)</li>
-          <li>✓ <strong>맨얼굴</strong> 또는 가벼운 화장 (진한 화장 X)</li>
+          <li>✓ <strong>거울</strong></li>
+          <li>✓ <strong>자연광</strong> 또는 환한 조명</li>
+          <li>✓ <strong>맨얼굴</strong> 또는 가벼운 화장</li>
           <li>✓ 머리는 <strong>뒤로 묶거나 헤어밴드</strong>로 정리</li>
           <li>✓ 액세서리 <strong>제거</strong></li>
           <li>✓ 휴대폰 <strong>밝기 최대</strong>로 설정</li>
@@ -581,7 +617,7 @@
         <div class="feature-pill">📸 사진 회상 (4문항)</div>
         <div class="feature-pill">🪞 셀프테스트 (3문항)</div>
       </div>
-      <button class="btn" onclick="startQuiz()">진단 시작하기 ✨</button>
+      <button class="btn" onclick="startQuiz()">진단 START!</button>
     </section>
 
     <!-- 질문 화면 -->
@@ -617,6 +653,9 @@
 
   <!-- 디지털 드레이핑 풀스크린 -->
   <section id="draping" class="hidden">
+    <!-- 상단 가로 진행 게이지 -->
+    <div class="draping-progress-track"><div class="fill" id="draping-progress-fill"></div></div>
+
     <div class="draping-top">
       <div class="draping-color-name" id="draping-color-name"></div>
       <div class="draping-color-num" id="draping-color-num"></div>
@@ -627,26 +666,26 @@
     </div>
     <div class="draping-middle"></div>
     <div class="draping-bottom">
-      <button class="draping-toggle" onclick="toggleDrapingColor()">↔️ 다음 색 보기</button>
+      <button class="draping-toggle" onclick="toggleDrapingColor()">↔️ 다음 색으로 전환</button>
       <button class="draping-decide" onclick="decideDraping()">충분히 봤어요 → 답하기</button>
     </div>
 
     <!-- 가이드 안내 말풍선 -->
     <div class="guide-hint hidden" id="guide-hint">어떤 기준으로 선택할까요?</div>
 
+    <!-- 맨 앞으로 돌아가기 버튼 (전구 위) -->
+    <button class="home-btn" onclick="goHome()" aria-label="처음으로">🏠</button>
+
     <!-- 가이드 토글 버튼 -->
     <button class="guide-toggle-btn" id="guide-toggle-btn" onclick="toggleGuide()" aria-label="가이드">💡</button>
 
     <!-- 가이드 패널 -->
     <div class="guide-panel" id="guide-panel">
-      <div class="title">💡 이런 점을 살펴보세요</div>
+      <div class="title">💡 이런 색상을 골라 주세요</div>
       <div class="guide-line guide-good">✨ 얼굴이 환하고 또렷해 보임</div>
       <div class="guide-line guide-good">✨ 잡티/기미가 덜 보임</div>
       <div class="guide-line guide-good">✨ 다크서클이 옅어 보임</div>
       <div class="guide-line guide-good">✨ 입술 색이 또렷해 보임</div>
-      <div class="guide-line guide-bad">❌ 얼굴이 누렇게 떠보임</div>
-      <div class="guide-line guide-bad">❌ 잡티/기미가 두드러짐</div>
-      <div class="guide-line guide-bad">❌ 어둡고 칙칙해 보임</div>
     </div>
   </section>
 
@@ -996,7 +1035,7 @@ const QUESTIONS = [
   {
     type: "objective", tag: "👀 외형 관찰",
     q: "본인의 자연 머리카락 색은? (염색 안 한 색)",
-    help: "💡 햇빛 아래에서 보면 가장 정확해요. 햇빛이 없으면 휴대폰 후레시(손전등)를 머리카락에 비춰서 확인해주세요.",
+    help: "💡 자연광 아래에서 확인해 주면 더 좋아요. 없다면 휴대폰 후레쉬를 가까이 비춰 줘도 OK!",
     options: [
       { t: "검정 / 매우 짙은 검정", swatch: "#1A1A1A", s: { W: -1, L: -2, B: 1 } },
       { t: "짙은 갈색 (다크 브라운)", swatch: "#3E2723", s: { W: 0, L: -1, B: 0 } },
@@ -1007,7 +1046,7 @@ const QUESTIONS = [
   {
     type: "objective", tag: "👀 외형 관찰",
     q: "본인의 눈동자 색은?",
-    help: "💡 햇빛 아래나 환한 곳에서 거울로 확인해주세요. 어두우면 휴대폰 후레시를 옆에서 비추면 잘 보여요.",
+    help: "💡 자연광 아래에서 확인해 주면 더 좋아요. 없다면 휴대폰 후레쉬를 가까이 비춰 줘도 OK!",
     options: [
       { t: "검정 (매우 진한 검정)", swatch: "#1A1A1A", s: { W: -1, L: -2, B: 1 } },
       { t: "따뜻한 짙은 갈색", swatch: "#5D3A1F", s: { W: 1, L: -1, B: 0 } },
@@ -1018,7 +1057,7 @@ const QUESTIONS = [
   {
     type: "objective", tag: "👀 외형 관찰",
     q: "손목 안쪽 정맥의 색깔은?",
-    help: "💡 팔을 펴고 햇빛이나 환한 빛에 비춰서 확인해주세요. 어두우면 후레시로 비추면 잘 보여요.",
+    help: "💡 자연광 아래에서 확인해 주면 더 좋아요. 없다면 휴대폰 후레쉬를 가까이 비춰 줘도 OK!",
     options: [
       { t: "초록빛이 도는 편", swatch: "#5B8E5B", s: { W: 2, L: 0, B: 0 } },
       { t: "파란색/보라색이 도는 편", swatch: "#5B6B9E", s: { W: -2, L: 0, B: 0 } },
@@ -1098,24 +1137,24 @@ const QUESTIONS = [
   // ===== 물리 셀프테스트 2개 =====
   {
     type: "physical", tag: "🪞 셀프테스트",
-    q: "진한 색 옷 vs 연한 색 옷, 어느 쪽이 얼굴에 더 잘 어울리나요?",
-    help: "💡 옷장에서 같은 색조의 진한 옷과 연한 옷을 입어보고 거울 비교.",
+    q: "골드 액세서리 vs 실버 액세서리, 손목에 댔을 때 어느 쪽이 손이 더 예뻐 보이나요?",
+    help: "💡 시계, 팔찌, 반지 등 가지고 있는 걸로 양손에 번갈아 차고 비교해보세요. 둘 다 없으면 가장 비슷한 답을 골라주세요.",
     options: [
-      { t: "진한 색이 얼굴이 살아남", swatch: "#3E2723", s: { W: 0, L: -2, B: 0 } },
-      { t: "연한 색이 얼굴이 살아남", swatch: "#FFE0E5", s: { W: 0, L: 2, B: 0 } },
-      { t: "둘 다 비슷함", swatch: "#A8A0A8", s: { W: 0, L: 0, B: 0 } },
-      { t: "잘 모르겠음", swatch: "#C0C0C0", s: { W: 0, L: 0, B: 0 } }
+      { t: "골드(금색) 쪽에서 손이 더 환해 보임", swatch: "#D4AF37", s: { W: 2, L: 0, B: 0 } },
+      { t: "실버(은색) 쪽에서 손이 더 환해 보임", swatch: "#C0C0C0", s: { W: -2, L: 0, B: 0 } },
+      { t: "둘 다 비슷하게 어울림", swatch: "#CABE92", s: { W: 0, L: 0, B: 0 } },
+      { t: "잘 모르겠음 / 액세서리 없음", swatch: "#B0B0B0", s: { W: 0, L: 0, B: 0 } }
     ]
   },
   {
     type: "physical", tag: "🪞 셀프테스트",
-    q: "비비드 원색 옷 vs 차분한 뮤트 옷, 어느 쪽이 더 잘 어울리나요?",
-    help: "💡 쨍한 색(원색) vs 탁한 색(흐릿한 색) 옷을 비교. 입어보거나 손에 들고 거울 비교.",
+    q: "립스틱을 바르지 않은 자연 입술 색은 어떤가요?",
+    help: "💡 거울로 본인 입술을 자세히 관찰해주세요. 화장 안 한 상태에서 보면 더 정확해요.",
     options: [
-      { t: "비비드 원색이 얼굴이 살아남", swatch: "#FF1744", s: { W: 0, L: 0, B: 2 } },
-      { t: "차분한 뮤트 색이 얼굴이 살아남", swatch: "#A88090", s: { W: 0, L: 0, B: -2 } },
-      { t: "둘 다 비슷함", swatch: "#D08090", s: { W: 0, L: 0, B: 0 } },
-      { t: "잘 모르겠음", swatch: "#B5A5A5", s: { W: 0, L: 0, B: 0 } }
+      { t: "살구빛 / 코랄 톤 (따뜻한 느낌)", swatch: "#E89478", s: { W: 2, L: 1, B: 0 } },
+      { t: "분홍빛 / 핑크 톤 (시원한 느낌)", swatch: "#E8A8B8", s: { W: -2, L: 1, B: 0 } },
+      { t: "베이지 / 누드 톤 (탁한 느낌)", swatch: "#C8A890", s: { W: 1, L: 0, B: -1 } },
+      { t: "와인빛 / 진한 자주 (어두운 느낌)", swatch: "#8B4555", s: { W: -1, L: -2, B: 1 } }
     ]
   }
 ];
@@ -1126,6 +1165,7 @@ let answers = [];
 let drapingColorIdx = 0;
 let brightnessToastShown = false;
 let guideHintDismissed = false;
+let guideExpanded = false;
 
 /* ========== 함수 ========== */
 function startQuiz() {
@@ -1255,11 +1295,9 @@ function hideBottomNext() {
 }
 
 function goNext() {
-  // 풀스크린(색 비교 화면)에서는 nav 동작 안 함
-  if (document.body.classList.contains("draping-mode")) return;
-
+  // 답 안 했으면 다음으로 못 감 (모든 화면)
+  if (answers[currentIdx] === null) return;
   if (currentIdx >= QUESTIONS.length - 1) {
-    if (answers[currentIdx] === null) return;
     showResult();
     return;
   }
@@ -1268,11 +1306,24 @@ function goNext() {
 }
 
 function goPrev() {
-  // 풀스크린에서는 nav 동작 안 함
-  if (document.body.classList.contains("draping-mode")) return;
+  // 답 없어도 이전으로는 갈 수 있음
   if (currentIdx === 0) return;
   currentIdx--;
   showCurrentQuestion();
+}
+
+function goHome() {
+  if (!confirm("정말 처음으로 돌아갈까요? 지금껏 입력한 모든 문항은 리셋됩니다")) return;
+  document.body.classList.remove("draping-mode");
+  document.getElementById("draping").classList.add("hidden");
+  document.getElementById("quiz").classList.add("hidden");
+  document.getElementById("result").classList.add("hidden");
+  hideGuide();
+  guideExpanded = false;
+  hideBottomNext();
+  document.getElementById("intro").classList.remove("hidden");
+  updateNavCorners();
+  scrollToTop();
 }
 
 function reopenDraping() {
@@ -1285,12 +1336,12 @@ function showDraping() {
   document.body.classList.add("draping-mode");
   document.getElementById("quiz").classList.add("hidden");
   document.getElementById("draping").classList.remove("hidden");
-  hideGuide();
   hideBottomNext();
 
   drapingColorIdx = 0;
   applyDrapingColor();
   updateNavCorners();
+  applyGuideState(); // 이전에 펼친 상태였다면 복원
 
   if (!brightnessToastShown) {
     brightnessToastShown = true;
@@ -1313,9 +1364,10 @@ function applyDrapingColor() {
   document.getElementById("draping").style.backgroundColor = color.hex;
   document.getElementById("draping-color-name").textContent = color.name;
   document.getElementById("draping-color-num").textContent = `${drapingColorIdx + 1} / ${q.colors.length}색 · 질문 ${currentIdx + 1} / ${QUESTIONS.length}`;
-  // 진행률 % 작은 칸
+  // 진행률 % 작은 칸 + 가로 게이지
   const pct = Math.round(((currentIdx + 1) / QUESTIONS.length) * 100);
   document.getElementById("draping-progress-pill").textContent = `${pct}%`;
+  document.getElementById("draping-progress-fill").style.width = `${pct}%`;
 }
 
 function toggleDrapingColor() {
@@ -1337,18 +1389,22 @@ function toggleGuide() {
   document.getElementById("guide-hint").classList.add("hidden");
   document.getElementById("guide-toggle-btn").classList.remove("pulse");
 
+  guideExpanded = !guideExpanded;
+  applyGuideState();
+}
+function applyGuideState() {
   const panel = document.getElementById("guide-panel");
   const btn = document.getElementById("guide-toggle-btn");
-  const isShown = panel.classList.contains("show");
-  if (isShown) {
-    panel.classList.remove("show");
-    btn.classList.remove("active");
-  } else {
+  if (guideExpanded) {
     panel.classList.add("show");
     btn.classList.add("active");
+  } else {
+    panel.classList.remove("show");
+    btn.classList.remove("active");
   }
 }
 function hideGuide() {
+  // 풀스크린 종료 시 화면에서만 숨김 (guideExpanded 상태는 유지)
   document.getElementById("guide-panel").classList.remove("show");
   document.getElementById("guide-toggle-btn").classList.remove("active");
   document.getElementById("guide-toggle-btn").classList.remove("pulse");
@@ -1368,20 +1424,21 @@ function updateNavCorners() {
   const next = document.getElementById("nav-next");
   const introVisible = !document.getElementById("intro").classList.contains("hidden");
   const resultVisible = !document.getElementById("result").classList.contains("hidden");
-  const drapingMode = document.body.classList.contains("draping-mode");
 
-  // 풀스크린(색 비교 화면)이거나 인트로/결과 → 숨김
-  if (introVisible || resultVisible || drapingMode) {
+  // 인트로/결과 화면에서는 숨김
+  if (introVisible || resultVisible) {
     prev.classList.remove("show");
     next.classList.remove("show");
     return;
   }
+  // 답변 화면 + 풀스크린 둘 다 표시
   prev.classList.add("show");
   next.classList.add("show");
   prev.disabled = (currentIdx === 0);
 
   const isLast = (currentIdx === QUESTIONS.length - 1);
-  next.disabled = (isLast && answers[currentIdx] === null);
+  // 답 안 했으면 다음 비활성 (모든 화면)
+  next.disabled = (answers[currentIdx] === null);
   next.innerHTML = isLast ? "✨" : "→";
 }
 
