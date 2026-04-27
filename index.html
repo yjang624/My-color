@@ -21,20 +21,15 @@
     overflow-x: hidden;
     transition: background 0.4s ease;
   }
-  body.draping-mode {
-    animation: none;
-    padding: 0;
-  }
+  body.draping-mode { animation: none; padding: 0; }
   @keyframes gradientShift {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
   }
 
   .sparkle {
-    position: fixed;
-    pointer-events: none;
-    font-size: 18px;
-    opacity: 0.6;
+    position: fixed; pointer-events: none;
+    font-size: 18px; opacity: 0.6;
     animation: float 8s ease-in-out infinite;
     z-index: 0;
   }
@@ -44,10 +39,8 @@
   }
 
   .container {
-    max-width: 640px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
+    max-width: 640px; margin: 0 auto;
+    position: relative; z-index: 1;
   }
 
   .card {
@@ -68,65 +61,46 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-align: center;
-    margin-bottom: 8px;
+    text-align: center; margin-bottom: 8px;
   }
   .intro-sub {
-    font-size: 18px;
-    text-align: center;
-    color: #8a7a9e;
-    margin-bottom: 28px;
+    font-size: 18px; text-align: center;
+    color: #8a7a9e; margin-bottom: 28px;
   }
   .intro-desc {
-    font-size: 15px;
-    line-height: 1.8;
-    text-align: center;
-    color: #6e5e88;
+    font-size: 15px; line-height: 1.8;
+    text-align: center; color: #6e5e88;
     background: rgba(255, 240, 247, 0.6);
-    padding: 20px;
-    border-radius: 20px;
+    padding: 20px; border-radius: 20px;
     margin-bottom: 24px;
   }
   .features {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 24px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px; margin-bottom: 24px;
   }
   .feature-pill {
     background: linear-gradient(135deg, #ffe4ee, #f0e0ff);
-    padding: 14px;
-    border-radius: 16px;
-    text-align: center;
-    font-size: 14px;
+    padding: 14px; border-radius: 16px;
+    text-align: center; font-size: 14px;
     color: #6b558b;
     box-shadow: 0 4px 12px rgba(192, 137, 212, 0.15);
   }
   .prep-box {
     background: rgba(255, 255, 255, 0.7);
     border: 2px dashed #f0c0d8;
-    border-radius: 20px;
-    padding: 20px;
-    margin-bottom: 28px;
-    font-size: 14px;
-    line-height: 1.7;
-    color: #6e5e88;
+    border-radius: 20px; padding: 20px;
+    margin-bottom: 28px; font-size: 14px;
+    line-height: 1.7; color: #6e5e88;
   }
   .prep-box strong { color: #c089d4; }
   .prep-list { margin-top: 8px; padding-left: 8px; }
   .prep-list li { list-style: none; padding: 4px 0; }
 
   .btn {
-    display: block;
-    width: 100%;
-    padding: 18px 24px;
-    border: none;
-    border-radius: 50px;
-    font-family: inherit;
-    font-size: 17px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    display: block; width: 100%;
+    padding: 18px 24px; border: none; border-radius: 50px;
+    font-family: inherit; font-size: 17px; font-weight: 600;
+    cursor: pointer; transition: all 0.3s ease;
     background: linear-gradient(120deg, #ffa8c5, #c89df0, #95b8f5);
     color: white;
     box-shadow: 0 8px 24px rgba(255, 168, 197, 0.4);
@@ -134,21 +108,49 @@
   }
   .btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 32px rgba(255, 168, 197, 0.5); }
   .btn:active { transform: translateY(0); }
-  .btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
   .btn-secondary {
     background: rgba(255, 255, 255, 0.85);
     color: #b888d4;
     border: 2px solid #e0c5f0;
     box-shadow: 0 4px 12px rgba(204, 153, 204, 0.15);
   }
-  .btn-small { padding: 12px 20px; font-size: 15px; }
 
-  .progress-wrap { margin-bottom: 24px; }
+  /* ===== 상단 좌우 작은 네비 버튼 ===== */
+  .nav-corner {
+    position: fixed;
+    top: 16px;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.92);
+    color: #c089d4;
+    font-size: 20px; font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(192, 137, 212, 0.25),
+                0 0 0 2px rgba(255, 255, 255, 0.6) inset;
+    z-index: 1500;
+    transition: all 0.25s;
+    display: none;
+    align-items: center; justify-content: center;
+  }
+  .nav-corner.show { display: flex; }
+  .nav-corner.left { left: 16px; }
+  .nav-corner.right { right: 16px; }
+  .nav-corner:hover:not(:disabled) { transform: scale(1.1); }
+  .nav-corner:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* 디지털 드레이핑 모드일 때 다른 스타일 (대비) */
+  body.draping-mode .nav-corner {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ===== 진행 바 ===== */
+  .progress-wrap { margin-bottom: 24px; padding-top: 24px; }
   .progress-info {
     display: flex; justify-content: space-between;
     font-size: 13px; color: #a08abe; margin-bottom: 8px;
@@ -194,8 +196,7 @@
 
   .draping-mini-row {
     display: flex; justify-content: center;
-    gap: 10px; margin-bottom: 16px;
-    flex-wrap: wrap;
+    gap: 10px; margin-bottom: 16px; flex-wrap: wrap;
   }
   .draping-mini {
     width: 48px; height: 48px;
@@ -204,23 +205,16 @@
                 0 0 0 3px rgba(255, 255, 255, 0.6) inset;
   }
   .show-draping-btn {
-    display: block;
-    margin: 0 auto 20px;
+    display: block; margin: 0 auto 20px;
     padding: 10px 20px;
     background: rgba(255, 240, 247, 0.9);
     border: 2px solid #f0c0d8;
     color: #c089d4;
     border-radius: 50px;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
+    font-family: inherit; font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
   }
-  .show-draping-btn:hover {
-    background: #ffe4ee;
-    transform: scale(1.03);
-  }
+  .show-draping-btn:hover { background: #ffe4ee; transform: scale(1.03); }
 
   .options { display: flex; flex-direction: column; gap: 12px; }
   .option {
@@ -257,42 +251,7 @@
   }
   .option-text { flex: 1; }
 
-  /* 이전/다음 네비게이션 */
-  .nav-row {
-    display: flex; gap: 10px; margin-top: 24px;
-  }
-  .nav-btn {
-    flex: 1;
-    padding: 14px;
-    border: none;
-    border-radius: 50px;
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.25s;
-  }
-  .nav-prev {
-    background: rgba(255, 255, 255, 0.85);
-    color: #a08abe;
-    border: 2px solid #e0c5f0;
-  }
-  .nav-prev:hover:not(:disabled) {
-    background: #fff;
-    transform: translateX(-3px);
-  }
-  .nav-next {
-    background: linear-gradient(120deg, #ffa8c5, #c89df0, #95b8f5);
-    color: white;
-    box-shadow: 0 4px 14px rgba(255, 168, 197, 0.35);
-  }
-  .nav-next:hover:not(:disabled) {
-    transform: translateX(3px);
-    box-shadow: 0 6px 18px rgba(255, 168, 197, 0.5);
-  }
-  .nav-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
-
-  /* 디지털 드레이핑 풀스크린 */
+  /* ===== 디지털 드레이핑 풀스크린 ===== */
   #draping {
     position: fixed; top: 0; left: 0;
     width: 100vw; height: 100vh; z-index: 1000;
@@ -300,61 +259,31 @@
     transition: background-color 0.3s ease;
   }
   .draping-top {
-    padding: 16px 20px;
-    background: rgba(0, 0, 0, 0.45);
+    padding: 14px 76px;
+    background: rgba(0, 0, 0, 0.4);
     color: white; text-align: center;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(6px);
   }
   .draping-color-name {
-    font-size: 19px; font-weight: 700;
+    font-size: 17px; font-weight: 700;
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
   }
   .draping-color-num {
-    font-size: 13px; opacity: 0.85; margin-top: 4px;
+    font-size: 12px; opacity: 0.85; margin-top: 3px;
   }
-  .draping-middle {
-    flex: 1;
-    display: flex; align-items: center; justify-content: center;
-    padding: 16px;
-  }
-  .draping-instruction {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-    color: white;
-    padding: 18px 22px;
-    border-radius: 20px;
-    font-size: 14px;
-    text-align: left;
-    line-height: 1.7;
-    max-width: 360px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  }
-  .draping-instruction .title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #ffd4e5;
-    margin-bottom: 8px;
-    text-align: center;
-  }
-  .guide-line { padding: 3px 0; }
-  .guide-good { color: #a8e6c1; }
-  .guide-bad { color: #ffb8b8; }
-
+  .draping-middle { flex: 1; }
   .draping-bottom {
-    padding: 16px 20px;
+    padding: 14px 16px;
     display: flex; flex-direction: column; gap: 8px;
-    background: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
   }
   .draping-toggle {
     background: rgba(255, 255, 255, 0.95);
     color: #5a4a6e;
-    padding: 14px;
-    border: none;
-    border-radius: 50px;
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 600;
+    padding: 13px;
+    border: none; border-radius: 50px;
+    font-family: inherit; font-size: 15px; font-weight: 600;
     cursor: pointer;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s;
@@ -363,17 +292,101 @@
   .draping-decide {
     background: linear-gradient(120deg, #ffa8c5, #c89df0, #95b8f5);
     color: white;
-    padding: 14px;
-    border: none;
-    border-radius: 50px;
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 700;
+    padding: 13px;
+    border: none; border-radius: 50px;
+    font-family: inherit; font-size: 15px; font-weight: 700;
     cursor: pointer;
     box-shadow: 0 6px 18px rgba(255, 168, 197, 0.4);
     transition: transform 0.2s;
   }
   .draping-decide:hover { transform: scale(1.02); }
+
+  /* 가이드 토글 버튼 (작게, 우측 하단 위) */
+  .guide-toggle-btn {
+    position: fixed;
+    right: 16px;
+    bottom: 130px;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.55);
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    z-index: 1100;
+    backdrop-filter: blur(6px);
+    transition: all 0.25s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .guide-toggle-btn:hover { transform: scale(1.08); }
+  .guide-toggle-btn.active {
+    background: rgba(255, 255, 255, 0.95);
+    color: #c089d4;
+  }
+
+  /* 가이드 패널 (작게, 토글로 표시) */
+  .guide-panel {
+    position: fixed;
+    bottom: 195px;
+    right: 16px;
+    left: 16px;
+    max-width: 380px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 13px;
+    line-height: 1.6;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    z-index: 1050;
+    transform: translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+  .guide-panel.show {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .guide-panel .title {
+    font-size: 14px; font-weight: 700;
+    color: #ffd4e5; margin-bottom: 6px;
+    text-align: center;
+  }
+  .guide-line { padding: 2px 0; }
+  .guide-good { color: #a8e6c1; }
+  .guide-bad { color: #ffb8b8; }
+
+  /* 밝기 안내 토스트 */
+  .brightness-toast {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: rgba(0, 0, 0, 0.88);
+    color: white;
+    padding: 24px 32px;
+    border-radius: 24px;
+    font-size: 17px; font-weight: 700;
+    text-align: center;
+    line-height: 1.5;
+    z-index: 3000;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  }
+  .brightness-toast.show {
+    animation: toastFadeInOut 2s ease forwards;
+  }
+  @keyframes toastFadeInOut {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+    15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.05); }
+  }
 
   /* 결과 화면 */
   .result-card { text-align: center; }
@@ -433,6 +446,7 @@
     .features { grid-template-columns: 1fr; }
     .question-text { font-size: 19px; }
     .draping-mini { width: 42px; height: 42px; }
+    .draping-top { padding: 12px 64px; }
   }
 
   .hidden { display: none !important; }
@@ -447,6 +461,15 @@
   <div class="sparkle" style="top:75%; right:8%; animation-delay:3s">🌷</div>
   <div class="sparkle" style="top:40%; right:20%; animation-delay:4s">⭐</div>
   <div class="sparkle" style="top:85%; left:30%; animation-delay:5s">✨</div>
+
+  <!-- 상단 좌우 작은 네비 버튼 (인트로/결과에서는 숨김) -->
+  <button class="nav-corner left" id="nav-prev" onclick="goPrev()" aria-label="이전">←</button>
+  <button class="nav-corner right" id="nav-next" onclick="goNext()" aria-label="다음">→</button>
+
+  <!-- 밝기 안내 토스트 -->
+  <div class="brightness-toast" id="brightness-toast">
+    ☀️ 휴대폰 밝기를<br>최대로 올려주세요!
+  </div>
 
   <div class="container">
 
@@ -469,6 +492,7 @@
           <li>✓ <strong>맨얼굴</strong> 또는 가벼운 화장 (진한 화장 X)</li>
           <li>✓ 머리는 <strong>뒤로 묶거나 헤어밴드</strong>로 정리</li>
           <li>✓ 액세서리 <strong>제거</strong></li>
+          <li>✓ 휴대폰 <strong>밝기 최대</strong>로 설정</li>
         </ul>
       </div>
 
@@ -499,10 +523,6 @@
       <div id="draping-mini-row" class="draping-mini-row hidden"></div>
       <button id="show-draping-btn" class="show-draping-btn hidden" onclick="reopenDraping()">🎨 색 다시 보기 (얼굴 옆에 대보기)</button>
       <div class="options" id="options"></div>
-      <div class="nav-row">
-        <button class="nav-btn nav-prev" id="nav-prev" onclick="goPrev()">← 이전</button>
-        <button class="nav-btn nav-next" id="nav-next" onclick="goNext()" disabled>다음 →</button>
-      </div>
     </section>
 
     <!-- 결과 화면 -->
@@ -522,21 +542,25 @@
       <div class="draping-color-name" id="draping-color-name"></div>
       <div class="draping-color-num" id="draping-color-num"></div>
     </div>
-    <div class="draping-middle">
-      <div class="draping-instruction" id="draping-instruction">
-        <div class="title">💡 휴대폰을 얼굴 옆에 가까이 대고 거울을 보세요</div>
-        <div class="guide-line guide-good">✨ 얼굴이 환하고 또렷해 보임</div>
-        <div class="guide-line guide-good">✨ 잡티/기미가 덜 보임</div>
-        <div class="guide-line guide-good">✨ 다크서클이 옅어 보임</div>
-        <div class="guide-line guide-good">✨ 입술 색이 또렷해 보임</div>
-        <div class="guide-line guide-bad">❌ 얼굴이 누렇게 떠보임</div>
-        <div class="guide-line guide-bad">❌ 잡티/기미가 두드러짐</div>
-        <div class="guide-line guide-bad">❌ 어둡고 칙칙해 보임</div>
-      </div>
-    </div>
+    <div class="draping-middle"></div>
     <div class="draping-bottom">
       <button class="draping-toggle" onclick="toggleDrapingColor()">↔️ 다음 색 보기</button>
       <button class="draping-decide" onclick="decideDraping()">충분히 봤어요 → 답하기</button>
+    </div>
+
+    <!-- 가이드 토글 버튼 -->
+    <button class="guide-toggle-btn" id="guide-toggle-btn" onclick="toggleGuide()" aria-label="가이드">💡</button>
+
+    <!-- 가이드 패널 (작게, 토글로 표시) -->
+    <div class="guide-panel" id="guide-panel">
+      <div class="title">💡 이런 점을 살펴보세요</div>
+      <div class="guide-line guide-good">✨ 얼굴이 환하고 또렷해 보임</div>
+      <div class="guide-line guide-good">✨ 잡티/기미가 덜 보임</div>
+      <div class="guide-line guide-good">✨ 다크서클이 옅어 보임</div>
+      <div class="guide-line guide-good">✨ 입술 색이 또렷해 보임</div>
+      <div class="guide-line guide-bad">❌ 얼굴이 누렇게 떠보임</div>
+      <div class="guide-line guide-bad">❌ 잡티/기미가 두드러짐</div>
+      <div class="guide-line guide-bad">❌ 어둡고 칙칙해 보임</div>
     </div>
   </section>
 
@@ -691,7 +715,7 @@ const RESULTS = {
 
 /* ========== 23개 질문 ========== */
 const QUESTIONS = [
-  // ===== 디지털 드레이핑 11개 (4색 비교) =====
+  // ===== 디지털 드레이핑 11개 =====
   {
     type: "draping", tag: "🎨 디지털 드레이핑",
     colors: [
@@ -1010,13 +1034,15 @@ const QUESTIONS = [
 
 /* ========== 상태 ========== */
 let currentIdx = 0;
-let answers = []; // 각 질문 답변 인덱스 저장
+let answers = [];
 let drapingColorIdx = 0;
+let brightnessToastShown = false;
 
 /* ========== 함수 ========== */
 function startQuiz() {
   currentIdx = 0;
   answers = new Array(QUESTIONS.length).fill(null);
+  brightnessToastShown = false;
   document.getElementById("intro").classList.add("hidden");
   document.getElementById("result").classList.add("hidden");
   showCurrentQuestion();
@@ -1026,17 +1052,17 @@ function startQuiz() {
 function showCurrentQuestion() {
   const q = QUESTIONS[currentIdx];
   if (q.type === "draping" && answers[currentIdx] === null) {
-    // 처음 디지털 드레이핑 진입 - 풀스크린부터
     showDraping();
   } else {
-    // 일반 질문 또는 이미 답변한 드레이핑
     showQuiz();
   }
+  updateNavCorners();
 }
 
 function showQuiz() {
   document.body.classList.remove("draping-mode");
   document.getElementById("draping").classList.add("hidden");
+  hideGuide();
   const quiz = document.getElementById("quiz");
   quiz.classList.remove("hidden");
 
@@ -1068,7 +1094,6 @@ function showQuiz() {
     helpEl.classList.add("hidden");
   }
 
-  // 디지털 드레이핑이면 색 미니 견본 + "다시 보기" 버튼 표시
   const miniRow = document.getElementById("draping-mini-row");
   const showDrapingBtn = document.getElementById("show-draping-btn");
   if (q.type === "draping") {
@@ -1097,12 +1122,6 @@ function showQuiz() {
     optsBox.appendChild(btn);
   });
 
-  // 네비게이션 버튼
-  document.getElementById("nav-prev").disabled = (currentIdx === 0);
-  const nextBtn = document.getElementById("nav-next");
-  nextBtn.disabled = (answers[currentIdx] === null);
-  nextBtn.textContent = (currentIdx === QUESTIONS.length - 1) ? "결과 보기 ✨" : "다음 →";
-
   quiz.classList.remove("fade-in");
   void quiz.offsetWidth;
   quiz.classList.add("fade-in");
@@ -1111,24 +1130,23 @@ function showQuiz() {
 
 function selectAnswer(optIdx) {
   answers[currentIdx] = optIdx;
-  // 선택 표시 갱신
   const optionsBox = document.getElementById("options");
   Array.from(optionsBox.children).forEach((btn, i) => {
     if (i === optIdx) btn.classList.add("selected");
     else btn.classList.remove("selected");
   });
-  // 다음 버튼 활성화
-  document.getElementById("nav-next").disabled = false;
+  updateNavCorners();
 }
 
 function goNext() {
-  if (answers[currentIdx] === null) return;
+  // 답변 안 했어도 일단 넘어갈 수 있음 (단, 결과 보기는 마지막 답 필요)
   if (currentIdx >= QUESTIONS.length - 1) {
+    if (answers[currentIdx] === null) return; // 마지막은 답해야 결과
     showResult();
-  } else {
-    currentIdx++;
-    showCurrentQuestion();
+    return;
   }
+  currentIdx++;
+  showCurrentQuestion();
 }
 
 function goPrev() {
@@ -1147,9 +1165,17 @@ function showDraping() {
   document.body.classList.add("draping-mode");
   document.getElementById("quiz").classList.add("hidden");
   document.getElementById("draping").classList.remove("hidden");
+  hideGuide();
 
   drapingColorIdx = 0;
   applyDrapingColor();
+  updateNavCorners();
+
+  // 첫 디지털 드레이핑 진입 시 밝기 안내 토스트
+  if (!brightnessToastShown) {
+    brightnessToastShown = true;
+    setTimeout(() => showBrightnessToast(), 200);
+  }
 }
 
 function applyDrapingColor() {
@@ -1169,7 +1195,57 @@ function toggleDrapingColor() {
 function decideDraping() {
   document.body.classList.remove("draping-mode");
   document.getElementById("draping").classList.add("hidden");
+  hideGuide();
   showQuiz();
+  updateNavCorners();
+}
+
+function toggleGuide() {
+  const panel = document.getElementById("guide-panel");
+  const btn = document.getElementById("guide-toggle-btn");
+  const isShown = panel.classList.contains("show");
+  if (isShown) {
+    panel.classList.remove("show");
+    btn.classList.remove("active");
+  } else {
+    panel.classList.add("show");
+    btn.classList.add("active");
+  }
+}
+function hideGuide() {
+  document.getElementById("guide-panel").classList.remove("show");
+  document.getElementById("guide-toggle-btn").classList.remove("active");
+}
+
+function showBrightnessToast() {
+  const toast = document.getElementById("brightness-toast");
+  toast.classList.remove("show");
+  void toast.offsetWidth;
+  toast.classList.add("show");
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2100);
+}
+
+function updateNavCorners() {
+  const prev = document.getElementById("nav-prev");
+  const next = document.getElementById("nav-next");
+  const introVisible = !document.getElementById("intro").classList.contains("hidden");
+  const resultVisible = !document.getElementById("result").classList.contains("hidden");
+
+  if (introVisible || resultVisible) {
+    prev.classList.remove("show");
+    next.classList.remove("show");
+    return;
+  }
+  prev.classList.add("show");
+  next.classList.add("show");
+  prev.disabled = (currentIdx === 0);
+
+  // 마지막 질문에서 답변 안 했으면 다음 비활성
+  const isLast = (currentIdx === QUESTIONS.length - 1);
+  next.disabled = (isLast && answers[currentIdx] === null);
+  next.innerHTML = isLast ? "✨" : "→";
 }
 
 function calculateScores() {
@@ -1187,13 +1263,9 @@ function calculateScores() {
 }
 
 function pickResultKey(scores) {
-  const W = scores.W;
-  const L = scores.L;
-  const B = scores.B;
-
+  const W = scores.W, L = scores.L, B = scores.B;
   const isWarm = W >= 0;
   const isLight = L >= 0;
-
   let season;
   if (isWarm && isLight) season = "spring";
   else if (!isWarm && isLight) season = "summer";
@@ -1222,7 +1294,6 @@ function pickResultKey(scores) {
     else if (L <= -3) sub = "deep";
     else sub = "true";
   }
-
   return `${season}_${sub}`;
 }
 
@@ -1230,6 +1301,7 @@ function showResult() {
   document.body.classList.remove("draping-mode");
   document.getElementById("draping").classList.add("hidden");
   document.getElementById("quiz").classList.add("hidden");
+  hideGuide();
 
   const scores = calculateScores();
   const key = pickResultKey(scores);
@@ -1269,6 +1341,7 @@ function showResult() {
   result.classList.remove("fade-in");
   void result.offsetWidth;
   result.classList.add("fade-in");
+  updateNavCorners();
   scrollToTop();
 }
 
