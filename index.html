@@ -133,6 +133,28 @@
   .nav-corner:hover:not(:disabled) { transform: scale(1.1); }
   .nav-corner:disabled { opacity: 0.3; cursor: not-allowed; }
 
+  /* 이전 버튼 옆 작은 라벨 */
+  .nav-prev-label {
+    position: fixed;
+    top: 28px;
+    left: 70px;
+    font-size: 12px;
+    color: #a08abe;
+    font-weight: 600;
+    z-index: 1500;
+    display: none;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 4px 10px;
+    border-radius: 50px;
+    backdrop-filter: blur(4px);
+  }
+  .nav-prev-label.show { display: inline-block; }
+  .nav-prev-label.dim { opacity: 0.4; }
+  body.draping-mode .nav-prev-label {
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
   /* 진행 바 */
   .progress-wrap { margin-bottom: 24px; padding-top: 24px; }
   .progress-info {
@@ -149,14 +171,16 @@
     box-shadow: 0 2px 6px rgba(192, 137, 212, 0.2);
   }
   .progress-bar {
-    height: 10px; background: rgba(255, 255, 255, 0.6);
+    height: 12px;
+    background: rgba(192, 137, 212, 0.18);
     border-radius: 50px; overflow: hidden;
-    box-shadow: inset 0 2px 4px rgba(192, 137, 212, 0.2);
+    box-shadow: inset 0 2px 6px rgba(192, 137, 212, 0.3);
   }
   .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #ffa8c5, #c89df0, #95b8f5);
+    background: linear-gradient(90deg, #ffa8c5, #c089d4, #95b8f5);
     border-radius: 50px; transition: width 0.5s ease; width: 0%;
+    box-shadow: 0 0 12px rgba(255, 168, 197, 0.7);
   }
 
   .question-tag {
@@ -306,17 +330,6 @@
     padding: 4px 12px;
     border-radius: 50px;
   }
-  .draping-progress-pill {
-    display: inline-block;
-    margin-top: 6px;
-    margin-left: 6px;
-    background: rgba(255, 255, 255, 0.18);
-    color: white;
-    padding: 4px 12px;
-    border-radius: 50px;
-    font-size: 12px;
-    font-weight: 600;
-  }
   .draping-middle { flex: 1; }
   .draping-bottom {
     padding: 14px 16px;
@@ -347,20 +360,50 @@
   }
   .draping-decide:hover { transform: scale(1.02); }
 
-  /* 풀스크린 진행 게이지 */
-  .draping-progress-track {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 5px;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 1010;
+  /* 풀스크린 진행률 - 안내문 바로 아래 한 줄에 배치 */
+  .draping-howto-row {
+    text-align: center;
+    margin-top: 6px;
   }
-  .draping-progress-track .fill {
+  .draping-progress-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 8px;
+    padding: 0 16px;
+  }
+  .draping-progress-num {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .draping-progress-mini-bar {
+    flex: 1;
+    max-width: 220px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35);
+  }
+  .draping-progress-mini-bar .fill {
     height: 100%;
-    background: linear-gradient(90deg, #ffa8c5, #c89df0, #95b8f5);
+    background: linear-gradient(90deg, #a855f7, #d946ef, #c189ff, #a855f7);
+    background-size: 200% 100%;
+    animation: shimmerPurple 2s linear infinite;
+    border-radius: 50px;
     transition: width 0.5s ease;
     width: 0%;
-    box-shadow: 0 0 8px rgba(255, 168, 197, 0.7);
+    box-shadow: 0 0 14px rgba(168, 85, 247, 0.9);
+  }
+  @keyframes shimmerPurple {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
   }
 
   /* 맨 앞으로(홈) 버튼 - 전구 위 */
@@ -573,9 +616,10 @@
   <div class="sparkle" style="top:40%; right:20%; animation-delay:4s">⭐</div>
   <div class="sparkle" style="top:85%; left:30%; animation-delay:5s">✨</div>
 
-  <!-- 상단 좌우 작은 네비 버튼 -->
+  <!-- 상단 좌측 이전 버튼 + 라벨 -->
   <button class="nav-corner left" id="nav-prev" onclick="goPrev()" aria-label="이전 질문">←</button>
-  <button class="nav-corner right" id="nav-next" onclick="goNext()" aria-label="다음 질문">→</button>
+  <span class="nav-prev-label" id="nav-prev-label">이전 문항으로 돌아가기</span>
+  <button class="nav-corner right hidden" id="nav-next" onclick="goNext()" aria-label="다음 질문" style="display:none">→</button>
 
   <!-- 밝기 안내 토스트 -->
   <div class="brightness-toast" id="brightness-toast">
@@ -590,7 +634,6 @@
     <!-- 시작 화면 -->
     <section id="intro" class="card fade-in">
       <h1 class="intro-title">my color</h1>
-      <p class="intro-sub">✨ 나만의 퍼스널 컬러를 찾아보세요 ✨</p>
       <div class="intro-desc">
         <strong style="color:#c089d4">✨ 0원으로 만나보는 전문가용 프리미엄<br>퍼스널 컬러 분석기 ✨</strong><br><br>
         단 10분 만에 내 손으로 직접 <strong>진단</strong>부터<br>
@@ -636,7 +679,7 @@
       <div class="question-text" id="question-text"></div>
       <div class="question-help" id="question-help"></div>
       <div id="draping-mini-row" class="draping-mini-row hidden"></div>
-      <button id="show-draping-btn" class="show-draping-btn hidden" onclick="reopenDraping()">🎨 색 다시 보기 (얼굴 옆에 대보기)</button>
+      <button id="show-draping-btn" class="show-draping-btn hidden" onclick="reopenDraping()">🎨 색 다시 보기</button>
       <div class="options" id="options"></div>
     </section>
 
@@ -653,15 +696,15 @@
 
   <!-- 디지털 드레이핑 풀스크린 -->
   <section id="draping" class="hidden">
-    <!-- 상단 가로 진행 게이지 -->
-    <div class="draping-progress-track"><div class="fill" id="draping-progress-fill"></div></div>
-
     <div class="draping-top">
       <div class="draping-color-name" id="draping-color-name"></div>
       <div class="draping-color-num" id="draping-color-num"></div>
-      <div>
+      <div class="draping-howto-row">
         <span class="draping-howto">💡 휴대폰을 얼굴 옆에 대고 거울로 보세요</span>
-        <span class="draping-progress-pill" id="draping-progress-pill">4%</span>
+      </div>
+      <div class="draping-progress-row">
+        <span class="draping-progress-num" id="draping-progress-pill">4%</span>
+        <div class="draping-progress-mini-bar"><div class="fill" id="draping-progress-fill"></div></div>
       </div>
     </div>
     <div class="draping-middle"></div>
@@ -1363,10 +1406,10 @@ function applyDrapingColor() {
   const color = q.colors[drapingColorIdx];
   document.getElementById("draping").style.backgroundColor = color.hex;
   document.getElementById("draping-color-name").textContent = color.name;
-  document.getElementById("draping-color-num").textContent = `${drapingColorIdx + 1} / ${q.colors.length}색 · 질문 ${currentIdx + 1} / ${QUESTIONS.length}`;
-  // 진행률 % 작은 칸 + 가로 게이지
+  document.getElementById("draping-color-num").textContent = `${drapingColorIdx + 1} / ${q.colors.length}색`;
+  // 진행률: 질문 번호로 (5/23 형식) + 가로 게이지
   const pct = Math.round(((currentIdx + 1) / QUESTIONS.length) * 100);
-  document.getElementById("draping-progress-pill").textContent = `${pct}%`;
+  document.getElementById("draping-progress-pill").textContent = `${currentIdx + 1} / ${QUESTIONS.length}`;
   document.getElementById("draping-progress-fill").style.width = `${pct}%`;
 }
 
@@ -1421,25 +1464,24 @@ function showBrightnessToast() {
 
 function updateNavCorners() {
   const prev = document.getElementById("nav-prev");
-  const next = document.getElementById("nav-next");
+  const label = document.getElementById("nav-prev-label");
   const introVisible = !document.getElementById("intro").classList.contains("hidden");
   const resultVisible = !document.getElementById("result").classList.contains("hidden");
 
   // 인트로/결과 화면에서는 숨김
   if (introVisible || resultVisible) {
     prev.classList.remove("show");
-    next.classList.remove("show");
+    label.classList.remove("show");
     return;
   }
-  // 답변 화면 + 풀스크린 둘 다 표시
   prev.classList.add("show");
-  next.classList.add("show");
+  label.classList.add("show");
   prev.disabled = (currentIdx === 0);
-
-  const isLast = (currentIdx === QUESTIONS.length - 1);
-  // 답 안 했으면 다음 비활성 (모든 화면)
-  next.disabled = (answers[currentIdx] === null);
-  next.innerHTML = isLast ? "✨" : "→";
+  if (currentIdx === 0) {
+    label.classList.add("dim");
+  } else {
+    label.classList.remove("dim");
+  }
 }
 
 function calculateScores() {
