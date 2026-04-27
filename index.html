@@ -520,28 +520,70 @@
   .guide-good { color: #a8e6c1; }
   .guide-bad { color: #ffb8b8; }
 
-  /* 밝기 안내 토스트 */
-  .brightness-toast {
+  /* 첫 진단 시작 모달 */
+  .intro-modal-overlay {
     position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
-    background: rgba(0, 0, 0, 0.88);
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+  }
+  .intro-modal {
+    background: white;
+    border-radius: 28px;
+    padding: 32px 28px;
+    max-width: 360px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: bottomBtnPop 0.4s ease;
+  }
+  .intro-modal-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+  }
+  .intro-modal-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: #5a4a6e;
+    margin-bottom: 18px;
+  }
+  .intro-modal-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 24px;
+  }
+  .intro-modal-list li {
+    font-size: 14px;
+    color: #6e5e88;
+    padding: 12px 14px;
+    background: rgba(255, 240, 247, 0.7);
+    border-radius: 14px;
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+  .intro-modal-list strong { color: #c089d4; }
+  .intro-modal-btn {
+    background: linear-gradient(120deg, #ffa8c5, #c89df0, #95b8f5);
     color: white;
-    padding: 24px 32px;
-    border-radius: 24px;
-    font-size: 17px; font-weight: 700;
-    text-align: center; line-height: 1.5;
-    z-index: 3000;
-    opacity: 0; pointer-events: none;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    border: none;
+    border-radius: 50px;
+    padding: 14px 36px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255, 168, 197, 0.4);
+    transition: transform 0.2s;
   }
-  .brightness-toast.show { animation: toastFadeInOut 2s ease forwards; }
-  @keyframes toastFadeInOut {
-    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
-    15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.05); }
-  }
+  .intro-modal-btn:hover { transform: scale(1.03); }
 
   /* 결과 화면 */
   .result-card { text-align: center; }
@@ -621,10 +663,21 @@
   <span class="nav-prev-label" id="nav-prev-label">이전 문항으로 돌아가기</span>
   <button class="nav-corner right hidden" id="nav-next" onclick="goNext()" aria-label="다음 질문" style="display:none">→</button>
 
-  <!-- 밝기 안내 토스트 -->
-  <div class="brightness-toast" id="brightness-toast">
-    ☀️ 휴대폰 밝기를<br>최대로 올려주세요!
+  <!-- 첫 진단 시작 모달 -->
+  <div class="intro-modal-overlay hidden" id="intro-modal-overlay">
+    <div class="intro-modal">
+      <div class="intro-modal-icon">☀️</div>
+      <div class="intro-modal-title">진단을 시작하기 전에</div>
+      <ul class="intro-modal-list">
+        <li>휴대폰 <strong>밝기를 최대</strong>로 올려주세요</li>
+        <li>휴대폰 화면을 <strong>얼굴에 가까이</strong> 대고 <strong>거울</strong>을 봐 주세요</li>
+      </ul>
+      <button class="intro-modal-btn" onclick="closeIntroModal()">확인했어요</button>
+    </div>
   </div>
+
+  <!-- 처음으로 돌아가기 버튼 (모든 진단 화면에서 표시) -->
+  <button class="home-btn hidden" id="home-btn" onclick="goHome()" aria-label="처음으로">↺</button>
 
   <!-- 하단 중앙 다음 질문 버튼 -->
   <button class="bottom-next-btn" id="bottom-next-btn" onclick="goNext()">다음 질문으로 →</button>
@@ -635,9 +688,9 @@
     <section id="intro" class="card fade-in">
       <h1 class="intro-title">my color</h1>
       <div class="intro-desc">
-        <strong style="color:#c089d4">✨ 0원으로 만나보는 전문가용 프리미엄<br>퍼스널 컬러 분석기 ✨</strong><br><br>
+        <strong style="color:#c089d4">✨ 0원으로 만나보는 전문가용<br>프리미엄 퍼스널 컬러 분석기 ✨</strong><br><br>
         단 10분 만에 내 손으로 직접 <strong>진단</strong>부터<br>
-        <strong>맞춤형 뷰티 컨설팅</strong>까지 도와드려요.<br>
+        <strong>맞춤형 뷰티 컨설팅</strong>까지 도와드려요.<br><br>
         총 <strong>16가지의 세밀한 분석 결과</strong>로,<br>
         나만의 <strong>인생 color</strong>를 찾아 보세요!
       </div>
@@ -710,14 +763,11 @@
     <div class="draping-middle"></div>
     <div class="draping-bottom">
       <button class="draping-toggle" onclick="toggleDrapingColor()">↔️ 다음 색으로 전환</button>
-      <button class="draping-decide" onclick="decideDraping()">충분히 봤어요 → 답하기</button>
+      <button class="draping-decide" onclick="decideDraping()">선택하기</button>
     </div>
 
     <!-- 가이드 안내 말풍선 -->
-    <div class="guide-hint hidden" id="guide-hint">어떤 기준으로 선택할까요?</div>
-
-    <!-- 맨 앞으로 돌아가기 버튼 (전구 위) -->
-    <button class="home-btn" onclick="goHome()" aria-label="처음으로">🏠</button>
+    <div class="guide-hint hidden" id="guide-hint">이런 색상을 골라 주세요</div>
 
     <!-- 가이드 토글 버튼 -->
     <button class="guide-toggle-btn" id="guide-toggle-btn" onclick="toggleGuide()" aria-label="가이드">💡</button>
@@ -1388,7 +1438,7 @@ function showDraping() {
 
   if (!brightnessToastShown) {
     brightnessToastShown = true;
-    setTimeout(() => showBrightnessToast(), 200);
+    setTimeout(() => showIntroModal(), 200);
   }
 
   if (!guideHintDismissed) {
@@ -1454,17 +1504,17 @@ function hideGuide() {
   document.getElementById("guide-hint").classList.add("hidden");
 }
 
-function showBrightnessToast() {
-  const toast = document.getElementById("brightness-toast");
-  toast.classList.remove("show");
-  void toast.offsetWidth;
-  toast.classList.add("show");
-  setTimeout(() => { toast.classList.remove("show"); }, 2100);
+function showIntroModal() {
+  document.getElementById("intro-modal-overlay").classList.remove("hidden");
+}
+function closeIntroModal() {
+  document.getElementById("intro-modal-overlay").classList.add("hidden");
 }
 
 function updateNavCorners() {
   const prev = document.getElementById("nav-prev");
   const label = document.getElementById("nav-prev-label");
+  const homeBtn = document.getElementById("home-btn");
   const introVisible = !document.getElementById("intro").classList.contains("hidden");
   const resultVisible = !document.getElementById("result").classList.contains("hidden");
 
@@ -1472,10 +1522,12 @@ function updateNavCorners() {
   if (introVisible || resultVisible) {
     prev.classList.remove("show");
     label.classList.remove("show");
+    homeBtn.classList.add("hidden");
     return;
   }
   prev.classList.add("show");
   label.classList.add("show");
+  homeBtn.classList.remove("hidden");
   prev.disabled = (currentIdx === 0);
   if (currentIdx === 0) {
     label.classList.add("dim");
