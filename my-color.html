@@ -1928,15 +1928,17 @@ function showCurrentQuestion() {
   const q = QUESTIONS[currentIdx];
   if (q.type === "draping" && answers[currentIdx] === null) {
     if (!brightnessToastShown) {
-      // 첫 색 비교 진입: 인트로 모달 → 확인 → prompt 안내 → 색 화면
+      // 첫 색 비교 진입: 인트로 모달 → 확인 → 색 화면 + prompt 동시
       brightnessToastShown = true;
       pendingAfterIntroModal = () => {
-        showQuestionPrompt(toPrompt(q.finalQ), () => showDraping());
+        showDraping();
+        showQuestionPrompt(toPrompt(q.finalQ));
       };
       showIntroModal();
     } else {
-      // 그 다음부터: prompt 안내 → 색 화면
-      showQuestionPrompt(toPrompt(q.finalQ), () => showDraping());
+      // 그 다음부터: 색 화면 + prompt 동시 등장
+      showDraping();
+      showQuestionPrompt(toPrompt(q.finalQ));
     }
   } else {
     showQuiz();
@@ -1954,13 +1956,12 @@ function toPrompt(finalQ) {
   return s + " 색을 골라 주세요!";
 }
 
-function showQuestionPrompt(text, callback) {
+function showQuestionPrompt(text) {
   const overlay = document.getElementById("question-prompt-overlay");
   document.getElementById("question-prompt-text").textContent = text;
   overlay.classList.remove("hidden");
   setTimeout(() => {
     overlay.classList.add("hidden");
-    if (callback) callback();
   }, 2500);
 }
 
