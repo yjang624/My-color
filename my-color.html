@@ -74,9 +74,18 @@
   }
   .feature-pill {
     background: linear-gradient(135deg, #ffe4ee, #f0e0ff);
-    padding: 14px; border-radius: 16px;
-    text-align: center; font-size: 14px; color: #6b558b;
+    padding: 14px;
+    border-radius: 18px;
+    text-align: center;
+    font-size: 14px;
+    color: #6b558b;
     box-shadow: 0 4px 12px rgba(192, 137, 212, 0.15);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    line-height: 1.5;
   }
   .prep-box {
     background: rgba(255, 255, 255, 0.7);
@@ -317,6 +326,15 @@
   .draping-color-name {
     font-size: 17px; font-weight: 700;
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  }
+  .draping-question {
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    line-height: 1.5;
+    padding: 4px 16px;
+    letter-spacing: -0.3px;
   }
   .draping-color-num {
     font-size: 12px; opacity: 0.85; margin-top: 3px;
@@ -750,7 +768,7 @@
     .intro-title { font-size: 42px; }
     .result-name { font-size: 28px; }
     .palette { grid-template-columns: repeat(5, 1fr); }
-    .features { grid-template-columns: 1fr; }
+    .features { grid-template-columns: 1fr 1fr; }
     .question-text { font-size: 19px; }
     .draping-mini { width: 42px; height: 42px; }
   }
@@ -820,8 +838,7 @@
         <div class="feature-pill">🎨 색 비교 (11문항)</div>
         <div class="feature-pill">👀 외형 관찰 (5문항)</div>
         <div class="feature-pill">📸 사진 회상 (2문항)</div>
-        <div class="feature-pill">💜 자기 평가 (6문항)</div>
-        <div class="feature-pill" style="grid-column:1 / -1">🪞 셀프테스트 (2문항)</div>
+        <div class="feature-pill">🪞 셀프테스트 (8문항)</div>
       </div>
       <button class="btn" onclick="startQuiz()">진단 START!</button>
     </section>
@@ -860,7 +877,7 @@
   <!-- 디지털 드레이핑 풀스크린 -->
   <section id="draping" class="hidden">
     <div class="draping-top">
-      <div class="draping-color-name" id="draping-color-name"></div>
+      <div class="draping-question" id="draping-question"></div>
       <div class="draping-color-num" id="draping-color-num"></div>
       <div class="draping-progress-row">
         <span class="draping-progress-num" id="draping-progress-pill">4%</span>
@@ -873,20 +890,6 @@
       <button class="draping-decide" onclick="decideDraping()">선택하기</button>
     </div>
 
-    <!-- 가이드 안내 말풍선 -->
-    <div class="guide-hint hidden" id="guide-hint">이런 색상을 골라 주세요</div>
-
-    <!-- 가이드 토글 버튼 -->
-    <button class="guide-toggle-btn" id="guide-toggle-btn" onclick="toggleGuide()" aria-label="가이드">💡</button>
-
-    <!-- 가이드 패널 -->
-    <div class="guide-panel" id="guide-panel">
-      <div class="title">💡 이런 색상을 골라 주세요</div>
-      <div class="guide-line guide-good">✨ 얼굴이 환하고 또렷해 보임</div>
-      <div class="guide-line guide-good">✨ 잡티/기미가 덜 보임</div>
-      <div class="guide-line guide-good">✨ 다크서클이 옅어 보임</div>
-      <div class="guide-line guide-good">✨ 입술 색이 또렷해 보임</div>
-    </div>
   </section>
 
 <script>
@@ -1714,7 +1717,7 @@ const QUESTIONS = [
     ]
   },
   {
-    type: "preference", tag: "💜 자기 평가",
+    type: "physical", tag: "🪞 셀프테스트",
     q: "더 잘 어울리는 분위기는?",
     options: [
       { t: "밝고 화사한 메이크업", swatch: "#FFD1DC", s: { W: 0, L: 2, B: 0 } },
@@ -1722,7 +1725,7 @@ const QUESTIONS = [
     ]
   },
   {
-    type: "preference", tag: "💜 자기 평가",
+    type: "physical", tag: "🪞 셀프테스트",
     q: "옷을 입었을 때 더 얼굴이 살아나는 쪽은?",
     options: [
       { t: "파스텔톤 / 밝은 색", swatch: "#FFD1DC", s: { W: 0, L: 2, B: 0 } },
@@ -1730,7 +1733,7 @@ const QUESTIONS = [
     ]
   },
   {
-    type: "preference", tag: "💜 자기 평가",
+    type: "physical", tag: "🪞 셀프테스트",
     q: "어떤 색이 더 잘 어울리는 편인가요?",
     options: [
       { t: "선명하고 쨍한 색", swatch: "#FF1493", s: { W: 0, L: 0, B: 2 } },
@@ -1738,7 +1741,7 @@ const QUESTIONS = [
     ]
   },
   {
-    type: "preference", tag: "💜 자기 평가",
+    type: "physical", tag: "🪞 셀프테스트",
     q: "립을 발랐을 때 더 자연스러운 것은?",
     options: [
       { t: "쨍한 레드 / 비비드 핑크", swatch: "#FF1493", s: { W: 0, L: 0, B: 2 } },
@@ -1746,7 +1749,7 @@ const QUESTIONS = [
     ]
   },
   {
-    type: "preference", tag: "💜 자기 평가",
+    type: "physical", tag: "🪞 셀프테스트",
     q: "얼굴 인상은 어떤 편인가요?",
     options: [
       { t: "눈코입이 또렷하고 대비감 있음", swatch: "#1A1A1A", s: { W: 0, L: -1, B: 2 } },
@@ -1754,7 +1757,7 @@ const QUESTIONS = [
     ]
   },
   {
-    type: "preference", tag: "💜 자기 평가",
+    type: "physical", tag: "🪞 셀프테스트",
     q: "메이크업을 진하게 했을 때",
     options: [
       { t: "더 잘 어울린다", swatch: "#722F37", s: { W: 0, L: -1, B: 1 } },
@@ -1969,20 +1972,10 @@ function showDraping() {
   drapingColorIdx = 0;
   applyDrapingColor();
   updateNavCorners();
-  applyGuideState(); // 이전에 펼친 상태였다면 복원
 
   if (!brightnessToastShown) {
     brightnessToastShown = true;
     setTimeout(() => showIntroModal(), 200);
-  }
-
-  if (!guideHintDismissed) {
-    setTimeout(() => {
-      if (!guideHintDismissed) {
-        document.getElementById("guide-hint").classList.remove("hidden");
-        document.getElementById("guide-toggle-btn").classList.add("pulse");
-      }
-    }, 2400);
   }
 }
 
@@ -1990,8 +1983,8 @@ function applyDrapingColor() {
   const q = QUESTIONS[currentIdx];
   const color = q.colors[drapingColorIdx];
   document.getElementById("draping").style.backgroundColor = color.hex;
-  document.getElementById("draping-color-name").textContent = color.name;
-  document.getElementById("draping-color-num").textContent = `${drapingColorIdx + 1} / ${q.colors.length}색`;
+  document.getElementById("draping-question").textContent = q.finalQ;
+  document.getElementById("draping-color-num").textContent = `${color.name} · ${drapingColorIdx + 1}/${q.colors.length}`;
   // 진행률: 질문 번호로 (5/23 형식) + 가로 게이지
   const pct = Math.round(((currentIdx + 1) / QUESTIONS.length) * 100);
   document.getElementById("draping-progress-pill").textContent = `${currentIdx + 1} / ${QUESTIONS.length}`;
@@ -2012,32 +2005,9 @@ function decideDraping() {
   updateNavCorners();
 }
 
-function toggleGuide() {
-  guideHintDismissed = true;
-  document.getElementById("guide-hint").classList.add("hidden");
-  document.getElementById("guide-toggle-btn").classList.remove("pulse");
-
-  guideExpanded = !guideExpanded;
-  applyGuideState();
-}
-function applyGuideState() {
-  const panel = document.getElementById("guide-panel");
-  const btn = document.getElementById("guide-toggle-btn");
-  if (guideExpanded) {
-    panel.classList.add("show");
-    btn.classList.add("active");
-  } else {
-    panel.classList.remove("show");
-    btn.classList.remove("active");
-  }
-}
-function hideGuide() {
-  // 풀스크린 종료 시 화면에서만 숨김 (guideExpanded 상태는 유지)
-  document.getElementById("guide-panel").classList.remove("show");
-  document.getElementById("guide-toggle-btn").classList.remove("active");
-  document.getElementById("guide-toggle-btn").classList.remove("pulse");
-  document.getElementById("guide-hint").classList.add("hidden");
-}
+function toggleGuide() {}
+function applyGuideState() {}
+function hideGuide() {}
 
 function showIntroModal() {
   document.getElementById("intro-modal-overlay").classList.remove("hidden");
