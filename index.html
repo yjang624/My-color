@@ -558,6 +558,46 @@
   .guide-good { color: #a8e6c1; }
   .guide-bad { color: #ffb8b8; }
 
+  /* 색 비교 질문 안내 토스트 */
+  .question-prompt-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(8px);
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+  }
+  .question-prompt {
+    background: #FFFFFF;
+    border-radius: 24px;
+    padding: 32px 28px;
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalPop 0.35s ease;
+  }
+  .question-prompt-title {
+    font-size: 12px;
+    color: #c089d4;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .question-prompt-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #5a4a6e;
+    line-height: 1.55;
+    letter-spacing: -0.5px;
+  }
+
   /* 첫 진단 시작 모달 */
   .intro-modal-overlay {
     position: fixed;
@@ -853,6 +893,14 @@
   <button class="nav-corner left" id="nav-prev" onclick="goPrev()" aria-label="이전 질문">←</button>
   <button class="nav-corner right hidden" id="nav-next" onclick="goNext()" aria-label="다음 질문" style="display:none">→</button>
 
+  <!-- 색 비교 질문 prompt 토스트 -->
+  <div class="question-prompt-overlay hidden" id="question-prompt-overlay">
+    <div class="question-prompt">
+      <div class="question-prompt-title">이런 기준으로 골라 주세요</div>
+      <div class="question-prompt-text" id="question-prompt-text"></div>
+    </div>
+  </div>
+
   <!-- 첫 진단 시작 모달 -->
   <div class="intro-modal-overlay hidden" id="intro-modal-overlay">
     <div class="intro-modal">
@@ -921,7 +969,6 @@
       <div class="question-num" id="question-num">Q1</div>
       <div class="question-text" id="question-text"></div>
       <div class="question-help" id="question-help"></div>
-      <div id="draping-mini-row" class="draping-mini-row hidden"></div>
       <button id="show-draping-btn" class="show-draping-btn hidden" onclick="reopenDraping()">🎨 색 다시 보기</button>
       <div class="options" id="options"></div>
     </section>
@@ -1876,11 +1923,32 @@ function showCurrentQuestion() {
   hideBottomNext();
   const q = QUESTIONS[currentIdx];
   if (q.type === "draping" && answers[currentIdx] === null) {
-    showDraping();
+    // 색 비교 첫 진입 시 prompt 안내 (2초)
+    showQuestionPrompt(toPrompt(q.finalQ), () => showDraping());
   } else {
     showQuiz();
   }
   updateNavCorners();
+}
+
+function toPrompt(finalQ) {
+  let s = finalQ.replace(/^👉\s*/, "");
+  s = s.replace(/^어느 색에서\s*/, "");
+  s = s.replace(/보였나요\?$/, "보이는");
+  s = s.replace(/어울렸나요\?$/, "어울리는");
+  s = s.replace(/느껴졌나요\?$/, "느껴지는");
+  s = s.replace(/않았나요\?$/, "않은");
+  return s + " 색을 골라 주세요!";
+}
+
+function showQuestionPrompt(text, callback) {
+  const overlay = document.getElementById("question-prompt-overlay");
+  document.getElementById("question-prompt-text").textContent = text;
+  overlay.classList.remove("hidden");
+  setTimeout(() => {
+    overlay.classList.add("hidden");
+    if (callback) callback();
+  }, 2000);
 }
 
 function showQuiz() {
@@ -1918,16 +1986,10 @@ function showQuiz() {
     helpEl.classList.add("hidden");
   }
 
-  const miniRow = document.getElementById("draping-mini-row");
   const showDrapingBtn = document.getElementById("show-draping-btn");
   if (q.type === "draping") {
-    miniRow.innerHTML = q.colors.map(c =>
-      `<div class="draping-mini" style="background:${c.hex}" title="${c.name}"></div>`
-    ).join("");
-    miniRow.classList.remove("hidden");
     showDrapingBtn.classList.remove("hidden");
   } else {
-    miniRow.classList.add("hidden");
     showDrapingBtn.classList.add("hidden");
   }
 
