@@ -13,93 +13,151 @@
   html, body { min-height: 100%; }
   body {
     font-family: 'Noto Sans KR', 'Quicksand', sans-serif;
-    background: linear-gradient(180deg, #FBF6F2 0%, #F5EBEB 50%, #EDE0E5 100%);
-    color: #3A3540;
+    background: linear-gradient(165deg, #F8DEDC 0%, #E8B8B6 30%, #B88A88 65%, #8B5A6B 100%);
+    background-attachment: fixed;
+    color: #2A2429;
     padding: 24px 16px 100px;
     overflow-x: hidden;
     font-weight: 400;
     letter-spacing: -0.2px;
+    min-height: 100vh;
   }
   body.draping-mode { padding: 0; }
 
-  /* 미니멀 데코 (절제된 액센트) */
+  /* 컬러 데코 (임팩트 있는 액센트) */
   .deco {
     position: fixed; pointer-events: none;
     z-index: 0;
-    opacity: 0.55;
   }
   .deco-1 {
-    top: 8%; right: -40px;
-    width: 180px; height: 180px;
-    background: radial-gradient(circle at 30% 30%, #F0D4D4 0%, transparent 70%);
+    top: -60px; right: -80px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle at 30% 30%, #C99B5C 0%, transparent 65%);
     border-radius: 50%;
-    filter: blur(20px);
+    filter: blur(40px);
+    opacity: 0.65;
   }
   .deco-2 {
-    bottom: 12%; left: -60px;
-    width: 220px; height: 220px;
-    background: radial-gradient(circle at 70% 70%, #E8D9C4 0%, transparent 70%);
+    bottom: -80px; left: -100px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle at 70% 70%, #B85458 0%, transparent 60%);
     border-radius: 50%;
-    filter: blur(24px);
+    filter: blur(50px);
+    opacity: 0.55;
+  }
+  .deco-3 {
+    position: fixed;
+    top: 40%; right: -50px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, #FFD4D4 0%, transparent 60%);
+    border-radius: 50%;
+    filter: blur(30px);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
   }
 
   .container { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
 
   .card {
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 24px;
-    padding: 44px 30px;
-    box-shadow: 0 18px 50px rgba(58, 53, 64, 0.06),
-                0 0 0 1px rgba(212, 165, 165, 0.12);
+    background: #FFFFFF;
+    border-radius: 28px;
+    padding: 48px 30px;
+    box-shadow: 0 30px 80px rgba(80, 30, 40, 0.18),
+                0 12px 32px rgba(80, 30, 40, 0.08),
+                0 0 0 1px rgba(184, 138, 136, 0.1);
     margin: 16px 0;
+    position: relative;
   }
 
+  /* 인트로 카드 상단 액센트 */
+  #intro::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #C99B5C 50%, transparent);
+    border-radius: 0 0 8px 8px;
+  }
+
+  .intro-tagline {
+    text-align: center;
+    color: #C99B5C;
+    font-size: 10px;
+    letter-spacing: 5px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: 'Playfair Display', serif;
+  }
   .intro-title {
     font-family: 'Playfair Display', serif;
     font-style: italic;
     font-weight: 500;
-    font-size: 56px;
-    background: linear-gradient(120deg, #B89B6F 0%, #C9A2C0 50%, #D4A5A5 100%);
+    font-size: 72px;
+    background: linear-gradient(135deg, #8B5A6B 0%, #B85458 35%, #C99B5C 70%, #D4A5A5 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-align: center;
-    margin-bottom: 4px;
-    letter-spacing: -1px;
+    margin-bottom: 6px;
+    letter-spacing: -2px;
+    line-height: 1;
   }
   .intro-divider {
     text-align: center;
-    color: #B89B6F;
+    color: #8B5A6B;
     font-size: 11px;
-    letter-spacing: 6px;
-    margin: 4px 0 24px;
-    font-weight: 500;
+    letter-spacing: 7px;
+    margin: 8px 0 20px;
+    font-weight: 600;
     text-transform: uppercase;
+    font-family: 'Playfair Display', serif;
   }
   .intro-divider::before, .intro-divider::after {
     content: '';
     display: inline-block;
-    width: 24px;
+    width: 28px;
     height: 1px;
-    background: #B89B6F;
+    background: #C99B5C;
     vertical-align: middle;
-    margin: 0 10px;
-    opacity: 0.5;
+    margin: 0 12px;
   }
+
+  /* 16개 컬러 미리보기 */
+  .color-preview {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 12px 0 24px;
+    padding: 16px 12px;
+    background: linear-gradient(120deg, rgba(248, 222, 220, 0.4), rgba(201, 155, 92, 0.15));
+    border-radius: 12px;
+    border-top: 1px solid rgba(201, 155, 92, 0.25);
+    border-bottom: 1px solid rgba(201, 155, 92, 0.25);
+  }
+  .color-preview .dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18),
+                0 0 0 2px rgba(255, 255, 255, 0.6) inset;
+  }
+
   .intro-desc {
     font-family: 'Noto Serif KR', serif;
     font-size: 14.5px;
     line-height: 1.95;
     text-align: center;
-    color: #5A5260;
-    background: rgba(245, 235, 235, 0.4);
-    padding: 24px 20px;
-    border-radius: 14px;
+    color: #3A3540;
+    background: linear-gradient(135deg, rgba(248, 222, 220, 0.45), rgba(232, 184, 182, 0.25));
+    padding: 26px 22px;
+    border-radius: 16px;
     margin-bottom: 24px;
-    border-left: 2px solid #D4A5A5;
-    border-right: 2px solid #D4A5A5;
+    border: 1px solid rgba(184, 138, 136, 0.25);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
   .features {
     display: grid; grid-template-columns: 1fr 1fr;
@@ -869,6 +927,7 @@
 <body>
   <div class="deco deco-1"></div>
   <div class="deco deco-2"></div>
+  <div class="deco-3"></div>
 
   <!-- 상단 좌측 이전 버튼 -->
   <button class="nav-corner left" id="nav-prev" onclick="goPrev()" aria-label="이전 질문">←</button>
@@ -897,8 +956,27 @@
 
     <!-- 시작 화면 -->
     <section id="intro" class="card fade-in">
+      <div class="intro-tagline">Premium Color Diagnosis</div>
       <h1 class="intro-title">my color</h1>
-      <div class="intro-divider">Personal Color Lab</div>
+      <div class="intro-divider">16 Seasonal Types</div>
+      <div class="color-preview">
+        <div class="dot" style="background:#FFA07A"></div>
+        <div class="dot" style="background:#FFD700"></div>
+        <div class="dot" style="background:#FF6F61"></div>
+        <div class="dot" style="background:#FF4500"></div>
+        <div class="dot" style="background:#FFD1DC"></div>
+        <div class="dot" style="background:#B57EDC"></div>
+        <div class="dot" style="background:#B07379"></div>
+        <div class="dot" style="background:#B22862"></div>
+        <div class="dot" style="background:#C19A6B"></div>
+        <div class="dot" style="background:#DAA520"></div>
+        <div class="dot" style="background:#722F37"></div>
+        <div class="dot" style="background:#5D4037"></div>
+        <div class="dot" style="background:#000000"></div>
+        <div class="dot" style="background:#FF1493"></div>
+        <div class="dot" style="background:#4A0E4E"></div>
+        <div class="dot" style="background:#1E90FF"></div>
+      </div>
       <div class="intro-desc">
         <strong style="color:#c089d4">✨ 0원으로 만나보는 전문가용<br>프리미엄 퍼스널 컬러 분석기 ✨</strong><br><br>
         단 10분 만에 내 손으로 직접 <strong>진단</strong>부터<br>
