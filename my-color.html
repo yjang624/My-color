@@ -318,7 +318,7 @@
     transition: background-color 0.3s ease;
   }
   .draping-top {
-    padding: 70px 20px 14px;
+    padding: 70px 20px 18px;
     background: rgba(0, 0, 0, 0.4);
     color: white; text-align: center;
     backdrop-filter: blur(6px);
@@ -877,7 +877,6 @@
   <!-- 디지털 드레이핑 풀스크린 -->
   <section id="draping" class="hidden">
     <div class="draping-top">
-      <div class="draping-question" id="draping-question"></div>
       <div class="draping-color-num" id="draping-color-num"></div>
       <div class="draping-progress-row">
         <span class="draping-progress-num" id="draping-progress-pill">4%</span>
@@ -1983,7 +1982,6 @@ function applyDrapingColor() {
   const q = QUESTIONS[currentIdx];
   const color = q.colors[drapingColorIdx];
   document.getElementById("draping").style.backgroundColor = color.hex;
-  document.getElementById("draping-question").textContent = q.finalQ;
   document.getElementById("draping-color-num").textContent = `${color.name} · ${drapingColorIdx + 1}/${q.colors.length}`;
   // 진행률: 질문 번호로 (5/23 형식) + 가로 게이지
   const pct = Math.round(((currentIdx + 1) / QUESTIONS.length) * 100);
