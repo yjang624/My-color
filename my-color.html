@@ -770,6 +770,22 @@
     font-family: 'Pacifico', cursive; color: #d68bb8;
     font-size: 18px; opacity: 0.85;
   }
+  .result-confidence {
+    background: linear-gradient(120deg, #ffe4ee, #f0e0ff, #ffe4ee);
+    color: #b1559e;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 14.5px;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(192, 137, 212, 0.25);
+    border: 1px solid rgba(255, 168, 197, 0.4);
+  }
+  .result-confidence strong {
+    color: #c089d4;
+    font-weight: 800;
+  }
   .button-row { display: flex; flex-direction: column; gap: 0; margin-top: 28px; }
   .button-row .btn { margin-top: 12px; }
   .button-row .btn:first-child { margin-top: 0; }
@@ -2041,6 +2057,28 @@ function updateNavCorners() {
   prev.disabled = (currentIdx === 0);
 }
 
+function calculateConfidence(scores) {
+  // 답변한 문항 수 (null 아닌 답)
+  const answered = answers.filter(a => a !== null).length;
+  const total = QUESTIONS.length;
+
+  // 점수의 절대값 합 (선명도)
+  const intensity = Math.abs(scores.W) + Math.abs(scores.L) + Math.abs(scores.B);
+
+  // 가능 최대 (대략) - 23문항 × 평균 ±1.5점 × 3차원
+  const maxIntensity = 50;
+
+  // 답변률 (0~1)
+  const answerRate = answered / total;
+
+  // 선명도 비율 (0~1)
+  const intensityRate = Math.min(intensity / maxIntensity, 1);
+
+  // 최종: 답변률(40%) + 선명도(60%) → 70~98% 범위로 매핑
+  const score = (answerRate * 0.4 + intensityRate * 0.6);
+  return Math.round(70 + score * 28);
+}
+
 function calculateScores() {
   const scores = { W: 0, L: 0, B: 0 };
   answers.forEach((optIdx, qIdx) => {
@@ -2101,6 +2139,7 @@ function showResult() {
   const key = pickResultKey(scores);
   const r = RESULTS[key] || RESULTS["spring_light"];
   const features = FEATURES[key] || [];
+  const confidence = calculateConfidence(scores);
 
   function makeSwatchWrap(c, isAvoid) {
     const name = getKoreanColorName(c);
@@ -2120,6 +2159,7 @@ function showResult() {
       <div class="result-emoji">${r.emoji}</div>
       <div class="result-label">${r.label}</div>
       <div class="result-name">${r.name}</div>
+      <div class="result-confidence">✨ <strong>${confidence}%</strong> 확률로 당신은 <strong>${r.name}</strong>!</div>
       <div class="result-summary">${r.summary}</div>
 
       <div class="section-title">💫 이 타입의 매력</div>
@@ -2191,7 +2231,7 @@ function saveImage() {
       imageTimeout: 0,
       removeContainer: true,
       onclone: (clonedDoc) => {
-        // backdrop-filter 제거 (html2canvas 미지원)
+        // backdrop-filter / 애니메이션 제거 (html2canvas 미지원)
         clonedDoc.querySelectorAll('*').forEach(el => {
           if (el.style) {
             el.style.backdropFilter = 'none';
@@ -2200,12 +2240,44 @@ function saveImage() {
             el.style.transition = 'none';
           }
         });
-        // 결과 카드 배경 단색 (rgba 흐림 → 흰색)
+        // 결과 카드: 진한 흰색
         const card = clonedDoc.getElementById("result");
         if (card) {
           card.style.background = "#FFFFFF";
           card.style.boxShadow = "0 8px 24px rgba(204, 153, 204, 0.2)";
         }
+        // 반투명 요소들 → 진한 색으로 변경
+        clonedDoc.querySelectorAll('.result-summary, .result-features, .info-box').forEach(el => {
+          el.style.background = '#FFF0F5';
+          el.style.border = '1px solid #FFD1DC';
+        });
+        // 그라데이션 텍스트 → 단색 (html2canvas는 background-clip:text 미지원)
+        const resultName = clonedDoc.querySelector('.result-name');
+        if (resultName) {
+          resultName.style.background = 'none';
+          resultName.style.webkitBackgroundClip = 'unset';
+          resultName.style.webkitTextFillColor = '#C089D4';
+          resultName.style.color = '#C089D4';
+          resultName.style.backgroundImage = 'none';
+        }
+        // result-label, signature 등 다른 그라데이션 텍스트도 단색으로
+        clonedDoc.querySelectorAll('.result-label, .signature, .question-num, .intro-title').forEach(el => {
+          el.style.background = 'none';
+          el.style.webkitBackgroundClip = 'unset';
+          el.style.webkitTextFillColor = el.style.color || '#C089D4';
+        });
+        // 컬러 swatch에 진한 그림자로 또렷하게
+        clonedDoc.querySelectorAll('.swatch').forEach(el => {
+          el.style.boxShadow = '0 3px 8px rgba(0,0,0,0.15), 0 0 0 2px rgba(255,255,255,0.4) inset';
+        });
+        // makeup-table 배경 진하게
+        clonedDoc.querySelectorAll('.makeup-table-wrap').forEach(el => {
+          el.style.background = '#FFFFFF';
+          el.style.border = '1px solid #FFD1DC';
+        });
+        clonedDoc.querySelectorAll('.makeup-table th').forEach(el => {
+          el.style.background = '#FFE4EE';
+        });
       }
     })
       .then((canvas) => {
