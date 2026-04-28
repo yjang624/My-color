@@ -563,42 +563,42 @@
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.35);
+    background: transparent;
     z-index: 5000;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
     animation: fadeIn 0.3s ease;
+    pointer-events: none;
   }
   .question-prompt {
-    background: rgba(0, 0, 0, 0.78);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 28px 26px;
-    max-width: 360px;
-    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 18px;
+    padding: 22px 24px;
+    max-width: 290px;
+    width: auto;
     text-align: center;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
     animation: modalPop 0.35s ease;
-    border: 1px solid rgba(255, 255, 255, 0.12);
   }
   .question-prompt-title {
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 10.5px;
+    color: rgba(255, 255, 255, 0.75);
     letter-spacing: 2px;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
     font-weight: 600;
     text-transform: uppercase;
   }
   .question-prompt-text {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 700;
     color: white;
     line-height: 1.55;
-    letter-spacing: -0.5px;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    letter-spacing: -0.4px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
   }
 
   /* 첫 진단 시작 모달 */
