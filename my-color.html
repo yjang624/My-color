@@ -2179,18 +2179,72 @@ function saveImage() {
   const target = document.getElementById("result");
   const btnRow = target.querySelector(".button-row");
   btnRow.style.visibility = "hidden";
-  html2canvas(target, { backgroundColor: null, scale: 2, useCORS: true })
-    .then((canvas) => {
-      btnRow.style.visibility = "visible";
-      const link = document.createElement("a");
-      link.download = "my-color-result.png";
-      link.href = canvas.toDataURL("image/png");
-      link.click();
-    }).catch((err) => {
-      btnRow.style.visibility = "visible";
-      alert("이미지 저장 중 오류가 났어요. 다시 시도해주세요.");
-      console.error(err);
-    });
+
+  // 폰트 로딩 보장 후 캡처
+  const startCapture = () => {
+    html2canvas(target, {
+      backgroundColor: "#FFF0F5",
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      logging: false,
+      imageTimeout: 0,
+      removeContainer: true,
+      onclone: (clonedDoc) => {
+        // backdrop-filter 제거 (html2canvas 미지원)
+        clonedDoc.querySelectorAll('*').forEach(el => {
+          if (el.style) {
+            el.style.backdropFilter = 'none';
+            el.style.webkitBackdropFilter = 'none';
+            el.style.animation = 'none';
+            el.style.transition = 'none';
+          }
+        });
+        // 결과 카드 배경 단색 (rgba 흐림 → 흰색)
+        const card = clonedDoc.getElementById("result");
+        if (card) {
+          card.style.background = "#FFFFFF";
+          card.style.boxShadow = "0 8px 24px rgba(204, 153, 204, 0.2)";
+        }
+      }
+    })
+      .then((canvas) => {
+        btnRow.style.visibility = "visible";
+        try {
+          // toDataURL 시도
+          const link = document.createElement("a");
+          link.download = "my-color-result.png";
+          link.href = canvas.toDataURL("image/png");
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        } catch (e) {
+          // 실패 시 toBlob fallback
+          canvas.toBlob((blob) => {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.download = "my-color-result.png";
+            link.href = url;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+          }, "image/png");
+        }
+      })
+      .catch((err) => {
+        btnRow.style.visibility = "visible";
+        console.error("이미지 저장 오류:", err);
+        alert("이미지 저장에 실패했어요. 화면 캡처(스크린샷)로 저장해주세요!\n\n오류: " + (err.message || err));
+      });
+  };
+
+  // Font Loading API로 폰트 로딩 후 캡처
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => setTimeout(startCapture, 100));
+  } else {
+    setTimeout(startCapture, 200);
+  }
 }
 
 function scrollToTop() { window.scrollTo({ top: 0, behavior: "smooth" }); }
