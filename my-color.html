@@ -896,14 +896,6 @@
   <button class="nav-corner left" id="nav-prev" onclick="goPrev()" aria-label="이전 질문">←</button>
   <button class="nav-corner right hidden" id="nav-next" onclick="goNext()" aria-label="다음 질문" style="display:none">→</button>
 
-  <!-- 색 비교 질문 prompt 토스트 -->
-  <div class="question-prompt-overlay hidden" id="question-prompt-overlay">
-    <div class="question-prompt">
-      <div class="question-prompt-title">이런 기준으로 골라 주세요</div>
-      <div class="question-prompt-text" id="question-prompt-text"></div>
-    </div>
-  </div>
-
   <!-- 첫 진단 시작 모달 -->
   <div class="intro-modal-overlay hidden" id="intro-modal-overlay">
     <div class="intro-modal">
@@ -997,6 +989,15 @@
       </div>
     </div>
     <div class="draping-middle"></div>
+
+    <!-- 색 비교 질문 prompt (색 화면 중앙) -->
+    <div class="question-prompt-overlay hidden" id="question-prompt-overlay">
+      <div class="question-prompt">
+        <div class="question-prompt-title">이런 기준으로 골라 주세요</div>
+        <div class="question-prompt-text" id="question-prompt-text"></div>
+      </div>
+    </div>
+
     <div class="draping-bottom">
       <button class="draping-toggle" onclick="toggleDrapingColor()">다음 색으로 전환</button>
       <button class="draping-decide" onclick="decideDraping()">선택하기</button>
