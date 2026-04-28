@@ -1906,6 +1906,7 @@ let drapingColorIdx = 0;
 let brightnessToastShown = false;
 let guideHintDismissed = false;
 let guideExpanded = false;
+let pendingAfterIntroModal = null;
 
 /* ========== 함수 ========== */
 function startQuiz() {
@@ -1923,8 +1924,17 @@ function showCurrentQuestion() {
   hideBottomNext();
   const q = QUESTIONS[currentIdx];
   if (q.type === "draping" && answers[currentIdx] === null) {
-    // 색 비교 첫 진입 시 prompt 안내 (2초)
-    showQuestionPrompt(toPrompt(q.finalQ), () => showDraping());
+    if (!brightnessToastShown) {
+      // 첫 색 비교 진입: 인트로 모달 → 확인 → prompt 안내 → 색 화면
+      brightnessToastShown = true;
+      pendingAfterIntroModal = () => {
+        showQuestionPrompt(toPrompt(q.finalQ), () => showDraping());
+      };
+      showIntroModal();
+    } else {
+      // 그 다음부터: prompt 안내 → 색 화면
+      showQuestionPrompt(toPrompt(q.finalQ), () => showDraping());
+    }
   } else {
     showQuiz();
   }
@@ -1948,7 +1958,7 @@ function showQuestionPrompt(text, callback) {
   setTimeout(() => {
     overlay.classList.add("hidden");
     if (callback) callback();
-  }, 2000);
+  }, 2500);
 }
 
 function showQuiz() {
@@ -2096,11 +2106,6 @@ function showDraping() {
   drapingColorIdx = 0;
   applyDrapingColor();
   updateNavCorners();
-
-  if (!brightnessToastShown) {
-    brightnessToastShown = true;
-    setTimeout(() => showIntroModal(), 200);
-  }
 }
 
 function applyDrapingColor() {
@@ -2137,6 +2142,11 @@ function showIntroModal() {
 }
 function closeIntroModal() {
   document.getElementById("intro-modal-overlay").classList.add("hidden");
+  if (pendingAfterIntroModal) {
+    const cb = pendingAfterIntroModal;
+    pendingAfterIntroModal = null;
+    setTimeout(cb, 200);
+  }
 }
 
 function updateNavCorners() {
