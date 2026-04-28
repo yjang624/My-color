@@ -6,224 +6,122 @@
 <title>my color · 나만의 퍼스널 컬러 찾기</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Gaegu:wght@400;700&family=Quicksand:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { min-height: 100%; }
   body {
-    font-family: 'Noto Sans KR', 'Quicksand', sans-serif;
-    background: linear-gradient(165deg, #F8DEDC 0%, #E8B8B6 30%, #B88A88 65%, #8B5A6B 100%);
-    background-attachment: fixed;
-    color: #2A2429;
+    font-family: 'Gowun Dodum', 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #ffe0ec 0%, #fce4f1 25%, #e8d5f2 50%, #d6e6ff 75%, #ffe9f3 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 18s ease infinite;
+    color: #5a4a6e;
     padding: 24px 16px 100px;
     overflow-x: hidden;
-    font-weight: 400;
-    letter-spacing: -0.2px;
-    min-height: 100vh;
+    transition: background 0.4s ease;
   }
-  body.draping-mode { padding: 0; }
+  body.draping-mode { animation: none; padding: 0; }
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
 
-  /* 컬러 데코 (임팩트 있는 액센트) */
-  .deco {
+  .sparkle {
     position: fixed; pointer-events: none;
+    font-size: 18px; opacity: 0.6;
+    animation: float 8s ease-in-out infinite;
     z-index: 0;
   }
-  .deco-1 {
-    top: -60px; right: -80px;
-    width: 320px; height: 320px;
-    background: radial-gradient(circle at 30% 30%, #C99B5C 0%, transparent 65%);
-    border-radius: 50%;
-    filter: blur(40px);
-    opacity: 0.65;
-  }
-  .deco-2 {
-    bottom: -80px; left: -100px;
-    width: 360px; height: 360px;
-    background: radial-gradient(circle at 70% 70%, #B85458 0%, transparent 60%);
-    border-radius: 50%;
-    filter: blur(50px);
-    opacity: 0.55;
-  }
-  .deco-3 {
-    position: fixed;
-    top: 40%; right: -50px;
-    width: 180px; height: 180px;
-    background: radial-gradient(circle, #FFD4D4 0%, transparent 60%);
-    border-radius: 50%;
-    filter: blur(30px);
-    opacity: 0.5;
-    pointer-events: none;
-    z-index: 0;
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.4; }
+    50% { transform: translateY(-30px) rotate(20deg); opacity: 0.9; }
   }
 
   .container { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
 
   .card {
-    background: #FFFFFF;
-    border-radius: 28px;
-    padding: 48px 30px;
-    box-shadow: 0 30px 80px rgba(80, 30, 40, 0.18),
-                0 12px 32px rgba(80, 30, 40, 0.08),
-                0 0 0 1px rgba(184, 138, 136, 0.1);
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 32px;
+    padding: 40px 28px;
+    box-shadow: 0 20px 60px rgba(204, 153, 204, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset;
     margin: 16px 0;
-    position: relative;
   }
 
-  /* 인트로 카드 상단 액센트 */
-  #intro::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, #C99B5C 50%, transparent);
-    border-radius: 0 0 8px 8px;
-  }
-
-  .intro-tagline {
-    text-align: center;
-    color: #C99B5C;
-    font-size: 10px;
-    letter-spacing: 5px;
-    margin-bottom: 8px;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-family: 'Playfair Display', serif;
-  }
   .intro-title {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: 72px;
-    background: linear-gradient(135deg, #8B5A6B 0%, #B85458 35%, #C99B5C 70%, #D4A5A5 100%);
+    font-family: 'Pacifico', cursive;
+    font-size: 56px;
+    background: linear-gradient(120deg, #ff85a2, #c089d4, #8eb6f0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-align: center;
-    margin-bottom: 6px;
-    letter-spacing: -2px;
-    line-height: 1;
+    text-align: center; margin-bottom: 8px;
   }
-  .intro-divider {
-    text-align: center;
-    color: #8B5A6B;
-    font-size: 11px;
-    letter-spacing: 7px;
-    margin: 8px 0 20px;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-family: 'Playfair Display', serif;
-  }
-  .intro-divider::before, .intro-divider::after {
-    content: '';
-    display: inline-block;
-    width: 28px;
-    height: 1px;
-    background: #C99B5C;
-    vertical-align: middle;
-    margin: 0 12px;
-  }
-
-  /* 16개 컬러 미리보기 */
-  .color-preview {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin: 12px 0 24px;
-    padding: 16px 12px;
-    background: linear-gradient(120deg, rgba(248, 222, 220, 0.4), rgba(201, 155, 92, 0.15));
-    border-radius: 12px;
-    border-top: 1px solid rgba(201, 155, 92, 0.25);
-    border-bottom: 1px solid rgba(201, 155, 92, 0.25);
-  }
-  .color-preview .dot {
-    width: 14px; height: 14px;
-    border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18),
-                0 0 0 2px rgba(255, 255, 255, 0.6) inset;
-  }
-
+  .intro-sub { font-size: 18px; text-align: center; color: #8a7a9e; margin-bottom: 28px; }
   .intro-desc {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 14.5px;
-    line-height: 1.95;
-    text-align: center;
-    color: #3A3540;
-    background: linear-gradient(135deg, rgba(248, 222, 220, 0.45), rgba(232, 184, 182, 0.25));
-    padding: 26px 22px;
-    border-radius: 16px;
+    font-size: 15px; line-height: 1.8;
+    text-align: center; color: #6e5e88;
+    background: rgba(255, 240, 247, 0.6);
+    padding: 20px; border-radius: 20px;
     margin-bottom: 24px;
-    border: 1px solid rgba(184, 138, 136, 0.25);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
   .features {
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 10px; margin-bottom: 28px;
+    gap: 12px; margin-bottom: 24px;
   }
   .feature-pill {
-    background: rgba(255, 255, 255, 0.7);
-    padding: 13px 14px;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 13px;
-    color: #5A5260;
-    border: 1px solid rgba(212, 165, 165, 0.2);
-    font-weight: 500;
-    letter-spacing: -0.3px;
+    background: linear-gradient(135deg, #ffe4ee, #f0e0ff);
+    padding: 14px; border-radius: 16px;
+    text-align: center; font-size: 14px; color: #6b558b;
+    box-shadow: 0 4px 12px rgba(192, 137, 212, 0.15);
   }
   .prep-box {
     background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(212, 165, 165, 0.3);
-    border-radius: 14px;
-    padding: 22px 24px;
-    margin-bottom: 28px;
-    font-size: 13.5px;
-    line-height: 1.85;
-    color: #5A5260;
-    font-family: 'Noto Sans KR', sans-serif;
+    border: 2px dashed #f0c0d8;
+    border-radius: 20px; padding: 20px;
+    margin-bottom: 28px; font-size: 14px;
+    line-height: 1.7; color: #6e5e88;
   }
-  .prep-box strong { color: #B89B6F; font-weight: 600; }
-  .prep-list { margin-top: 10px; padding-left: 4px; }
-  .prep-list li { list-style: none; padding: 3px 0; }
+  .prep-box strong { color: #c089d4; }
+  .prep-list { margin-top: 8px; padding-left: 8px; }
+  .prep-list li { list-style: none; padding: 4px 0; }
 
   .btn {
     display: block; width: 100%;
-    padding: 17px 24px; border: none; border-radius: 50px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
+    padding: 18px 24px; border: none; border-radius: 50px;
+    font-family: inherit; font-size: 17px; font-weight: 600;
     cursor: pointer; transition: all 0.3s ease;
-    background: linear-gradient(120deg, #C9A2C0 0%, #D4A5A5 50%, #B89B6F 100%);
+    background: linear-gradient(120deg, #ffa8c5, #c89df0, #95b8f5);
     color: white;
-    box-shadow: 0 8px 22px rgba(184, 155, 111, 0.28);
-    letter-spacing: 1.5px;
+    box-shadow: 0 8px 24px rgba(255, 168, 197, 0.4);
+    letter-spacing: 1px;
   }
-  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(184, 155, 111, 0.38); }
+  .btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 32px rgba(255, 168, 197, 0.5); }
   .btn:active { transform: translateY(0); }
   .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
   .btn-secondary {
-    background: rgba(255, 255, 255, 0.9);
-    color: #B89B6F;
-    border: 1px solid rgba(184, 155, 111, 0.4);
-    box-shadow: 0 4px 12px rgba(58, 53, 64, 0.05);
+    background: rgba(255, 255, 255, 0.85);
+    color: #b888d4;
+    border: 2px solid #e0c5f0;
+    box-shadow: 0 4px 12px rgba(204, 153, 204, 0.15);
   }
 
   /* 상단 좌우 작은 네비 버튼 */
   .nav-corner {
     position: fixed;
     top: 16px;
-    width: 42px; height: 42px;
+    width: 44px; height: 44px;
     border-radius: 50%;
-    border: 1px solid rgba(184, 155, 111, 0.3);
-    background: rgba(255, 255, 255, 0.95);
-    color: #B89B6F;
-    font-size: 19px;
-    font-weight: 500;
+    border: none;
+    background: rgba(255, 255, 255, 0.92);
+    color: #c089d4;
+    font-size: 20px; font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(58, 53, 64, 0.06);
+    box-shadow: 0 4px 14px rgba(192, 137, 212, 0.25),
+                0 0 0 2px rgba(255, 255, 255, 0.6) inset;
     z-index: 1500;
     transition: all 0.25s;
     display: none;
@@ -258,78 +156,60 @@
   }
 
   /* 진행 바 */
-  .progress-wrap { margin-bottom: 28px; padding-top: 24px; }
+  .progress-wrap { margin-bottom: 24px; padding-top: 24px; }
   .progress-info {
     display: flex; justify-content: space-between; align-items: center;
-    font-size: 12px; color: #7A6F77; margin-bottom: 8px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
+    font-size: 12px; color: #a08abe; margin-bottom: 8px;
   }
   .progress-percent-pill {
-    background: rgba(212, 165, 165, 0.15);
-    color: #B89B6F;
-    font-weight: 600;
+    background: linear-gradient(120deg, #ffe4ee, #f0e0ff);
+    color: #c089d4;
+    font-weight: 700;
     padding: 3px 10px;
     border-radius: 50px;
     font-size: 11px;
-    border: 1px solid rgba(184, 155, 111, 0.2);
+    box-shadow: 0 2px 6px rgba(192, 137, 212, 0.2);
   }
   .progress-bar {
-    height: 8px;
-    background: rgba(212, 165, 165, 0.12);
+    height: 12px;
+    background: rgba(192, 137, 212, 0.18);
     border-radius: 50px; overflow: hidden;
+    box-shadow: inset 0 2px 6px rgba(192, 137, 212, 0.3);
   }
   .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #D4A5A5, #C9A2C0, #B89B6F);
+    background: linear-gradient(90deg, #ffa8c5, #c089d4, #95b8f5);
     border-radius: 50px; transition: width 0.5s ease; width: 0%;
-    box-shadow: 0 0 10px rgba(184, 155, 111, 0.5);
+    box-shadow: 0 0 12px rgba(255, 168, 197, 0.7);
   }
 
   .question-tag {
-    display: inline-block; padding: 5px 14px;
-    border-radius: 50px; font-size: 11px;
-    font-weight: 600;
-    margin-bottom: 14px;
-    letter-spacing: 0.5px;
-    font-family: 'Noto Sans KR', sans-serif;
+    display: inline-block; padding: 4px 14px;
+    border-radius: 50px; font-size: 12px; font-weight: 600;
+    margin-bottom: 12px;
   }
-  .tag-draping { background: rgba(212, 165, 165, 0.18); color: #B47373; border: 1px solid rgba(212, 165, 165, 0.3); }
-  .tag-objective { background: rgba(180, 170, 200, 0.18); color: #6F6385; border: 1px solid rgba(180, 170, 200, 0.3); }
-  .tag-photo { background: rgba(212, 184, 150, 0.22); color: #8B6F3D; border: 1px solid rgba(184, 155, 111, 0.3); }
-  .tag-physical { background: rgba(168, 195, 175, 0.22); color: #4F7A60; border: 1px solid rgba(168, 195, 175, 0.35); }
-  .tag-preference { background: rgba(201, 162, 192, 0.22); color: #8E5A82; border: 1px solid rgba(201, 162, 192, 0.35); }
+  .tag-draping { background: #ffd4e5; color: #d63384; }
+  .tag-objective { background: #d4e9ff; color: #1976d2; }
+  .tag-photo { background: #fff3d4; color: #d68900; }
+  .tag-physical { background: #d4f5e9; color: #00897b; }
+  .tag-preference { background: #e9d5ff; color: #7e22ce; }
 
   .question-num {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 22px;
-    color: #B89B6F;
-    text-align: center;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
+    font-family: 'Pacifico', cursive;
+    font-size: 22px; color: #d68bb8;
+    text-align: center; margin-bottom: 8px;
   }
   .question-text {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 19px;
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: 18px;
-    color: #3A3540;
-    line-height: 1.55;
-    letter-spacing: -0.5px;
+    font-size: 21px; font-weight: 700;
+    text-align: center; margin-bottom: 16px;
+    color: #5a4a6e; line-height: 1.5;
   }
   .question-help {
-    text-align: center;
-    font-size: 13px;
-    color: #7A6F77;
-    margin-bottom: 18px;
-    background: rgba(245, 235, 235, 0.5);
-    padding: 13px 18px;
-    border-radius: 12px;
-    line-height: 1.65;
-    border-left: 2px solid #D4A5A5;
-    font-family: 'Noto Sans KR', sans-serif;
+    text-align: center; font-size: 14px;
+    color: #8a7a9e; margin-bottom: 16px;
+    background: rgba(255, 240, 247, 0.6);
+    padding: 12px 16px; border-radius: 16px;
+    line-height: 1.6;
   }
 
   .draping-mini-row {
@@ -354,36 +234,31 @@
   }
   .show-draping-btn:hover { background: #ffe4ee; transform: scale(1.03); }
 
-  .options { display: flex; flex-direction: column; gap: 10px; }
+  .options { display: flex; flex-direction: column; gap: 12px; }
   .option {
-    padding: 15px 18px;
-    background: rgba(255, 255, 255, 0.85);
-    border: 1.5px solid rgba(212, 165, 165, 0.18);
-    border-radius: 14px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14.5px;
-    color: #3A3540;
-    cursor: pointer;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.75);
+    border: 2px solid transparent;
+    border-radius: 20px;
+    font-family: inherit; font-size: 15px;
+    color: #5a4a6e; cursor: pointer;
     transition: all 0.25s ease;
-    text-align: left;
-    line-height: 1.55;
-    box-shadow: 0 2px 8px rgba(58, 53, 64, 0.04);
+    text-align: left; line-height: 1.5;
+    box-shadow: 0 4px 12px rgba(204, 153, 204, 0.1);
     display: flex; align-items: center; gap: 14px; width: 100%;
-    font-weight: 500;
   }
   .option:hover {
-    background: #FFFFFF;
-    border-color: #D4A5A5;
-    transform: translateX(4px);
-    box-shadow: 0 4px 14px rgba(212, 165, 165, 0.18);
+    background: rgba(255, 230, 245, 0.95);
+    border-color: #f0c0d8;
+    transform: translateX(6px);
+    box-shadow: 0 6px 18px rgba(255, 168, 197, 0.25);
   }
   .option.selected {
-    background: linear-gradient(120deg, #FBE8E8, #F5E0D8);
-    border-color: #B89B6F;
-    box-shadow: 0 4px 18px rgba(184, 155, 111, 0.22);
+    background: linear-gradient(120deg, #ffe4ee, #f0e0ff);
+    border-color: #c089d4;
+    box-shadow: 0 6px 20px rgba(192, 137, 212, 0.35),
+                0 0 0 4px rgba(255, 168, 197, 0.2);
     transform: translateX(4px);
-    color: #3A3540;
-    font-weight: 600;
   }
   .option-swatch {
     width: 32px; height: 32px;
@@ -536,17 +411,18 @@
   .home-btn {
     position: fixed;
     top: 16px;
-    left: 66px;
-    width: 42px; height: 42px;
+    left: 70px;
+    width: 44px; height: 44px;
     border-radius: 50%;
-    border: 1px solid rgba(184, 155, 111, 0.3);
-    background: rgba(255, 255, 255, 0.95);
-    color: #B89B6F;
-    font-size: 20px;
-    font-weight: 500;
+    border: none;
+    background: rgba(255, 255, 255, 0.92);
+    color: #c089d4;
+    font-size: 22px;
+    font-weight: 700;
     line-height: 1;
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(58, 53, 64, 0.06);
+    box-shadow: 0 4px 14px rgba(192, 137, 212, 0.25),
+                0 0 0 2px rgba(255, 255, 255, 0.6) inset;
     z-index: 1500;
     backdrop-filter: blur(6px);
     transition: all 0.25s;
@@ -555,9 +431,8 @@
   }
   .home-btn:hover { transform: scale(1.08); }
   body.draping-mode .home-btn {
-    background: rgba(0, 0, 0, 0.55);
+    background: rgba(0, 0, 0, 0.5);
     color: white;
-    border-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
   }
 
@@ -726,51 +601,24 @@
 
   /* 결과 화면 */
   .result-card { text-align: center; }
-  .result-emoji { font-size: 64px; margin-bottom: 10px; animation: bounce 2.5s ease-in-out infinite; }
-  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-  .result-label {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 18px;
-    color: #B89B6F;
-    margin-bottom: 4px;
-    letter-spacing: 1.5px;
-    font-weight: 400;
-  }
+  .result-emoji { font-size: 72px; margin-bottom: 8px; animation: bounce 2s ease-in-out infinite; }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .result-label { font-family: 'Pacifico', cursive; font-size: 20px; color: #b888d4; margin-bottom: 4px; }
   .result-name {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 38px;
-    font-weight: 600;
-    background-image: linear-gradient(120deg, #B89B6F 0%, #C9A2C0 50%, #D4A5A5 100%);
+    font-size: 38px; font-weight: 700;
+    background-image: linear-gradient(120deg, #ff85a2, #c089d4, #8eb6f0);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 16px;
-    line-height: 1.2;
-    letter-spacing: -1px;
+    background-clip: text; margin-bottom: 16px; line-height: 1.2;
   }
   .result-summary {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 15px;
-    color: #5A5260;
-    line-height: 1.95;
-    background: rgba(245, 235, 235, 0.45);
-    padding: 22px 24px;
-    border-radius: 14px;
-    margin-bottom: 20px;
-    border-left: 2px solid #D4A5A5;
-    border-right: 2px solid #D4A5A5;
-    text-align: left;
+    font-size: 16px; color: #6e5e88; line-height: 1.8;
+    background: rgba(255, 240, 247, 0.6);
+    padding: 20px; border-radius: 20px; margin-bottom: 24px;
   }
   .section-title {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: #B89B6F;
-    text-align: left;
-    margin: 28px 0 14px;
-    padding-left: 12px;
-    border-left: 3px solid #D4A5A5;
-    letter-spacing: -0.3px;
+    font-size: 17px; font-weight: 700; color: #c089d4;
+    text-align: left; margin: 24px 0 12px; padding-left: 8px;
+    border-left: 4px solid #ffb8d4;
   }
   .palette { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
   .palette-hint {
@@ -884,27 +732,15 @@
     font-weight: 500;
   }
   .info-box {
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 14px;
-    padding: 16px 20px;
-    margin-bottom: 12px;
-    text-align: left;
-    line-height: 1.75;
-    font-size: 14px;
-    color: #3A3540;
-    border: 1px solid rgba(212, 165, 165, 0.2);
-    font-family: 'Noto Sans KR', sans-serif;
+    background: rgba(255, 255, 255, 0.6); border-radius: 18px;
+    padding: 16px 20px; margin-bottom: 12px; text-align: left;
+    line-height: 1.7; font-size: 15px; color: #5a4a6e;
   }
-  .info-box strong { color: #B89B6F; margin-right: 8px; font-weight: 600; }
+  .info-box strong { color: #c089d4; margin-right: 8px; }
   .signature {
-    text-align: center;
-    margin-top: 28px;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    color: #B89B6F;
-    font-size: 18px;
-    letter-spacing: 2px;
-    opacity: 0.9;
+    text-align: center; margin-top: 20px;
+    font-family: 'Pacifico', cursive; color: #d68bb8;
+    font-size: 18px; opacity: 0.85;
   }
   .button-row { display: flex; flex-direction: column; gap: 0; margin-top: 28px; }
   .button-row .btn { margin-top: 12px; }
@@ -925,9 +761,12 @@
 </style>
 </head>
 <body>
-  <div class="deco deco-1"></div>
-  <div class="deco deco-2"></div>
-  <div class="deco-3"></div>
+  <div class="sparkle" style="top:10%; left:8%; animation-delay:0s">✨</div>
+  <div class="sparkle" style="top:20%; right:12%; animation-delay:1s">🌸</div>
+  <div class="sparkle" style="top:60%; left:5%; animation-delay:2s">💫</div>
+  <div class="sparkle" style="top:75%; right:8%; animation-delay:3s">🌷</div>
+  <div class="sparkle" style="top:40%; right:20%; animation-delay:4s">⭐</div>
+  <div class="sparkle" style="top:85%; left:30%; animation-delay:5s">✨</div>
 
   <!-- 상단 좌측 이전 버튼 -->
   <button class="nav-corner left" id="nav-prev" onclick="goPrev()" aria-label="이전 질문">←</button>
@@ -956,27 +795,7 @@
 
     <!-- 시작 화면 -->
     <section id="intro" class="card fade-in">
-      <div class="intro-tagline">Premium Color Diagnosis</div>
       <h1 class="intro-title">my color</h1>
-      <div class="intro-divider">16 Seasonal Types</div>
-      <div class="color-preview">
-        <div class="dot" style="background:#FFA07A"></div>
-        <div class="dot" style="background:#FFD700"></div>
-        <div class="dot" style="background:#FF6F61"></div>
-        <div class="dot" style="background:#FF4500"></div>
-        <div class="dot" style="background:#FFD1DC"></div>
-        <div class="dot" style="background:#B57EDC"></div>
-        <div class="dot" style="background:#B07379"></div>
-        <div class="dot" style="background:#B22862"></div>
-        <div class="dot" style="background:#C19A6B"></div>
-        <div class="dot" style="background:#DAA520"></div>
-        <div class="dot" style="background:#722F37"></div>
-        <div class="dot" style="background:#5D4037"></div>
-        <div class="dot" style="background:#000000"></div>
-        <div class="dot" style="background:#FF1493"></div>
-        <div class="dot" style="background:#4A0E4E"></div>
-        <div class="dot" style="background:#1E90FF"></div>
-      </div>
       <div class="intro-desc">
         <strong style="color:#c089d4">✨ 0원으로 만나보는 전문가용<br>프리미엄 퍼스널 컬러 분석기 ✨</strong><br><br>
         단 10분 만에 내 손으로 직접 <strong>진단</strong>부터<br>
