@@ -6,122 +6,166 @@
 <title>my color · 나만의 퍼스널 컬러 찾기</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Gaegu:wght@400;700&family=Quicksand:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { min-height: 100%; }
   body {
-    font-family: 'Gowun Dodum', 'Quicksand', sans-serif;
-    background: linear-gradient(135deg, #ffe0ec 0%, #fce4f1 25%, #e8d5f2 50%, #d6e6ff 75%, #ffe9f3 100%);
-    background-size: 400% 400%;
-    animation: gradientShift 18s ease infinite;
-    color: #5a4a6e;
+    font-family: 'Noto Sans KR', 'Quicksand', sans-serif;
+    background: linear-gradient(180deg, #FBF6F2 0%, #F5EBEB 50%, #EDE0E5 100%);
+    color: #3A3540;
     padding: 24px 16px 100px;
     overflow-x: hidden;
-    transition: background 0.4s ease;
+    font-weight: 400;
+    letter-spacing: -0.2px;
   }
-  body.draping-mode { animation: none; padding: 0; }
-  @keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
+  body.draping-mode { padding: 0; }
 
-  .sparkle {
+  /* 미니멀 데코 (절제된 액센트) */
+  .deco {
     position: fixed; pointer-events: none;
-    font-size: 18px; opacity: 0.6;
-    animation: float 8s ease-in-out infinite;
     z-index: 0;
+    opacity: 0.55;
   }
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.4; }
-    50% { transform: translateY(-30px) rotate(20deg); opacity: 0.9; }
+  .deco-1 {
+    top: 8%; right: -40px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle at 30% 30%, #F0D4D4 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+  }
+  .deco-2 {
+    bottom: 12%; left: -60px;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle at 70% 70%, #E8D9C4 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(24px);
   }
 
   .container { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
 
   .card {
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 32px;
-    padding: 40px 28px;
-    box-shadow: 0 20px 60px rgba(204, 153, 204, 0.25),
-                0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 44px 30px;
+    box-shadow: 0 18px 50px rgba(58, 53, 64, 0.06),
+                0 0 0 1px rgba(212, 165, 165, 0.12);
     margin: 16px 0;
   }
 
   .intro-title {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
     font-size: 56px;
-    background: linear-gradient(120deg, #ff85a2, #c089d4, #8eb6f0);
+    background: linear-gradient(120deg, #B89B6F 0%, #C9A2C0 50%, #D4A5A5 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-align: center; margin-bottom: 8px;
+    text-align: center;
+    margin-bottom: 4px;
+    letter-spacing: -1px;
   }
-  .intro-sub { font-size: 18px; text-align: center; color: #8a7a9e; margin-bottom: 28px; }
+  .intro-divider {
+    text-align: center;
+    color: #B89B6F;
+    font-size: 11px;
+    letter-spacing: 6px;
+    margin: 4px 0 24px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .intro-divider::before, .intro-divider::after {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: #B89B6F;
+    vertical-align: middle;
+    margin: 0 10px;
+    opacity: 0.5;
+  }
   .intro-desc {
-    font-size: 15px; line-height: 1.8;
-    text-align: center; color: #6e5e88;
-    background: rgba(255, 240, 247, 0.6);
-    padding: 20px; border-radius: 20px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14.5px;
+    line-height: 1.95;
+    text-align: center;
+    color: #5A5260;
+    background: rgba(245, 235, 235, 0.4);
+    padding: 24px 20px;
+    border-radius: 14px;
     margin-bottom: 24px;
+    border-left: 2px solid #D4A5A5;
+    border-right: 2px solid #D4A5A5;
   }
   .features {
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 12px; margin-bottom: 24px;
+    gap: 10px; margin-bottom: 28px;
   }
   .feature-pill {
-    background: linear-gradient(135deg, #ffe4ee, #f0e0ff);
-    padding: 14px; border-radius: 16px;
-    text-align: center; font-size: 14px; color: #6b558b;
-    box-shadow: 0 4px 12px rgba(192, 137, 212, 0.15);
+    background: rgba(255, 255, 255, 0.7);
+    padding: 13px 14px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 13px;
+    color: #5A5260;
+    border: 1px solid rgba(212, 165, 165, 0.2);
+    font-weight: 500;
+    letter-spacing: -0.3px;
   }
   .prep-box {
     background: rgba(255, 255, 255, 0.7);
-    border: 2px dashed #f0c0d8;
-    border-radius: 20px; padding: 20px;
-    margin-bottom: 28px; font-size: 14px;
-    line-height: 1.7; color: #6e5e88;
+    border: 1px solid rgba(212, 165, 165, 0.3);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 28px;
+    font-size: 13.5px;
+    line-height: 1.85;
+    color: #5A5260;
+    font-family: 'Noto Sans KR', sans-serif;
   }
-  .prep-box strong { color: #c089d4; }
-  .prep-list { margin-top: 8px; padding-left: 8px; }
-  .prep-list li { list-style: none; padding: 4px 0; }
+  .prep-box strong { color: #B89B6F; font-weight: 600; }
+  .prep-list { margin-top: 10px; padding-left: 4px; }
+  .prep-list li { list-style: none; padding: 3px 0; }
 
   .btn {
     display: block; width: 100%;
-    padding: 18px 24px; border: none; border-radius: 50px;
-    font-family: inherit; font-size: 17px; font-weight: 600;
+    padding: 17px 24px; border: none; border-radius: 50px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
     cursor: pointer; transition: all 0.3s ease;
-    background: linear-gradient(120deg, #ffa8c5, #c89df0, #95b8f5);
+    background: linear-gradient(120deg, #C9A2C0 0%, #D4A5A5 50%, #B89B6F 100%);
     color: white;
-    box-shadow: 0 8px 24px rgba(255, 168, 197, 0.4);
-    letter-spacing: 1px;
+    box-shadow: 0 8px 22px rgba(184, 155, 111, 0.28);
+    letter-spacing: 1.5px;
   }
-  .btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 32px rgba(255, 168, 197, 0.5); }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(184, 155, 111, 0.38); }
   .btn:active { transform: translateY(0); }
   .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
   .btn-secondary {
-    background: rgba(255, 255, 255, 0.85);
-    color: #b888d4;
-    border: 2px solid #e0c5f0;
-    box-shadow: 0 4px 12px rgba(204, 153, 204, 0.15);
+    background: rgba(255, 255, 255, 0.9);
+    color: #B89B6F;
+    border: 1px solid rgba(184, 155, 111, 0.4);
+    box-shadow: 0 4px 12px rgba(58, 53, 64, 0.05);
   }
 
   /* 상단 좌우 작은 네비 버튼 */
   .nav-corner {
     position: fixed;
     top: 16px;
-    width: 44px; height: 44px;
+    width: 42px; height: 42px;
     border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.92);
-    color: #c089d4;
-    font-size: 20px; font-weight: 700;
+    border: 1px solid rgba(184, 155, 111, 0.3);
+    background: rgba(255, 255, 255, 0.95);
+    color: #B89B6F;
+    font-size: 19px;
+    font-weight: 500;
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(192, 137, 212, 0.25),
-                0 0 0 2px rgba(255, 255, 255, 0.6) inset;
+    box-shadow: 0 4px 14px rgba(58, 53, 64, 0.06);
     z-index: 1500;
     transition: all 0.25s;
     display: none;
@@ -156,59 +200,78 @@
   }
 
   /* 진행 바 */
-  .progress-wrap { margin-bottom: 24px; padding-top: 24px; }
+  .progress-wrap { margin-bottom: 28px; padding-top: 24px; }
   .progress-info {
     display: flex; justify-content: space-between; align-items: center;
-    font-size: 12px; color: #a08abe; margin-bottom: 8px;
+    font-size: 12px; color: #7A6F77; margin-bottom: 8px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
   }
   .progress-percent-pill {
-    background: linear-gradient(120deg, #ffe4ee, #f0e0ff);
-    color: #c089d4;
-    font-weight: 700;
+    background: rgba(212, 165, 165, 0.15);
+    color: #B89B6F;
+    font-weight: 600;
     padding: 3px 10px;
     border-radius: 50px;
     font-size: 11px;
-    box-shadow: 0 2px 6px rgba(192, 137, 212, 0.2);
+    border: 1px solid rgba(184, 155, 111, 0.2);
   }
   .progress-bar {
-    height: 12px;
-    background: rgba(192, 137, 212, 0.18);
+    height: 8px;
+    background: rgba(212, 165, 165, 0.12);
     border-radius: 50px; overflow: hidden;
-    box-shadow: inset 0 2px 6px rgba(192, 137, 212, 0.3);
   }
   .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #ffa8c5, #c089d4, #95b8f5);
+    background: linear-gradient(90deg, #D4A5A5, #C9A2C0, #B89B6F);
     border-radius: 50px; transition: width 0.5s ease; width: 0%;
-    box-shadow: 0 0 12px rgba(255, 168, 197, 0.7);
+    box-shadow: 0 0 10px rgba(184, 155, 111, 0.5);
   }
 
   .question-tag {
-    display: inline-block; padding: 4px 14px;
-    border-radius: 50px; font-size: 12px; font-weight: 600;
-    margin-bottom: 12px;
+    display: inline-block; padding: 5px 14px;
+    border-radius: 50px; font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+    font-family: 'Noto Sans KR', sans-serif;
   }
-  .tag-draping { background: #ffd4e5; color: #d63384; }
-  .tag-objective { background: #d4e9ff; color: #1976d2; }
-  .tag-photo { background: #fff3d4; color: #d68900; }
-  .tag-physical { background: #d4f5e9; color: #00897b; }
+  .tag-draping { background: rgba(212, 165, 165, 0.18); color: #B47373; border: 1px solid rgba(212, 165, 165, 0.3); }
+  .tag-objective { background: rgba(180, 170, 200, 0.18); color: #6F6385; border: 1px solid rgba(180, 170, 200, 0.3); }
+  .tag-photo { background: rgba(212, 184, 150, 0.22); color: #8B6F3D; border: 1px solid rgba(184, 155, 111, 0.3); }
+  .tag-physical { background: rgba(168, 195, 175, 0.22); color: #4F7A60; border: 1px solid rgba(168, 195, 175, 0.35); }
+  .tag-preference { background: rgba(201, 162, 192, 0.22); color: #8E5A82; border: 1px solid rgba(201, 162, 192, 0.35); }
 
   .question-num {
-    font-family: 'Pacifico', cursive;
-    font-size: 22px; color: #d68bb8;
-    text-align: center; margin-bottom: 8px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: #B89B6F;
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
   }
   .question-text {
-    font-size: 21px; font-weight: 700;
-    text-align: center; margin-bottom: 16px;
-    color: #5a4a6e; line-height: 1.5;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 19px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 18px;
+    color: #3A3540;
+    line-height: 1.55;
+    letter-spacing: -0.5px;
   }
   .question-help {
-    text-align: center; font-size: 14px;
-    color: #8a7a9e; margin-bottom: 16px;
-    background: rgba(255, 240, 247, 0.6);
-    padding: 12px 16px; border-radius: 16px;
-    line-height: 1.6;
+    text-align: center;
+    font-size: 13px;
+    color: #7A6F77;
+    margin-bottom: 18px;
+    background: rgba(245, 235, 235, 0.5);
+    padding: 13px 18px;
+    border-radius: 12px;
+    line-height: 1.65;
+    border-left: 2px solid #D4A5A5;
+    font-family: 'Noto Sans KR', sans-serif;
   }
 
   .draping-mini-row {
@@ -233,31 +296,36 @@
   }
   .show-draping-btn:hover { background: #ffe4ee; transform: scale(1.03); }
 
-  .options { display: flex; flex-direction: column; gap: 12px; }
+  .options { display: flex; flex-direction: column; gap: 10px; }
   .option {
-    padding: 16px 20px;
-    background: rgba(255, 255, 255, 0.75);
-    border: 2px solid transparent;
-    border-radius: 20px;
-    font-family: inherit; font-size: 15px;
-    color: #5a4a6e; cursor: pointer;
+    padding: 15px 18px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1.5px solid rgba(212, 165, 165, 0.18);
+    border-radius: 14px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14.5px;
+    color: #3A3540;
+    cursor: pointer;
     transition: all 0.25s ease;
-    text-align: left; line-height: 1.5;
-    box-shadow: 0 4px 12px rgba(204, 153, 204, 0.1);
+    text-align: left;
+    line-height: 1.55;
+    box-shadow: 0 2px 8px rgba(58, 53, 64, 0.04);
     display: flex; align-items: center; gap: 14px; width: 100%;
+    font-weight: 500;
   }
   .option:hover {
-    background: rgba(255, 230, 245, 0.95);
-    border-color: #f0c0d8;
-    transform: translateX(6px);
-    box-shadow: 0 6px 18px rgba(255, 168, 197, 0.25);
+    background: #FFFFFF;
+    border-color: #D4A5A5;
+    transform: translateX(4px);
+    box-shadow: 0 4px 14px rgba(212, 165, 165, 0.18);
   }
   .option.selected {
-    background: linear-gradient(120deg, #ffe4ee, #f0e0ff);
-    border-color: #c089d4;
-    box-shadow: 0 6px 20px rgba(192, 137, 212, 0.35),
-                0 0 0 4px rgba(255, 168, 197, 0.2);
+    background: linear-gradient(120deg, #FBE8E8, #F5E0D8);
+    border-color: #B89B6F;
+    box-shadow: 0 4px 18px rgba(184, 155, 111, 0.22);
     transform: translateX(4px);
+    color: #3A3540;
+    font-weight: 600;
   }
   .option-swatch {
     width: 32px; height: 32px;
@@ -410,18 +478,17 @@
   .home-btn {
     position: fixed;
     top: 16px;
-    left: 70px;
-    width: 44px; height: 44px;
+    left: 66px;
+    width: 42px; height: 42px;
     border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.92);
-    color: #c089d4;
-    font-size: 22px;
-    font-weight: 700;
+    border: 1px solid rgba(184, 155, 111, 0.3);
+    background: rgba(255, 255, 255, 0.95);
+    color: #B89B6F;
+    font-size: 20px;
+    font-weight: 500;
     line-height: 1;
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(192, 137, 212, 0.25),
-                0 0 0 2px rgba(255, 255, 255, 0.6) inset;
+    box-shadow: 0 4px 14px rgba(58, 53, 64, 0.06);
     z-index: 1500;
     backdrop-filter: blur(6px);
     transition: all 0.25s;
@@ -430,8 +497,9 @@
   }
   .home-btn:hover { transform: scale(1.08); }
   body.draping-mode .home-btn {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.55);
     color: white;
+    border-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
   }
 
@@ -600,24 +668,51 @@
 
   /* 결과 화면 */
   .result-card { text-align: center; }
-  .result-emoji { font-size: 72px; margin-bottom: 8px; animation: bounce 2s ease-in-out infinite; }
-  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-  .result-label { font-family: 'Pacifico', cursive; font-size: 20px; color: #b888d4; margin-bottom: 4px; }
+  .result-emoji { font-size: 64px; margin-bottom: 10px; animation: bounce 2.5s ease-in-out infinite; }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .result-label {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: #B89B6F;
+    margin-bottom: 4px;
+    letter-spacing: 1.5px;
+    font-weight: 400;
+  }
   .result-name {
-    font-size: 38px; font-weight: 700;
-    background-image: linear-gradient(120deg, #ff85a2, #c089d4, #8eb6f0);
+    font-family: 'Noto Serif KR', serif;
+    font-size: 38px;
+    font-weight: 600;
+    background-image: linear-gradient(120deg, #B89B6F 0%, #C9A2C0 50%, #D4A5A5 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text; margin-bottom: 16px; line-height: 1.2;
+    background-clip: text;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    letter-spacing: -1px;
   }
   .result-summary {
-    font-size: 16px; color: #6e5e88; line-height: 1.8;
-    background: rgba(255, 240, 247, 0.6);
-    padding: 20px; border-radius: 20px; margin-bottom: 24px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    color: #5A5260;
+    line-height: 1.95;
+    background: rgba(245, 235, 235, 0.45);
+    padding: 22px 24px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    border-left: 2px solid #D4A5A5;
+    border-right: 2px solid #D4A5A5;
+    text-align: left;
   }
   .section-title {
-    font-size: 17px; font-weight: 700; color: #c089d4;
-    text-align: left; margin: 24px 0 12px; padding-left: 8px;
-    border-left: 4px solid #ffb8d4;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #B89B6F;
+    text-align: left;
+    margin: 28px 0 14px;
+    padding-left: 12px;
+    border-left: 3px solid #D4A5A5;
+    letter-spacing: -0.3px;
   }
   .palette { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
   .palette-hint {
@@ -731,15 +826,27 @@
     font-weight: 500;
   }
   .info-box {
-    background: rgba(255, 255, 255, 0.6); border-radius: 18px;
-    padding: 16px 20px; margin-bottom: 12px; text-align: left;
-    line-height: 1.7; font-size: 15px; color: #5a4a6e;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    text-align: left;
+    line-height: 1.75;
+    font-size: 14px;
+    color: #3A3540;
+    border: 1px solid rgba(212, 165, 165, 0.2);
+    font-family: 'Noto Sans KR', sans-serif;
   }
-  .info-box strong { color: #c089d4; margin-right: 8px; }
+  .info-box strong { color: #B89B6F; margin-right: 8px; font-weight: 600; }
   .signature {
-    text-align: center; margin-top: 20px;
-    font-family: 'Pacifico', cursive; color: #d68bb8;
-    font-size: 18px; opacity: 0.85;
+    text-align: center;
+    margin-top: 28px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #B89B6F;
+    font-size: 18px;
+    letter-spacing: 2px;
+    opacity: 0.9;
   }
   .button-row { display: flex; flex-direction: column; gap: 0; margin-top: 28px; }
   .button-row .btn { margin-top: 12px; }
@@ -760,12 +867,8 @@
 </style>
 </head>
 <body>
-  <div class="sparkle" style="top:10%; left:8%; animation-delay:0s">✨</div>
-  <div class="sparkle" style="top:20%; right:12%; animation-delay:1s">🌸</div>
-  <div class="sparkle" style="top:60%; left:5%; animation-delay:2s">💫</div>
-  <div class="sparkle" style="top:75%; right:8%; animation-delay:3s">🌷</div>
-  <div class="sparkle" style="top:40%; right:20%; animation-delay:4s">⭐</div>
-  <div class="sparkle" style="top:85%; left:30%; animation-delay:5s">✨</div>
+  <div class="deco deco-1"></div>
+  <div class="deco deco-2"></div>
 
   <!-- 상단 좌측 이전 버튼 -->
   <button class="nav-corner left" id="nav-prev" onclick="goPrev()" aria-label="이전 질문">←</button>
@@ -795,6 +898,7 @@
     <!-- 시작 화면 -->
     <section id="intro" class="card fade-in">
       <h1 class="intro-title">my color</h1>
+      <div class="intro-divider">Personal Color Lab</div>
       <div class="intro-desc">
         <strong style="color:#c089d4">✨ 0원으로 만나보는 전문가용<br>프리미엄 퍼스널 컬러 분석기 ✨</strong><br><br>
         단 10분 만에 내 손으로 직접 <strong>진단</strong>부터<br>
@@ -818,8 +922,9 @@
       <div class="features">
         <div class="feature-pill">🎨 색 비교 (11문항)</div>
         <div class="feature-pill">👀 외형 관찰 (5문항)</div>
-        <div class="feature-pill">📸 사진 회상 (4문항)</div>
-        <div class="feature-pill">🪞 셀프테스트 (3문항)</div>
+        <div class="feature-pill">📸 사진 회상 (2문항)</div>
+        <div class="feature-pill">💜 자기 평가 (6문항)</div>
+        <div class="feature-pill" style="grid-column:1 / -1">🪞 셀프테스트 (2문항)</div>
       </div>
       <button class="btn" onclick="startQuiz()">진단 START!</button>
     </section>
@@ -1712,25 +1817,51 @@ const QUESTIONS = [
     ]
   },
   {
-    type: "photo", tag: "📸 사진 회상",
-    q: "본인이 사진 잘 나왔다고 느낀 옷의 색깔 계열은?",
-    help: "사진첩 한번 살펴보세요. '이 사진 진짜 잘 나왔다' 싶은 옷의 색.",
+    type: "preference", tag: "💜 자기 평가",
+    q: "더 잘 어울리는 분위기는?",
     options: [
-      { t: "따뜻한 색 (베이지/카멜/코랄/머스타드)", swatch: "#D4A574", s: { W: 2, L: 0, B: 0 } },
-      { t: "차가운 색 (네이비/그레이/라벤더/블루)", swatch: "#7080A0", s: { W: -2, L: 0, B: 0 } },
-      { t: "쨍한 비비드 색 (선명한 원색)", swatch: "#FF3366", s: { W: 0, L: 0, B: 2 } },
-      { t: "부드러운 파스텔 (연한 색)", swatch: "#F0D0E0", s: { W: 0, L: 1, B: -2 } }
+      { t: "밝고 화사한 메이크업", swatch: "#FFD1DC", s: { W: 0, L: 2, B: 0 } },
+      { t: "차분하고 깊은 메이크업", swatch: "#5D4037", s: { W: 0, L: -2, B: 0 } }
     ]
   },
   {
-    type: "photo", tag: "📸 사진 회상",
-    q: "사진 찍었을 때 칙칙하게 나왔던 옷 색은?",
-    help: "보면 안 좋은 색 → 본인한테 안 어울리는 색이에요.",
+    type: "preference", tag: "💜 자기 평가",
+    q: "옷을 입었을 때 더 얼굴이 살아나는 쪽은?",
     options: [
-      { t: "순백 / 차가운 흰색이 칙칙", swatch: "#FFFFFF", s: { W: 2, L: 0, B: 0 } },
-      { t: "검정이 칙칙 / 강해 보임", swatch: "#000000", s: { W: 1, L: 2, B: -1 } },
-      { t: "비비드 형광 색이 부담", swatch: "#FF00FF", s: { W: 0, L: 0, B: -2 } },
-      { t: "부드러운 파스텔이 흐려보임", swatch: "#F0E0F0", s: { W: 0, L: -1, B: 2 } }
+      { t: "파스텔톤 / 밝은 색", swatch: "#FFD1DC", s: { W: 0, L: 2, B: 0 } },
+      { t: "어두운 색 / 딥톤", swatch: "#3E2723", s: { W: 0, L: -2, B: 0 } }
+    ]
+  },
+  {
+    type: "preference", tag: "💜 자기 평가",
+    q: "어떤 색이 더 잘 어울리는 편인가요?",
+    options: [
+      { t: "선명하고 쨍한 색", swatch: "#FF1493", s: { W: 0, L: 0, B: 2 } },
+      { t: "부드럽고 탁한 색", swatch: "#B07379", s: { W: 0, L: 0, B: -2 } }
+    ]
+  },
+  {
+    type: "preference", tag: "💜 자기 평가",
+    q: "립을 발랐을 때 더 자연스러운 것은?",
+    options: [
+      { t: "쨍한 레드 / 비비드 핑크", swatch: "#FF1493", s: { W: 0, L: 0, B: 2 } },
+      { t: "말린장미 / MLBB", swatch: "#B07379", s: { W: 0, L: 0, B: -2 } }
+    ]
+  },
+  {
+    type: "preference", tag: "💜 자기 평가",
+    q: "얼굴 인상은 어떤 편인가요?",
+    options: [
+      { t: "눈코입이 또렷하고 대비감 있음", swatch: "#1A1A1A", s: { W: 0, L: -1, B: 2 } },
+      { t: "전체적으로 부드럽고 은은함", swatch: "#E0D4E8", s: { W: 0, L: 1, B: -2 } }
+    ]
+  },
+  {
+    type: "preference", tag: "💜 자기 평가",
+    q: "메이크업을 진하게 했을 때",
+    options: [
+      { t: "더 잘 어울린다", swatch: "#722F37", s: { W: 0, L: -1, B: 1 } },
+      { t: "부담스럽고 어색해 보인다", swatch: "#FFD1DC", s: { W: 0, L: 1, B: -1 } }
     ]
   },
 
